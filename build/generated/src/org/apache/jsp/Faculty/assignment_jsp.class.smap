@@ -1,0 +1,33 @@
+SMAP
+assignment_jsp.java
+JSP
+*S JSP
+*F
++ 0 faculty_header.jsp
+Faculty/faculty_header.jsp
++ 1 assignment.jsp
+Faculty/assignment.jsp
++ 2 footer.jsp
+Faculty/footer.jsp
+*L
+1,7:60
+7:251,5
+7,7:69
+13:269,5
+13,3:78
+15:287,5
+15,2:83
+16:305,5
+16,2:87
+17:323,5
+17,2:91
+18:341,5
+18,10:95
+27,4:104
+30:359,5
+30,44:110
+1#1,57:154
+1#2,9:210
+9:377,5
+9,13:221
+*E
