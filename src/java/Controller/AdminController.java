@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -32,6 +34,9 @@ public class AdminController {
     FeedbackDao fbdao;
     @Autowired    
     SchoolDao scldao;
+    @Autowired
+    private JavaMailSender mailSender;
+    
     
     /*********** 
      * @name Login
@@ -97,10 +102,62 @@ public class AdminController {
     @RequestMapping(value="/approve",method = RequestMethod.GET)    
     public String approve(HttpServletRequest request,HttpSession session){    
         int id = Integer.parseInt(request.getParameter("id"));
+        String recipientAddress =  request.getParameter("email");
+        String name = request.getParameter("name");
+        String subject = "Learn Portal: Access Request Approved";
+        String message = "Dear Mr/Ms "+name+",\n\n"+
+                "Congratulations! your request for access Learn Portal Platform is Approved!. Now, You can Manage your school with Us.\n"+
+                "If you have any further Queries kindly contact us at learnportal1@gmail.com.\n"+
+                "Thank you!\n\n"
+                + "Regards,\nLearn Team\nlearnportal1@gmail.com";
+        
+        System.out.println("To: " + recipientAddress);
+        System.out.println("Subject: " + subject);
+        System.out.println("Message: " + message);
+        
+        SimpleMailMessage email = new SimpleMailMessage();
+        email.setTo(recipientAddress);
+        email.setSubject(subject);
+        email.setText(message);
+         
+        // sends the e-mail
+        mailSender.send(email);         
+        session.setAttribute("mailstatus", "Request Approval Mail is Sent Sucessfully");
+        
         scldao.updateStatus(id); 
         session.setAttribute("message", "Request Approved");
         return "redirect:/Admin/view_request";    
     } 
+    /********** 
+     * Reject Mail
+     * @param request
+     * @param session
+     * @return  
+     **********/
+    @RequestMapping(value="sendEmail",method = RequestMethod.POST)
+    public String doSendEmail(HttpServletRequest request, HttpSession session) {
+        // takes input from e-mail form
+        String recipientAddress = request.getParameter("recipient");
+        String subject = request.getParameter("subject");
+        String message = request.getParameter("message");
+         
+        // prints debug info
+        System.out.println("To: " + recipientAddress);
+        System.out.println("Subject: " + subject);
+        System.out.println("Message: " + message);
+         
+        // creates a simple e-mail object
+        SimpleMailMessage email = new SimpleMailMessage();
+        email.setTo(recipientAddress);
+        email.setSubject(subject);
+        email.setText(message);
+        
+        // sends the e-mail
+        mailSender.send(email);
+         
+        session.setAttribute("mailstatus", "Your Request Rejection Mail is Sent Sucessfully");
+        return "redirect:/Admin/view_request";
+    }
     /******** 
      * @name Edit School Page
      * @return  

@@ -29,6 +29,13 @@
 </head>
 <body>
 <header>
+<%--============= Check for Login =================--%>  
+<c:if test="${empty sessionScope.username}">
+<script type="text/javascript">
+alert("Please Login first!");
+window.location.href='../login';
+</script> 
+</c:if>
 <%--============= Navigation Bar =================--%>  
 <div class="">
   <div id="logo">
@@ -49,8 +56,8 @@
       <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Assignments</a>
       <div class="dropdown-menu">
-        <a class="dropdown-item font" href="view_assignment.jsp">View Assignments</a>
-        <a class="dropdown-item font" href="upload_assign.jsp">Uploaded Assignments</a>
+        <a class="dropdown-item font" href="view_assignment">View Assignments</a>
+        <a class="dropdown-item font" href="upload_assign">Uploaded Assignments</a>
       </div>
       </li>
       <li class="nav-item">

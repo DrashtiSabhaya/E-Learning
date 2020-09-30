@@ -2,8 +2,8 @@
 
 <section id="boxes">
     <ul class="breadcrumb">
-      <li class="breadcrumb-item"><a href="student_subjects.jsp">Subjects</a></li>
-      <li class="breadcrumb-item active">Maths</li>
+      <li class="breadcrumb-item"><a href="student_subjects">Subjects</a></li>
+      <li class="breadcrumb-item active">${name}</li>
     </ul>
     <div class="container">
     <div class="box">
@@ -11,7 +11,7 @@
         <img class="card-img-top p-md-5" src="<c:url value="../resources/images/vid.png"/>" alt="Card image" style="width:100%">
         <div class="card-body">
         <h4 class="card-title">Videos</h4>
-        <a href="view_video.jsp" class="btn btn-primary">View</a>
+        <a href="view_video?id=${id}" class="btn btn-primary">View</a>
         </div>
       </div>
     </div>
@@ -20,7 +20,7 @@
         <img class="card-img-top p-md-5" src="<c:url value="../resources/images/material.png"/>" alt="Card image" style="width:100%">
         <div class="card-body">
         <h4 class="card-title">Material</h4>
-        <a href="view_material.jsp" class="btn btn-primary">View</a>
+        <a href="view_material" class="btn btn-primary">View</a>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
         <img class="card-img-top p-md-5" src="<c:url value="../resources/images/assig.png"/>" alt="Card image" style="width:100%">
         <div class="card-body">
         <h4 class="card-title">Assignments</h4>
-        <a href="view_assignment.jsp" class="btn btn-primary">View</a>
+        <a href="view_assignment" class="btn btn-primary">View</a>
         </div>
       </div>
     </div>

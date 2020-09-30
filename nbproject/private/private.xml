@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Online%20Course%20Portal/LearnPortal/web/Student/student_home.jsp</file>
-            <file>file:/D:/Online%20Course%20Portal/LearnPortal/src/java/Bean/Video.java</file>
-            <file>file:/D:/Online%20Course%20Portal/LearnPortal/src/java/Dao/VideoDao.java</file>
-            <file>file:/D:/Online%20Course%20Portal/LearnPortal/src/java/Controller/StudentController.java</file>
-            <file>file:/D:/Online%20Course%20Portal/LearnPortal/src/java/Controller/SchoolController.java</file>
-            <file>file:/D:/Online%20Course%20Portal/LearnPortal/web/Student/view_video.jsp</file>
-            <file>file:/D:/Online%20Course%20Portal/LearnPortal/web/School/view_students.jsp</file>
+            <file>file:/D:/Online%20Course%20Portal/LearnPortal/src/java/Controller/AdminController.java</file>
+            <file>file:/D:/Online%20Course%20Portal/LearnPortal/web/Admin/view_request.jsp</file>
+            <file>file:/D:/Online%20Course%20Portal/LearnPortal/web/WEB-INF/dispatcher-servlet.xml</file>
         </group>
     </open-files>
 </project-private>

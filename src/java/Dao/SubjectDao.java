@@ -39,4 +39,23 @@ public class SubjectDao {
         }    
         });    
     }
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public List<Subject> getSubjectsByStdId(int id){
+    return template.query("select * from subject where standard_id ="+id,new RowMapper<Subject>(){    
+        @Override
+        public Subject mapRow(ResultSet rs, int row) throws SQLException {    
+            Subject e=new Subject();    
+            e.setId(rs.getInt(1));    
+            e.setMedium(rs.getString(3));
+            e.setStandard(rs.getInt(4));
+            e.setName(rs.getString(5));    
+            return e;    
+        }    
+        });    
+    }
 }

@@ -23,7 +23,7 @@ public class FeedbackDao {
     public void setTemplate(JdbcTemplate template) {    
         this.template = template;    
     }
-        public int saveFeedback(Feedback s){    
+    public int saveFeedback(Feedback s){    
         String sql="insert into feedback(name,email,message) values('"
                 +s.getName()+"','"+
                 s.getEmail()+"','"+

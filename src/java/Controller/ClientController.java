@@ -114,6 +114,7 @@ public class ClientController {
             if (null != student) {
                 session.setAttribute("username", student.getUsername());
                 session.setAttribute("id",student.getId());
+                session.setAttribute("standard_id",student.getStandard_id());
                 return "redirect:/Student/student_home";
             } else {
                 modelMap.put("error", "Invalid Username or Password ");

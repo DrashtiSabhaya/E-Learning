@@ -11,6 +11,12 @@
     <%session.removeAttribute("message"); %>
 </div>
 </c:if>
+<c:if test="${not empty sessionScope.mailstatus}">
+<div class="alert alert-info">
+  <strong>Mail Sent !</strong> ${sessionScope.mailstatus}
+  <%session.removeAttribute("mailstatus"); %>
+</div>
+</c:if>
 <table id="myTable" class="display">
     <thead>
         <tr>
@@ -39,7 +45,7 @@
        <td>${school.address}</td>
        <td>${school.email}</td>
        <td>${school.contactno}</td>
-       <td><a href="approve?id=${school.id}"><button class="btn btn-primary">Approve</button></a></td>
+       <td><a href="approve?id=${school.id}&email=${school.email}&name=${school.ownername}"><button class="btn btn-primary">Approve</button></a></td>
        <td><button class="btn btn-danger" data-toggle="modal" data-target="#myModal">Reject</button></td>
        </tr>  
     </c:forEach>   
@@ -58,18 +64,18 @@
         </div>  
         <!-- Modal body -->
         <div class="modal-body">
-        <form action="sendrejectmail" method="POST" class="quote">
+        <form action="sendEmail" method="POST" class="quote">
         <div class="form-group">
             <label>Email</label>
-            <input type="text" name="name" class="form-control" placeholder="School Email">
+            <input type="email" name="recipient" class="form-control" placeholder="School Email" required="">
         </div>
         <div class="form-group">
             <label>Subject</label>
-            <input type="email" name="email" class="form-control" placeholder="Subject Line">
+            <input type="text" name="subject" class="form-control" placeholder="Subject Line" required="">
         </div>
         <div class="form-group">
             <label>Reason</label>
-            <textarea placeholder="Reason for Rejection.."  class="form-control" name="message"></textarea> 
+            <textarea placeholder="Reason for Rejection.."  class="form-control" name="message" required=""></textarea> 
         </div>
         <input class="btn btn-info" type="submit" value="Send">
         </form>

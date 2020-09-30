@@ -8,8 +8,8 @@
 <section>
 <div class="container-fluid">
     <ul class="breadcrumb m-3">
-      <li class="breadcrumb-item"><a href="student_subjects.jsp">Subjects</a></li>
-      <li class="breadcrumb-item"><a href="view_subject_content.jsp">Maths</a></li>
+      <li class="breadcrumb-item"><a href="student_subjects">Subjects</a></li>
+      <li class="breadcrumb-item"><a href="view_subject_content?id=${id}&name=${name}">${name}</a></li>
       <li class="breadcrumb-item active">Videos</li>
     </ul>    
   <div class="row">
@@ -43,24 +43,24 @@
          </div>
         <div class="container">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Posted By : Drashti <small><i>Posted on February 19, 2016</i></small><br> Comment : Nullam et eros sit amet magna dictum pulvinar.</li>
-                <li class="list-group-item">Posted By : Drashti <small><i>Posted on February 19, 2016</i></small><br> Comment : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget metus a urna pulvinar feugiat</li>
-                <li class="list-group-item">Posted By : Drashti <small><i>Posted on February 19, 2016</i></small><br> Comment : Nullam et eros sit amet magna dictum pulvinar.</li>
-                <li class="list-group-item">Posted By : Drashti <small><i>Posted on February 19, 2016</i></small><br> Comment : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget metus a urna pulvinar feugiat</li>
-                <li class="list-group-item">Posted By : Drashti <small><i>Posted on February 19, 2016</i></small><br> Comment : Nullam et eros sit amet magna dictum pulvinar.</li>
-                <li class="list-group-item">Posted By : Drashti <small><i>Posted on February 19, 2016</i></small><br> Comment : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget metus a urna pulvinar feugiat</li>            
+                <c:forEach var="commentlist" items="${commentlist}"> 
+                <li class="list-group-item">Posted By : ${commentlist.username} <small><i>Posted on ${commentlist.date}</i></small><br> Comment : ${commentlist.comment}</li>
+                </c:forEach>
+                <li class="list-group-item">Posted By : drashti26 <small><i>Posted on 2020-09-26</i></small><br> Comment : Probability is the branch of mathematics concerning numerical descriptions of how likely an event is to occur, or how likely it is that a proposition is true. </li>               
             </ul>
             <ul class="pagination pagination justify-content-end">
                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
             </ul>
             <section class="jumbotron">
             <div class="container">
                 <h2>Discuss Your Question..</h2><br>
-                <form>
+                <form action="savecomment" method="POST">
+                    <input type="hidden" name="username" value="${username}" >
+                    <input type="hidden" name="videoid" value="${videoid}">
                     <textarea class="input-group form-control" type="text" name="comment" placeholder="Enter Your Question.."></textarea>
                     <br>
                     <div class="form-group">
