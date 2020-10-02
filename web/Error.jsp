@@ -13,7 +13,7 @@
 </head>
 <body>
     <center>
-        <h2>Sorry, the email was not sent because of the following error:</h2>
+        <h2>Sorry, Server has Some Problem Please Try after some time!</h2>
         <h3>${exception.message}</h3>
     </center>
 </body>

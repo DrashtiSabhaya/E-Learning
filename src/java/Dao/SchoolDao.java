@@ -42,31 +42,9 @@ public class SchoolDao {
             s.getMedium()           +"')";    
         return template.update(sql);    
     }
-    public List<School> getSchool()
+    public List<School> getSchool(int status)
     {
-        return template.query("select * from school where status = 1",new RowMapper<School>()
-        {    
-        @Override
-        public School mapRow(ResultSet rs, int row) throws SQLException {    
-            School e=new School();    
-            e.setId(rs.getInt(1)); 
-            e.setName(rs.getString(2));
-            e.setUsername(rs.getString(3));
-            e.setPassword(rs.getString(4));
-            e.setOwnername(rs.getString(5));
-            e.setRegisterno(rs.getString(6));
-            e.setContactno(rs.getString(7));
-            e.setAddress(rs.getString(8));
-            e.setEmail(rs.getString(9));
-            e.setStandard(rs.getString(10));
-            e.setMedium(rs.getString(11));
-            return e;    
-        }    
-        });    
-    }
-    public List<School> getSchoolRequest()
-    {
-        return template.query("select * from school where status = 0",new RowMapper<School>()
+        return template.query("select * from school where status = "+status,new RowMapper<School>()
         {    
         @Override
         public School mapRow(ResultSet rs, int row) throws SQLException {    
@@ -87,9 +65,32 @@ public class SchoolDao {
         }    
         });    
     }
-    public int updateStatus(int p){    
-    String sql="update school set status = 1 where id="+p+"";    
-    return template.update(sql);    
+    public List<School> getSchoolRequest(int status)
+    {
+        return template.query("select * from school where status = "+status,new RowMapper<School>()
+        {    
+        @Override
+        public School mapRow(ResultSet rs, int row) throws SQLException {    
+            School e=new School();    
+            e.setId(rs.getInt(1)); 
+            e.setName(rs.getString(2));
+            e.setUsername(rs.getString(3));
+            e.setPassword(rs.getString(4));
+            e.setOwnername(rs.getString(5));
+            e.setRegisterno(rs.getString(6));
+            e.setContactno(rs.getString(7));
+            e.setAddress(rs.getString(8));
+            e.setEmail(rs.getString(9));
+            e.setStandard(rs.getString(10));
+            e.setMedium(rs.getString(11));
+            e.setStatus(rs.getInt(12));
+            return e;    
+        }    
+        });    
+    }
+    public int updateStatus(int p,int status){    
+        String sql="update school set status = "+status+" where id="+p+"";    
+        return template.update(sql);    
     }    
     public int saveUpdate(School s)
     {   
@@ -152,8 +153,8 @@ public class SchoolDao {
                 login.getUsername() 
                 + "' and password='" + 
                 login.getPassword() + "'";
-        List<School> school = template.query(sql, new RowMapper<School>()
-        {    
+        List<School> school = template.query(sql, new RowMapper<School>(){    
+        
         @Override
         public School mapRow(ResultSet rs, int row) throws SQLException {    
             School e=new School();    

@@ -18,7 +18,7 @@
 		<div class="input-group-prepend">
 		<span class="input-group-text"><i class="fa fa-users"></i></span>
 		</div>
-                <select required="" class="" name="loginas">
+                <select required="" class="" name="loginas" required="">
                     <option selected="" disabled="">Login As</option>
                     <option value="student">Student</option>
                     <option value="teacher">Teacher</option>

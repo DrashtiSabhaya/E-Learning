@@ -1,12 +1,13 @@
 <%--================ Header ===================--%>
 <%@ include file="header.jsp" %>
 
-<%--============= View School List ==============--%>
+<%--============ View Rejected Request ==============--%>
 <center class="container">
-    <h3>SCHOOLS LIST</h3>
+    <h3>SCHOOL REJECTED REQUESTS</h3>
 </center>
 
 <div class="container-fluid pb-3">
+
 <c:if test="${not empty sessionScope.error}">
 <div class="alert alert-danger">
   <strong>Failed !</strong> ${sessionScope.error}
@@ -19,6 +20,7 @@
   <%session.removeAttribute("message"); %>
 </div>
 </c:if>
+
 <table id="myTable" class="display">
     <thead>
         <tr>
@@ -32,13 +34,13 @@
             <th>Email</th>
             <th>Contact No.</th> 
             <th>Edit</th>
-            <th>Remove</th>
+            <th>Approve</th>
         </tr>
     </thead>
     <tbody>
     <c:forEach var="school" items="${list}">   
         <tr>  
-            <td>${school.id}</td>  
+        <td>${school.id}</td>  
             <td>${school.name}</td>
             <td>${school.ownername}</td>
             <td>${school.registerno}</td>
@@ -47,11 +49,13 @@
             <td>${school.address}</td>
             <td>${school.email}</td>
             <td>${school.contactno}</td>
-            <td><a href="editschool?id=${school.id}" class="btn btn-primary">Edit</a></td>
-            <td><a href="deleteschool?id=${school.id}" class="btn btn-danger" onclick="return confirm('Do you want to Remove School Permanently?')">Remove</a></td>
+            <td><a href="editschool?id=${school.id}"><button class="btn btn-primary">Edit</button></a></td>
+            <td><a href="approve?id=${school.id}&email=${school.email}&name=${school.ownername}" class="btn btn-info">Approve</a></td>
         </tr>  
     </c:forEach>   
     </tbody>
 </table>
 </div>
+
+<%--================ Footer ===================--%>
 <%@ include file="footer.jsp" %>  

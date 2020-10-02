@@ -48,6 +48,7 @@ public class ClientController {
     {
         return "index";
     }
+    
     /******* 
      * About us
      * @return  
@@ -57,6 +58,7 @@ public class ClientController {
     {
         return "about";
     }
+    
     /******** 
      * Contact Us
      * @return  
@@ -66,6 +68,7 @@ public class ClientController {
     {
         return "contact";
     }
+    
     /********* 
      * Save Feedback
      * @param fb
@@ -78,6 +81,7 @@ public class ClientController {
         session.setAttribute("message","Thank you for your valuable Feedback ");
         return "redirect:/contact";    
     } 
+    
     /********** 
      * Login Page
      * @return  
@@ -87,6 +91,7 @@ public class ClientController {
     {
         return "login";
     }
+    
     /*********** 
      * @name Login Check
      * @param request
@@ -139,10 +144,10 @@ public class ClientController {
         {
             School school = scldao.validateSchool(login);
             if (null != school) {
-                if(school.getStatus()!=0){
+                if(school.getStatus()!= 0 || school.getStatus() != 2){
                     session.setAttribute("username", school.getUsername());
                     session.setAttribute("id",school.getId());
-                    return "redirect:/School/school_home.jsp";
+                    return "redirect:/School/school_home";
                 }
                 else{
                     modelMap.put("error", "Your Access Request is not approved yet");
@@ -156,6 +161,7 @@ public class ClientController {
         modelMap.put("error", "Please Select Valid Option");
         return "login";
     }
+    
     /**********
      * School Sign Up Page
      * @return  
@@ -165,6 +171,7 @@ public class ClientController {
     {
         return "signup";
     }
+    
     /********* 
      * Register School
      * @param scl
@@ -177,6 +184,7 @@ public class ClientController {
         modelMap.put("message", "Thank you for Registration! Admin will allow access Soon.");            
         return "signup";    
     }
+    
     /******** 
      * Forgot Password
      * @return  

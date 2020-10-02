@@ -27,14 +27,14 @@ public class AdminDao {
     {
         return template.query("select * from admin",new RowMapper<Admin>()
         {    
-        @Override
-        public Admin mapRow(ResultSet rs, int row) throws SQLException {    
-            Admin e=new Admin();    
-            e.setId(rs.getInt(1));    
-            e.setUsername(rs.getString(2));
-            e.setPassword(rs.getString(3));
-            return e;    
-        }    
+            @Override
+            public Admin mapRow(ResultSet rs, int row) throws SQLException {    
+                Admin e=new Admin();    
+                e.setId(rs.getInt(1));    
+                e.setUsername(rs.getString(2));
+                e.setPassword(rs.getString(3));
+                return e;    
+            }    
         });    
     } 
     public Admin validateAdmin(Login login) {
@@ -44,14 +44,14 @@ public class AdminDao {
                 login.getPassword() + "'";
         List<Admin> admin = template.query(sql, new RowMapper<Admin>()
         {    
-        @Override
-        public Admin mapRow(ResultSet rs, int row) throws SQLException {    
-            Admin e=new Admin();    
-            e.setId(rs.getInt(1));    
-            e.setUsername(rs.getString(2));
-            e.setPassword(rs.getString(3));
-            return e;    
-        }    
+            @Override
+            public Admin mapRow(ResultSet rs, int row) throws SQLException {    
+                Admin e=new Admin();    
+                e.setId(rs.getInt(1));    
+                e.setUsername(rs.getString(2));
+                e.setPassword(rs.getString(3));
+                return e;    
+            }    
         });    
         return admin.size() > 0 ? admin.get(0) : null;
     }

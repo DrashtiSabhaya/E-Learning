@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value="../resources/css/style.css" />">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<c:url value="../resources/css/dt.css" />">
-    <script src="<c:url value="../resources/js/jquery.js" />"></script>
+    <link rel="stylesheet" href="<c:url value="../resources/css/dt.css" />">   
     <script src="<c:url value="../resources/js/dt.js" />"></script>
     <script src="<c:url value="../resources/js/popper.js" />"></script>
     <script type="text/javascript">
@@ -51,11 +51,18 @@ window.location.href='./login';
         <li class="nav-item">
         <a class="nav-link active" href="index">Home</a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="view_request">School Request</a>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">School Request</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item font" href="view_request">New Request</a>
+          <a class="dropdown-item font" href="view_rejected_request">Rejected Request</a>
+        </div>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="list_school">List School</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="mailinfo">Sent Mails</a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="feedback">Feedback</a>

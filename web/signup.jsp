@@ -1,17 +1,17 @@
 <%--============= Header =================--%>
 <%@ include file="header.jsp" %>
 <%--============= Sign Up =================--%>
-<section class="signin">
-    <c:if test="${not empty message}">
-        <div class="alert alert-success container">
-          <strong>Registration Success!</strong> ${message}
-        </div>
-    </c:if>  
+<section class="signin"> 
     <div class="container-fluid">
       <div class="heading">
         <h1><span>Sign</span> Up</h1>
       </div>
       <div class="page-card">
+      <c:if test="${not empty message}">
+        <div class="alert alert-success container">
+            <strong>Registration Success!</strong> ${message}
+        </div><br>
+      </c:if> 
         <form action="register" method="POST">
           <div class="input-group form-group">
             <div class="input-group-prepend">
@@ -35,7 +35,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-phone"></i></span>
             </div>
-              <input type="tel" class="form-control" name="contactno" pattern="[0-9]{10}" placeholder="Contact Number" required="">
+              <input type="tel" class="form-control" name="contactno" pattern="[0-9]{10}" placeholder="Contact Number" title="Contact No must be of 10 digits" required="">
           </div>
           <div class="input-group form-group">
             <div class="input-group-prepend">

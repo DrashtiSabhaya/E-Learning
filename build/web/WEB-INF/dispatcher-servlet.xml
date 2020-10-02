@@ -94,4 +94,8 @@
     <bean id="dfdao" class="Dao.DiscussionDao">    
     <property name="template" ref="jt"></property>    
     </bean>
+    <bean id="maildao" class="Dao.MailInfoDao">    
+    <property name="template" ref="jt"></property>    
+    </bean>
+
 </beans>

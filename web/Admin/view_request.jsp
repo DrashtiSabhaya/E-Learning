@@ -1,10 +1,12 @@
 <%--================ Header ===================--%>
 <%@ include file="header.jsp" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 
-<%--================ View Request ===================--%>
+<%--============== View Request =================--%>
+<center class="container">
+    <h3>NEW SCHOOL REQUESTS</h3>
+</center>
+
 <div class="container-fluid pb-3">
-<center class="pt-3"><h3>SCHOOL REQUESTS</h3></center>
 <c:if test="${not empty sessionScope.message}">
 <div class="alert alert-success">
   <strong>Approved !</strong> School Request is approved.
@@ -17,6 +19,7 @@
   <%session.removeAttribute("mailstatus"); %>
 </div>
 </c:if>
+
 <table id="myTable" class="display">
     <thead>
         <tr>
@@ -35,19 +38,19 @@
     </thead>
     <tbody>
     <c:forEach var="school" items="${list}">   
-       <tr>  
-       <td>${school.id}</td>  
-       <td>${school.name}</td>
-       <td>${school.ownername}</td>
-       <td>${school.registerno}</td>
-       <td>${school.standard}</td>
-       <td>${school.medium}</td>
-       <td>${school.address}</td>
-       <td>${school.email}</td>
-       <td>${school.contactno}</td>
-       <td><a href="approve?id=${school.id}&email=${school.email}&name=${school.ownername}"><button class="btn btn-primary">Approve</button></a></td>
-       <td><button class="btn btn-danger" data-toggle="modal" data-target="#myModal">Reject</button></td>
-       </tr>  
+        <tr>  
+            <td>${school.id}</td>  
+            <td>${school.name}</td>
+            <td>${school.ownername}</td>
+            <td>${school.registerno}</td>
+            <td>${school.standard}</td>
+            <td>${school.medium}</td>
+            <td>${school.address}</td>
+            <td>${school.email}</td>
+            <td>${school.contactno}</td>
+            <td><a class="btn btn-primary" href="approve?id=${school.id}&email=${school.email}&name=${school.ownername}">Approve</a></td>
+            <td><button class="btn btn-danger" data-toggle="modal" data-val="${school.id}" data-email="${school.email}" data-target="#myModal">Reject</button></td>
+        </tr>  
     </c:forEach>   
     </tbody>
 </table>
@@ -65,9 +68,10 @@
         <!-- Modal body -->
         <div class="modal-body">
         <form action="sendEmail" method="POST" class="quote">
+        <input type="hidden" name="id" id="schoolid" value="">
         <div class="form-group">
             <label>Email</label>
-            <input type="email" name="recipient" class="form-control" placeholder="School Email" required="">
+            <input type="email" name="recipient" id="email" class="form-control" placeholder="School Email" required="">
         </div>
         <div class="form-group">
             <label>Subject</label>
@@ -89,6 +93,15 @@
   </div>
 <!--! The Modal -->
 </div>
+<script>
+$('#myModal').on('show.bs.modal', function(event) {
+  var id = $(event.relatedTarget).data('val');
+  var email=$(event.relatedTarget).data('email');
+  console.log(id);
+  $(this).find("#email").val(email);
+  $(this).find("#schoolid").val(id);
+});
+</script>
 <%--================ Footer ===================--%>
 <%@ include file="footer.jsp" %>  
 
