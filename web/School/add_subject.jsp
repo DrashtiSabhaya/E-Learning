@@ -1,8 +1,6 @@
-<%-- 
-    Document   : add_subject
-    Created on : 17 Aug, 2020, 3:39:59 PM
-    Author     : Drashti
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@ include file="school_header.jsp" %>
 
@@ -17,23 +15,19 @@
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="fa fa-users"></i></span>
         </div>
-        <select name="standard">
-        <option selected="" disabled="">Select Standard</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        </select>
+        <form:select name="standard" path="standard">
+            <form:option value="NONE" label="Select Standard" />
+            <form:options items="${standard}"/>
+        </form:select>
       </div>
       <div class="input-group form-group">
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="fa fa-tasks"></i></span>
         </div>
-        <select name="medium">
-          <option selected="" disabled="">Select Medium</option>
-          <option value="English">English</option>
-          <option value="Gujarati">Gujarati</option>
-          <option value="Hindi">Hindi</option>
-        </select>
+        <form:select name="medium" path="medium">
+              <form:option value="NONE" label="Select Medium" disabled="" />
+              <form:options items="${medium}"/>
+        </form:select>
       </div>
       <div class="input-group form-group">
         <div class="input-group-prepend">
@@ -48,6 +42,5 @@
     </div>
   </div>
 </section>
-
 
 <%@ include file="school_footer.jsp" %>

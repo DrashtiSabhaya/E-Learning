@@ -1,8 +1,12 @@
+<%--================ Header ===================--%>
 <%@ include file="header.jsp" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+
+<%--============= View School List ==============--%>
+<center class="container">
+    <h3>SCHOOLS LIST</h3>
+</center>
 
 <div class="container-fluid pb-3">
-<center class="pt-3"><h3>SCHOOLS LIST</h3></center>
 <c:if test="${not empty sessionScope.error}">
 <div class="alert alert-danger">
   <strong>Failed !</strong> ${sessionScope.error}
@@ -33,19 +37,19 @@
     </thead>
     <tbody>
     <c:forEach var="school" items="${list}">   
-       <tr>  
-       <td>${school.id}</td>  
-       <td>${school.name}</td>
-       <td>${school.ownername}</td>
-       <td>${school.registerno}</td>
-       <td>${school.standard}</td>
-       <td>${school.medium}</td>
-       <td>${school.address}</td>
-       <td>${school.email}</td>
-       <td>${school.contactno}</td>
-       <td><a href="editschool?id=${school.id}"><button class="btn btn-primary">Edit</button></a></td>
-       <td><a href="deleteschool?id=${school.id}"><button class="btn btn-danger" onclick="return confirm('Do you want to Remove School Permanently?')">Remove</button></a></td>
-       </tr>  
+        <tr>  
+            <td>${school.id}</td>  
+            <td>${school.name}</td>
+            <td>${school.ownername}</td>
+            <td>${school.registerno}</td>
+            <td>${school.standard}</td>
+            <td>${school.medium}</td>
+            <td>${school.address}</td>
+            <td>${school.email}</td>
+            <td>${school.contactno}</td>
+            <td><a href="editschool?id=${school.id}" class="btn btn-primary">Edit</a></td>
+            <td><a href="deleteschool?id=${school.id}" class="btn btn-danger" onclick="return confirm('Do you want to Remove School Permanently?')">Remove</a></td>
+        </tr>  
     </c:forEach>   
     </tbody>
 </table>

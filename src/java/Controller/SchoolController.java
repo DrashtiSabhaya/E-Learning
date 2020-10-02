@@ -43,14 +43,142 @@ public class SchoolController {
     @Autowired
     SchoolDao scldao;
     
+    /******** 
+     * School Home
+     * @return  
+     **********/
     @RequestMapping(value="school_home",method = RequestMethod.GET)    
     public String school_home(){    
         return "School/school_home";    
     }
+    
+    /****** 
+     * Add Standard
+     * @return  
+     *******/
     @RequestMapping(value="add_standard",method = RequestMethod.GET)    
     public String addStandard(){    
         return "School/add_standard";    
     }
+    
+    /******** 
+     * Add New Standard 
+     * @param std
+     * @return 
+     *******/
+    @RequestMapping(value="addstandard",method = RequestMethod.POST)    
+    public String saveStandrad(@ModelAttribute("std") Standards std){    
+        stddao.saveStandard(std);    
+        return "redirect:/School/view_standard";    
+    }
+    
+    /******* 
+     * View Standards 
+     * @param m
+     * @return 
+     ********/
+    @RequestMapping(value="view_standard")    
+    public String view_standard(Model m){    
+        List<Standards> list=stddao.getStandard();    
+        m.addAttribute("list",list);  
+        return "School/view_standard";    
+    }
+    
+    /****** 
+     * Add Subject
+     * @return  
+     *******/
+    @RequestMapping(value="add_subject",method = RequestMethod.GET)    
+    public String addSubject(){    
+        return "School/add_subject";    
+    }
+    
+    /********
+     * Save Subject 
+     * @param sub
+     * @return 
+     ********/
+    @RequestMapping(value="savesubject",method = RequestMethod.POST)    
+    public String saveSubject(@ModelAttribute("sub") Subject sub){    
+        subdao.saveSubject(sub);    
+        return "redirect:/School/view_subjects";    
+    }
+    
+    /****** 
+     * View Subjects 
+     * @param m
+     * @return 
+     *******/
+    @RequestMapping(value="view_subjects", method = RequestMethod.GET)    
+    public String view_subjects(Model m){    
+        List<Subject> list=subdao.getSubjects();    
+        m.addAttribute("list",list);  
+        return "School/view_subjects";    
+    }
+    
+    /****** 
+     * Save New Faculty
+     * @param fac
+     * @return  
+     ********/
+    @RequestMapping(value="/savefaculty",method = RequestMethod.POST)    
+    public String saveFaculty(@ModelAttribute("fac") Faculty fac){    
+        facdao.saveFaculty(fac);    
+        return "redirect:/School/view_faculty";    
+    }
+    
+    /****** 
+     * View Faculties 
+     * @param m
+     * @return 
+     *******/
+    @RequestMapping(value="view_faculty")    
+    public String view_faculty(Model m){    
+        List<Faculty> list=facdao.getFaculty();    
+        m.addAttribute("list",list);  
+        return "School/view_faculty";    
+    }
+    
+    /********* 
+     * Save New Student 
+     * @param st
+     * @return 
+     ********/
+    @RequestMapping(value="savestudent",method = RequestMethod.POST)    
+    public String saveStudent(@ModelAttribute("st") Student st){    
+        stdao.saveStudent(st);    
+        return "redirect:/School/view_students";    
+    }
+    
+    /****** 
+     * View Students 
+     * @param m
+     * @return 
+     ********/
+    @RequestMapping(value="view_students")    
+    public String view_students(Model m){    
+        List<Student> list=stdao.getStudent();    
+        m.addAttribute("list",list);  
+        return "School/view_students";    
+    }
+    
+    /*********** 
+     * Logout
+     * @param session    
+     * @return  
+     ************/    
+    @RequestMapping(value="logout", method = RequestMethod.GET)
+    public String logout(HttpSession session) {
+        session.removeAttribute("username");
+        session.removeAttribute("id");
+        return "redirect:/login";
+    }
+    
+    /***** 
+     * Standards 
+     * @param session
+     * @return 
+     ******/
     @ModelAttribute("standard")
     public List<String> getStandardList(HttpSession session) 
     {
@@ -64,6 +192,12 @@ public class SchoolController {
         }
         return standard;
     }
+    
+    /******* 
+     * Mediums 
+     * @param session
+     * @return 
+     *******/
     @ModelAttribute("medium")
     public String[] getMediums(HttpSession session)
     {
@@ -72,59 +206,13 @@ public class SchoolController {
         String[] medium = school.getMedium().split(",");
         return medium;
     }
-    @RequestMapping(value="addstandard",method = RequestMethod.POST)    
-    public String saveStandrad(@ModelAttribute("std") Standards std){    
-        stddao.saveStandard(std);    
-        return "redirect:/School/view_standard";    
-    }
-    @RequestMapping(value="view_standard")    
-    public String view_standard(Model m){    
-        List<Standards> list=stddao.getStandard();    
-        m.addAttribute("list",list);  
-        return "School/view_standard";    
-    }
-    @RequestMapping(value="savesubject",method = RequestMethod.POST)    
-    public String saveSubject(@ModelAttribute("sub") Subject sub){    
-        subdao.saveSubject(sub);    
-        return "redirect:/School/view_subjects";    
-    }
-    @RequestMapping(value="view_subjects")    
-    public String view_subjects(Model m){    
-        List<Subject> list=subdao.getSubjects();    
-        m.addAttribute("list",list);  
-        return "School/view_subjects";    
-    }
-    @RequestMapping(value="/savefaculty",method = RequestMethod.POST)    
-    public String saveFaculty(@ModelAttribute("fac") Faculty fac){    
-        facdao.saveFaculty(fac);    
-        return "redirect:/School/view_faculty";    
-    }
-    @RequestMapping(value="view_faculty")    
-    public String view_faculty(Model m){    
-        List<Faculty> list=facdao.getFaculty();    
-        m.addAttribute("list",list);  
-        return "School/view_faculty";    
-    }
-    @RequestMapping(value="savestudent",method = RequestMethod.POST)    
-    public String saveStudent(@ModelAttribute("st") Student st){    
-        stdao.saveStudent(st);    
-        return "redirect:/School/view_students";    
-    }
-    @RequestMapping(value="view_students")    
-    public String view_students(Model m){    
-        List<Student> list=stdao.getStudent();    
-        m.addAttribute("list",list);  
-        return "School/view_students";    
-    }
-    /*********** 
-     * @name Logout
-     * @param session    
-     * @return  
-     ************/    
-    @RequestMapping(value="logout", method = RequestMethod.GET)
-    public String logout(HttpSession session) {
-        session.removeAttribute("username");
-        session.removeAttribute("id");
-        return "redirect:/login";
+    
+    @ModelAttribute("subject")
+    public String[] getSubjects(HttpSession session)
+    {
+        int id = Integer.parseInt(session.getAttribute("id").toString());
+        School school=scldao.getSchoolById(id);
+        String[] medium = school.getMedium().split(",");
+        return medium;
     }
 }
