@@ -25,7 +25,7 @@
             <td>${email.mailto}</td>
             <td>${email.subject}</td>
             <td>${email.date}</td>
-            <td><button class="btn btn-info" data-toggle="modal" data-val="${email.message}" data-subject="${email.subject}" data-email="${school.email}" data-target="#myModal">View</button></td>
+            <td><button class="btn btn-info" data-toggle="modal" data-val="${email.message}" data-subject="${email.subject}" data-email="${email.mailto}" data-target="#myModal">View</button></td>
         </tr>  
     </c:forEach>   
     </tbody>
@@ -68,8 +68,8 @@
 <script>
 $('#myModal').on('show.bs.modal', function(event) {
   var message = $(event.relatedTarget).data('val');
-  var email=$(event.relatedTarget).data('email');
-  var subject=$(event.relatedTarget).data('subject');
+  var email = $(event.relatedTarget).data('email');
+  var subject = $(event.relatedTarget).data('subject');
   $(this).find("#subject").val(subject);
   $(this).find("#email").val(email);
   $(this).find("#message").val(message);

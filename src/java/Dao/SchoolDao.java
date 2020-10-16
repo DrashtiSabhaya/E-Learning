@@ -7,8 +7,10 @@ package Dao;
 
 import Bean.Login;
 import Bean.School;
+import Bean.SchoolList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -174,5 +176,28 @@ public class SchoolDao {
         }    
         });    
         return school.size() > 0 ? school.get(0) : null;
+    }
+    public List<SchoolList> getSchoolList(String criteria)
+    {
+        String year;
+        String month="";
+        if(criteria.equals("month"))
+        {
+            year=Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
+            month="Where Year(date)="+year;
+        }
+        String sql = "Select count(*) as schools,"+criteria+"(date) as criteria from school "+month+" GROUP By "+criteria+"(date)"
+                + "ORDER BY "+criteria+"(date)";
+        List<SchoolList> list = template.query(sql,new RowMapper<SchoolList>()
+        {    
+        @Override
+        public SchoolList mapRow(ResultSet rs, int row) throws SQLException {    
+            SchoolList e=new SchoolList();    
+            e.setCount(rs.getInt(1)); 
+            e.setCriteria(rs.getInt(2));
+            return e;    
+        }    
+        });     
+        return list;
     }
 }

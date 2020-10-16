@@ -5,6 +5,7 @@ import Bean.Feedback;
 import Bean.Login;
 import Bean.MailInfo;
 import Bean.School;
+import Bean.SchoolList;
 import Dao.AdminDao;
 import Dao.FeedbackDao;
 import Dao.MailInfoDao;
@@ -80,11 +81,24 @@ public class AdminController {
     
     /*********** 
      * Home Page
+     * @param modelMap
      * @return  
      ************/
     @RequestMapping(value="index",method = RequestMethod.GET)
-    public String admin_home()
+    public String admin_home(ModelMap modelMap,Model m)
     {
+        List<School> pending=scldao.getSchool(0);
+        List<School> accepted=scldao.getSchool(1);
+        List<School> rejected=scldao.getSchool(2);
+        List<SchoolList> mschool = scldao.getSchoolList("month");
+        List<SchoolList> yschool = scldao.getSchoolList("year");
+        
+        modelMap.put("pending", pending.size());
+        modelMap.put("accepted", accepted.size());
+        modelMap.put("rejected", rejected.size());
+        m.addAttribute("mlist",mschool);
+        m.addAttribute("ylist",yschool);
+
         return "Admin/index";
     }
     
