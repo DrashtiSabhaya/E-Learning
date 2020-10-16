@@ -133,7 +133,7 @@ public class ClientController {
             if (null != faculty) {
                 //session.setAttribute("username", faculty.getUsername());
                 session.setAttribute("id",faculty.getId());
-                return "redirect:/Faculty/faculty_home.jsp";
+                return "redirect:/Faculty/faculty_home";
             } else {
                 modelMap.put("error", "Invalid Username or Password ");
                 return "login";
@@ -144,7 +144,7 @@ public class ClientController {
         {
             School school = scldao.validateSchool(login);
             if (null != school) {
-                if(school.getStatus()!= 0 || school.getStatus() != 2){
+                if(school.getStatus()!= 0 && school.getStatus() != 2){
                     session.setAttribute("username", school.getUsername());
                     session.setAttribute("id",school.getId());
                     return "redirect:/School/school_home";
