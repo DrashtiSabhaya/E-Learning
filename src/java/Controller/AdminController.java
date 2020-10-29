@@ -10,7 +10,17 @@ import Dao.AdminDao;
 import Dao.FeedbackDao;
 import Dao.MailInfoDao;
 import Dao.SchoolDao;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -315,6 +325,142 @@ public class AdminController {
         else
             session.setAttribute("error","Feedback is not Deleted!");
         return "redirect:/Admin/feedback";    
+    }
+    
+    /*********** 
+     * Download PDF Report 
+     * @param request
+     * @param response
+     * @throws java.io.IOException
+     *************/
+    @RequestMapping(value = "/downloadPdf")
+    public void downloadPDF(HttpServletRequest request, HttpServletResponse response) throws IOException {
+ 
+        final ServletContext servletContext = request.getSession().getServletContext();
+        final File tempDirectory = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+        final String temperotyFilePath = tempDirectory.getAbsolutePath();
+
+        String fileName = "LearnPortal.pdf";
+        response.setContentType("application/pdf");
+        response.setHeader("Content-disposition", "attachment; filename="+ fileName);
+
+        List<School> pending=scldao.getSchool(0);
+        List<School> accepted=scldao.getSchool(1);
+        List<School> rejected=scldao.getSchool(2);
+        
+        try {
+            CreatePDF.createPDF(temperotyFilePath+"\\"+fileName, pending, accepted, rejected);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            baos = convertPDFToByteArrayOutputStream(temperotyFilePath+"\\"+fileName);
+            OutputStream os = response.getOutputStream();
+            baos.writeTo(os);
+            os.flush();
+        } catch (IOException e) {
+            System.out.println("Exception = "+e);
+        }
+    }
+
+    private ByteArrayOutputStream convertPDFToByteArrayOutputStream(String fileName) {
+        InputStream inputStream = null;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            inputStream = new FileInputStream(fileName);
+            byte[] buffer = new byte[1024];
+            baos = new ByteArrayOutputStream();
+
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    baos.write(buffer, 0, bytesRead);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Exception = "+e);
+        } catch (IOException e) {
+                e.printStackTrace();
+        } finally {
+            if (inputStream != null) {
+                try {
+                        inputStream.close();
+                } catch (IOException e) {
+                    System.out.println("Exception = "+e);
+                }
+            }
+        }
+        return baos;
+    }
+    
+    /********* 
+     * Download Excel(XLS) Report 
+     * @param response
+     ********/
+    
+    @RequestMapping(value = "/downloadXLS")
+    public void downloadXLS(HttpServletResponse response) {
+        try {
+            response.setContentType("application/vnd.ms-excel");
+            String reportName = "School_XLS_Report.xls";
+            response.setHeader("Content-disposition", "attachment; filename=" + reportName);
+            ArrayList<String> rows = new ArrayList<String>();
+            rows.add("Id");
+            rows.add("\t");
+            rows.add("School Name");
+            rows.add("\t");
+            rows.add("Register No.");
+            rows.add("\t");
+            rows.add("Email");
+            rows.add("\t");
+            rows.add("Joined Date");
+            rows.add("\n");
+            
+            int i=0;
+            List<School> pending=scldao.getSchool(0);
+            List<School> accepted=scldao.getSchool(1);
+            List<School> rejected=scldao.getSchool(2);
+            for (School school:pending) {
+                rows.add(""+(++i));
+                rows.add("\t");
+                rows.add(school.getName());
+                rows.add("\t");
+                rows.add(school.getRegisterno());
+                rows.add("\t");
+                rows.add(school.getEmail());
+                rows.add("\t");
+                rows.add(school.getDate());
+                rows.add("\n");            
+            }
+            for (School school:accepted) {
+                rows.add(""+(++i));
+                rows.add("\t");
+                rows.add(school.getName());
+                rows.add("\t");
+                rows.add(school.getRegisterno());
+                rows.add("\t");
+                rows.add(school.getEmail());
+                rows.add("\t");
+                rows.add(school.getDate());
+                rows.add("\n");            
+            }
+            for (School school:rejected) {
+                rows.add(""+(++i));
+                rows.add("\t");
+                rows.add(school.getName());
+                rows.add("\t");
+                rows.add(school.getRegisterno());
+                rows.add("\t");
+                rows.add(school.getEmail());
+                rows.add("\t");
+                rows.add(school.getDate());
+                rows.add("\n");            
+            }
+            Iterator<String> iter = rows.iterator();
+            while (iter.hasNext()) {
+                    String outputString = (String) iter.next();
+                    response.getOutputStream().print(outputString);
+            }
+            response.getOutputStream().flush();
+
+        } catch (IOException e) {
+            System.out.println("Exception = "+e);
+        }
     }
     
     /*********** 

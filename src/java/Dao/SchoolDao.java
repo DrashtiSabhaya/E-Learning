@@ -63,6 +63,7 @@ public class SchoolDao {
             e.setStandard(rs.getString(10));
             e.setMedium(rs.getString(11));
             e.setStatus(rs.getInt(12));
+            e.setDate(rs.getString(13));
             return e;    
         }    
         });    
@@ -144,6 +145,7 @@ public class SchoolDao {
                 e.setStandard(rs.getString(10));
                 e.setMedium(rs.getString(11));
                 e.setStatus(rs.getInt(12));
+                e.setDate(rs.getString(13));
                 return e;  
             }
             return null;
