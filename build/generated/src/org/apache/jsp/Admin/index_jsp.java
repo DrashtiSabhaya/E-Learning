@@ -17,6 +17,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_dependants.add("/Admin/footer.jsp");
   }
 
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_forEach_var_items;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_if_test;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_url_value_nobody;
 
@@ -27,11 +28,13 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
   }
 
   public void _jspInit() {
+    _jspx_tagPool_c_forEach_var_items = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_c_if_test = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_c_url_value_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
   }
 
   public void _jspDestroy() {
+    _jspx_tagPool_c_forEach_var_items.release();
     _jspx_tagPool_c_if_test.release();
     _jspx_tagPool_c_url_value_nobody.release();
   }
@@ -157,24 +160,28 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write('\n');
       out.write('\n');
       out.write("\n");
+      out.write("<div class=\"label pt-3 text-center \">\n");
+      out.write("<a href=\"downloadPdf\" class=\"btn btn-danger\"><i class=\"fa fa-file-pdf-o\"></i> Download PDF</a>\n");
+      out.write("<a href=\"downloadExcel\" class=\"btn btn-success\"><i class=\"fa fa-file-excel-o\"></i> Download Excel</a>\n");
+      out.write("</div>\n");
       out.write("<section>\n");
-      out.write("<div class=\"container-fluid row\">\n");
+      out.write("  <div class=\"container-fluid row\">\n");
       out.write("    <div class=\"card col-6 ml-5 m-3\">\n");
       out.write("        <div class=\"card-container\">\n");
       out.write("          <h4><center><b>School Requests</b></center></h4> \n");
-      out.write("            <div id=\"piechart1\"></div> \n");
+      out.write("            <div id=\"piechart\"></div> \n");
       out.write("        </div>\n");
       out.write("    </div>\n");
       out.write("    <div class=\"card col-5 m-3\">\n");
       out.write("        <div class=\"card-container\">\n");
-      out.write("          <h4><center><b>School Requests</b></center></h4>  \n");
+      out.write("          <h4><center><b>School Requests</b></center></h4>\n");
       out.write("            <div class=\"container mt-5\">\n");
       out.write("            <table class=\"table table-dark table-hover\">\n");
       out.write("            <thead>\n");
       out.write("              <tr>\n");
       out.write("                <th>Total School Requests</th>\n");
       out.write("                <th>");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${accepted +rejected+pending}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${accepted +rejected +pending}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("</th>\n");
       out.write("              </tr>\n");
       out.write("            </thead>\n");
@@ -207,7 +214,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div class=\"card col-6 ml-5 m-3\">\n");
       out.write("          <div class=\"card-container\">\n");
       out.write("              <h4><center><b>Number of Schools</b></center></h4> \n");
-      out.write("            <div id=\"piechart\"></div> \n");
+      out.write("            <div id=\"barchart\"></div> \n");
       out.write("          </div>\n");
       out.write("        </div>\n");
       out.write("    <div class=\"card col-5 m-3\">\n");
@@ -222,35 +229,31 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("          </tr>\n");
       out.write("        </thead>\n");
       out.write("        <tbody>\n");
-      out.write("          <tr>\n");
-      out.write("            <td>2018</td>\n");
-      out.write("            <td>7</td>\n");
-      out.write("          </tr>\n");
-      out.write("          <tr>\n");
-      out.write("            <td>2019</td>\n");
-      out.write("            <td>1</td>\n");
-      out.write("          </tr>\n");
-      out.write("          <tr>\n");
-      out.write("            <td>2020</td>\n");
-      out.write("            <td>2</td>\n");
-      out.write("          </tr>\n");
+      out.write("         ");
+      if (_jspx_meth_c_forEach_0(_jspx_page_context))
+        return;
+      out.write(" \n");
       out.write("         </tbody>\n");
       out.write("        </table>\n");
       out.write("        </div>\n");
       out.write("     </div>\n");
       out.write("    </div>\n");
       out.write("</div>\n");
+      if (_jspx_meth_c_forEach_1(_jspx_page_context))
+        return;
+      out.write("\n");
       out.write("</section>\n");
       out.write("\n");
       out.write("<script type=\"text/javascript\">\n");
-      out.write("google.charts.load('current', {'packages':['corechart']});\n");
-      out.write("google.charts.setOnLoadCallback(drawPieChart);\n");
-      out.write("google.charts.setOnLoadCallback(drawBarChart);\n");
+      out.write("    var d = new Date();\n");
+      out.write("    google.charts.load('current', {'packages':['corechart']});\n");
+      out.write("    google.charts.setOnLoadCallback(drawPieChart);\n");
+      out.write("    google.charts.setOnLoadCallback(drawBarChart);\n");
       out.write("\n");
       out.write("function drawPieChart() {\n");
-      out.write("    var accepted = document.getElementById(\"accepted\");\n");
-      out.write("    var rejected = document.getElementById(\"rejected\");\n");
-      out.write("    var pending = document.getElementById(\"pending\");\n");
+      out.write("    var accepted = parseInt(document.getElementById(\"accepted\").innerHTML);\n");
+      out.write("    var rejected = parseInt(document.getElementById(\"rejected\").innerHTML);\n");
+      out.write("    var pending = parseInt(document.getElementById(\"pending\").innerHTML);\n");
       out.write("    var data = google.visualization.arrayToDataTable([\n");
       out.write("    ['Requests', 'No. of Requests'],\n");
       out.write("    ['Accepted', accepted],\n");
@@ -260,28 +263,41 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("  var options = {'title':'Schools Request', 'width':550, 'height':450};\n");
       out.write("\n");
-      out.write("  var chart = new google.visualization.PieChart(document.getElementById('piechart1'));\n");
+      out.write("  var chart = new google.visualization.PieChart(document.getElementById('piechart'));\n");
       out.write("  chart.draw(data, options);\n");
       out.write("}\n");
       out.write("function drawBarChart() {\n");
-      out.write("  var data = google.visualization.arrayToDataTable([\n");
-      out.write("  ['Months', 'No. of Schools'],\n");
-      out.write("  ['January', 8],\n");
-      out.write("  ['February', 2],\n");
-      out.write("  ['March', 4],\n");
-      out.write("  ['April', 3],\n");
-      out.write("  ['May', 9],\n");
-      out.write("  ['June',2],\n");
-      out.write("  ['July',1],\n");
-      out.write("  ['August',10],\n");
-      out.write("  ['September',12],\n");
-      out.write("  ['October',23],\n");
-      out.write("  ['November',5],\n");
-      out.write("  ['December',3]\n");
+      out.write("    var jan = document.getElementById(\"1\") ?parseInt(document.getElementById(\"1\").value):0;\n");
+      out.write("    var feb = document.getElementById(\"2\") ?parseInt(document.getElementById(\"2\").value):0;\n");
+      out.write("    var mar = document.getElementById(\"3\") ?parseInt(document.getElementById(\"3\").value):0;\n");
+      out.write("    var apr = document.getElementById(\"4\") ?parseInt(document.getElementById(\"4\").value):0;\n");
+      out.write("    var may = document.getElementById(\"5\") ?parseInt(document.getElementById(\"5\").value):0;\n");
+      out.write("    var jun = document.getElementById(\"6\") ?parseInt(document.getElementById(\"6\").value):0;\n");
+      out.write("    var jul = document.getElementById(\"7\") ?parseInt(document.getElementById(\"7\").value):0;\n");
+      out.write("    var aug = document.getElementById(\"8\") ?parseInt(document.getElementById(\"8\").value):0;\n");
+      out.write("    var sep = document.getElementById(\"9\") ?parseInt(document.getElementById(\"9\").value):0;\n");
+      out.write("    var oct = document.getElementById(\"10\") ?parseInt(document.getElementById(\"10\").value):0;\n");
+      out.write("    var nov = document.getElementById(\"11\") ?parseInt(document.getElementById(\"11\").value):0;\n");
+      out.write("    var dec = document.getElementById(\"12\") ?parseInt(document.getElementById(\"12\").value):0;\n");
+      out.write("\n");
+      out.write("    var data = google.visualization.arrayToDataTable([\n");
+      out.write("    ['Months', 'No. of Schools'],\n");
+      out.write("    ['January', jan],\n");
+      out.write("    ['February', feb],\n");
+      out.write("    ['March', mar],\n");
+      out.write("    ['April', apr],\n");
+      out.write("    ['May', may],\n");
+      out.write("    ['June', jun],\n");
+      out.write("    ['July', jul],\n");
+      out.write("    ['August', aug],\n");
+      out.write("    ['September', sep],\n");
+      out.write("    ['October', oct],\n");
+      out.write("    ['November', nov],\n");
+      out.write("    ['December', dec]\n");
       out.write("]);\n");
       out.write("\n");
-      out.write("    var options = {'title':'Year : 2020', 'width':600, 'height':400};\n");
-      out.write("    var chart = new google.visualization.ColumnChart(document.getElementById('piechart'));\n");
+      out.write("    var options = {'title':'Year : '+d.getFullYear(), 'width':600, 'height':400};\n");
+      out.write("    var chart = new google.visualization.ColumnChart(document.getElementById('barchart'));\n");
       out.write("    chart.draw(data, options);\n");
       out.write("}\n");
       out.write("</script>\n");
@@ -459,6 +475,90 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       return true;
     }
     _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_5);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_forEach_0(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:forEach
+    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
+    _jspx_th_c_forEach_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_forEach_0.setParent(null);
+    _jspx_th_c_forEach_0.setVar("school");
+    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${ylist}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int[] _jspx_push_body_count_c_forEach_0 = new int[] { 0 };
+    try {
+      int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
+      if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+        do {
+          out.write("   \n");
+          out.write("          <tr>\n");
+          out.write("            <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${school.criteria}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\n");
+          out.write("            <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${school.count}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\n");
+          out.write("          </tr>\n");
+          out.write("         ");
+          int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
+          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+            break;
+        } while (true);
+      }
+      if (_jspx_th_c_forEach_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        return true;
+      }
+    } catch (Throwable _jspx_exception) {
+      while (_jspx_push_body_count_c_forEach_0[0]-- > 0)
+        out = _jspx_page_context.popBody();
+      _jspx_th_c_forEach_0.doCatch(_jspx_exception);
+    } finally {
+      _jspx_th_c_forEach_0.doFinally();
+      _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_0);
+    }
+    return false;
+  }
+
+  private boolean _jspx_meth_c_forEach_1(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:forEach
+    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_1 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
+    _jspx_th_c_forEach_1.setPageContext(_jspx_page_context);
+    _jspx_th_c_forEach_1.setParent(null);
+    _jspx_th_c_forEach_1.setVar("school");
+    _jspx_th_c_forEach_1.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mlist}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int[] _jspx_push_body_count_c_forEach_1 = new int[] { 0 };
+    try {
+      int _jspx_eval_c_forEach_1 = _jspx_th_c_forEach_1.doStartTag();
+      if (_jspx_eval_c_forEach_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+        do {
+          out.write("   \n");
+          out.write("    <input type=\"hidden\" id=\"");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${school.criteria}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\" value=\"");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${school.count}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\">\n");
+          int evalDoAfterBody = _jspx_th_c_forEach_1.doAfterBody();
+          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+            break;
+        } while (true);
+      }
+      if (_jspx_th_c_forEach_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        return true;
+      }
+    } catch (Throwable _jspx_exception) {
+      while (_jspx_push_body_count_c_forEach_1[0]-- > 0)
+        out = _jspx_page_context.popBody();
+      _jspx_th_c_forEach_1.doCatch(_jspx_exception);
+    } finally {
+      _jspx_th_c_forEach_1.doFinally();
+      _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_1);
+    }
     return false;
   }
 

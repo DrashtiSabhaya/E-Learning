@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Online%20Course%20Portal/LearnPortal/src/java/Controller/ClientController.java</file>
-            <file>file:/D:/Online%20Course%20Portal/LearnPortal/web/Admin/mailinfo.jsp</file>
+            <file>file:/D:/Online%20Course%20Portal/LearnPortal/web/Admin/header.jsp</file>
+            <file>file:/D:/Online%20Course%20Portal/LearnPortal/src/java/Controller/CreatePDF.java</file>
+            <file>file:/D:/Online%20Course%20Portal/LearnPortal/src/java/Controller/AdminController.java</file>
+            <file>file:/D:/Online%20Course%20Portal/LearnPortal/src/java/Dao/SchoolDao.java</file>
+            <file>file:/D:/Online%20Course%20Portal/LearnPortal/web/Admin/view_request.jsp</file>
+            <file>file:/D:/Online%20Course%20Portal/LearnPortal/web/Admin/index.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -2,8 +2,12 @@
 <%@ include file="header.jsp" %>
 
 <%--============== Schools Summary ===============--%>
+<div class="label pt-3 text-center ">
+<a href="downloadPdf" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Download PDF</a>
+<a href="downloadXLS" class="btn btn-success"><i class="fa fa-file-excel-o"></i> Download Excel</a>
+</div>
 <section>
-<div class="container-fluid row">
+  <div class="container-fluid row">
     <div class="card col-6 ml-5 m-3">
         <div class="card-container">
           <h4><center><b>School Requests</b></center></h4> 
@@ -12,7 +16,7 @@
     </div>
     <div class="card col-5 m-3">
         <div class="card-container">
-          <h4><center><b>School Requests</b></center></h4>  
+          <h4><center><b>School Requests</b></center></h4>
             <div class="container mt-5">
             <table class="table table-dark table-hover">
             <thead>
