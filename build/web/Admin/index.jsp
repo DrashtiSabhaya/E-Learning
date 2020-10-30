@@ -1,7 +1,7 @@
 <%--================ Header ===================--%>
 <%@ include file="header.jsp" %>
 
-<%--============== Schools Summary ===============--%>
+<%--============== Schools Summary/Reports ===============--%>
 <div class="label pt-3 text-center ">
 <a href="downloadPdf" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Download PDF</a>
 <a href="downloadXLS" class="btn btn-success"><i class="fa fa-file-excel-o"></i> Download Excel</a>
@@ -80,6 +80,7 @@
 </c:forEach>
 </section>
 
+<%--============== Create Schools Summary/Reports ===============--%>
 <script type="text/javascript">
     var d = new Date();
     google.charts.load('current', {'packages':['corechart']});
@@ -97,10 +98,10 @@ function drawPieChart() {
     ['Pending', pending]    
 ]);
 
-  var options = {'title':'Schools Request', 'width':550, 'height':450};
+    var options = {'title':'Schools Request', 'width':550, 'height':450};
 
-  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-  chart.draw(data, options);
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    chart.draw(data, options);
 }
 function drawBarChart() {
     var jan = document.getElementById("1") ?parseInt(document.getElementById("1").value):0;

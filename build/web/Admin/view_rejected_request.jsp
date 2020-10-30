@@ -7,17 +7,16 @@
 </center>
 
 <div class="container-fluid pb-3">
-
 <c:if test="${not empty sessionScope.error}">
 <div class="alert alert-danger">
-  <strong>Failed !</strong> ${sessionScope.error}
-  <%session.removeAttribute("error"); %>
+    <strong>Failed !</strong> ${sessionScope.error}
+    <%session.removeAttribute("error"); %>
 </div>
 </c:if>
 <c:if test="${not empty sessionScope.message}">
 <div class="alert alert-success">
-  <strong>Success !</strong> ${sessionScope.message}
-  <%session.removeAttribute("message"); %>
+    <strong>Success !</strong> ${sessionScope.message}
+    <%session.removeAttribute("message"); %>
 </div>
 </c:if>
 

@@ -62,7 +62,7 @@ public final class school_005fhome_jsp extends org.apache.jasper.runtime.HttpJsp
 
       out.write('\n');
       out.write('\n');
-      out.write("\n");
+      out.write('\n');
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -165,7 +165,9 @@ public final class school_005fhome_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("</nav>\n");
       out.write("</div>\t\n");
       out.write("</header>\n");
-      out.write("\n");
+      out.write('\n');
+      out.write('\n');
+      out.write('\n');
       out.write("\n");
       out.write("<div id=\"demo\" class=\"carousel slide\" data-ride=\"carousel\">\n");
       out.write("  <ul class=\"carousel-indicators\">\n");
@@ -208,6 +210,7 @@ public final class school_005fhome_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("    <span class=\"carousel-control-next-icon\"></span>\n");
       out.write("  </a>\n");
       out.write("</div>\n");
+      out.write('\n');
       out.write("\n");
       out.write("<script>\n");
       out.write("$(\".custom-file-input\").on(\"change\", function() {\n");

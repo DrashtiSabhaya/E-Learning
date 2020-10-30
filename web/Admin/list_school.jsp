@@ -54,4 +54,5 @@
     </tbody>
 </table>
 </div>
+<%--============= Footer =================--%>
 <%@ include file="footer.jsp" %>  
