@@ -11,18 +11,17 @@ package Bean;
  */
 public class Subject {
     private int id;
+    private int school_id;
     private String medium;
     private int standard;
     private String name;
 
-    public Subject() {
+    public int getSchool_id() {
+        return school_id;
     }
 
-    public Subject(int id, String medium, int standard, String name) {
-        this.id = id;
-        this.medium = medium;
-        this.standard = standard;
-        this.name = name;
+    public void setSchool_id(int school_id) {
+        this.school_id = school_id;
     }
 
     public int getId() {

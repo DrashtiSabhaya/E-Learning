@@ -3,7 +3,9 @@
     Created on : 13 Aug, 2020, 4:13:53 PM
     Author     : Drashti
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="school_header.jsp" %>
 
 <section class="signin">
@@ -12,26 +14,30 @@
         <h1><span>ADD</span> Student</h1>
     </div>
     <div class="page-card">
-     <form action="savestudent" method="POST">
+    <c:if test="${not empty message}">
+        <div class="alert alert-success">
+            <strong>Success !</strong> ${message}
+        </div>
+    </c:if> 
+     <form action="savestudent" method="POST" enctype="multipart/form-data">
+     <input type="hidden" name="school_id" value="${sessionScope.id}">       
       <div class="input-group form-group">
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="fa fa-users"></i></span>
         </div>
-        <select name="standard_id">
-        <option selected="" disabled="">Select Standard</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        </select>
+        <form:select name="standard" path="standard" required="">
+            <form:option value="NONE" label="Select Standard" />
+            <form:options items="${school_standard}"/>
+        </form:select>
       </div>
       <div class="input-group form-group">
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="fa fa-tasks"></i></span>
         </div>
-          <select name="medium">
-          <option selected="" disabled="">Select Medium</option>
-          <option value="english">English</option>
-          <option value="gujarati">Gujarati</option>
-        </select>
+          <form:select name="medium" path="medium" required="">
+              <form:option value="NONE" label="Select Medium" disabled="" />
+              <form:options items="${medium}"/>
+          </form:select>
       </div>
       <div class="input-group form-group">
         <div class="input-group-prepend">
@@ -75,8 +81,8 @@
         </div>
         <select name="gender">
           <option selected="" disabled="">Select Gender</option>
-          <option value="m">Male</option>
-          <option value="f">Female</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
         </select>
         </div>
         <div class="input-group form-group">
@@ -86,7 +92,7 @@
             <input type="Date" class="form-control" name="dob" placeholder="Birth Date" required="">
         </div>
         <div class="custom-file mb-3">
-          <input type="file" class="custom-file-input" accept=".jpg,.jpeg,.png" id="customFile" name="filename">
+          <input type="file" class="custom-file-input" accept=".jpg,.jpeg,.png" id="customFile" name="file">
           <label class="custom-file-label" for="customFile">Choose Photo</label>
         </div>
         <div class="input-group form-group">

@@ -1,9 +1,9 @@
 <%--============= Header =================--%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>    
 
-<%--============= Sign Up =================--%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%--============= Edit School =================--%>
 <section class="signin">
     <div class="container-fluid">
       <div class="heading"> 

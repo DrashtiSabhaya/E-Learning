@@ -12,7 +12,13 @@
         <h1><span>ADD</span> Faculty</h1>
     </div>
     <div class="page-card">
+    <c:if test="${not empty message}">
+        <div class="alert alert-success">
+            <strong>Success !</strong> ${message}
+        </div>
+    </c:if> 
     <form action="savefaculty" method="POST" enctype="multipart/form-data">
+     <input type="hidden" name="school_id" value="${sessionScope.id}">       
       <div class="input-group form-group">
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
@@ -41,16 +47,16 @@
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="fa fa-phone"></i></span>
           </div>
-            <input type="text" class="form-control" name="contactno" placeholder="Contact Number" required="">
+            <input type="tel" class="form-control" name="contactno" pattern="[0-9]{10}" placeholder="Contact Number" title="Contact No must be of 10 digits" required="">
         </div>
         <div class="input-group form-group">
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="fa fa-users"></i></span>
         </div>
-        <select name="gender">
+        <select name="gender" required="">
           <option selected="" disabled="">Select Gender</option>
-          <option value="m">Male</option>
-          <option value="f">Female</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
         </select>
         </div>
         <div class="input-group form-group">
@@ -66,21 +72,20 @@
             <input type="text" class="form-control" name="subject" placeholder="Enter Subjects" required="">
         </div>      
         <div class="custom-file mb-3">
-          <input type="file" class="custom-file-input" id="customFile" size="50" accept=".jpg,.jpeg,.png" name="photo">
+            <input type="file" class="custom-file-input" id="customFile" size="50" accept=".jpg,.jpeg,.png" name="file" required="">
           <label class="custom-file-label" for="customFile">Choose Photo</label>
         </div>
         <div class="input-group form-group">
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="fa fa-user"></i></span>
           </div>
-            <input type="text" class="form-control" name="username" placeholder="Enter Username" required="">
+            <input type="text" class="form-control" name="username" placeholder="Enter Username" pattern="(?=.*\d)(?=.*[a-z]).{4,}" title="Username must contain atleast 4 Alpha numeric Characters" required="">
         </div>
         <div class="input-group form-group">
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="fa fa-key"></i></span>
           </div>
-            <input type="password" class="form-control" name="password" placeholder="Enter Password"
-                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Password Must Contain atleast 6 Alpha numeric Characters" required="">
+            <input type="password" class="form-control" name="password" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Password Must Contain atleast 6 Alpha numeric Characters" required="">
         </div>
         <div class="form-group">
           <input type="submit" value="Save" class="btn login_btn">

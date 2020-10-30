@@ -9,14 +9,14 @@
 <div class="container-fluid pb-3">
 <c:if test="${not empty sessionScope.message}">
 <div class="alert alert-success">
-  <strong>Approved !</strong> School Request is approved.
+    <strong>Approved !</strong> School Request is approved.
     <%session.removeAttribute("message"); %>
 </div>
 </c:if>
 <c:if test="${not empty sessionScope.mailstatus}">
 <div class="alert alert-info">
-  <strong>Mail Sent !</strong> ${sessionScope.mailstatus}
-  <%session.removeAttribute("mailstatus"); %>
+    <strong>Mail Sent !</strong> ${sessionScope.mailstatus}
+    <%session.removeAttribute("mailstatus"); %>
 </div>
 </c:if>
 

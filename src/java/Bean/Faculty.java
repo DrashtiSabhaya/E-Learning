@@ -11,17 +11,18 @@ package Bean;
  */
 public class Faculty {
     private int id;
+    private int school_id;
     private String username;
     private String password;
     private String fname;
     private String mname;
     private String lname;
-    private int contactno;
+    private String contactno;
     private String email;
     private String gender;
     private int experience;
-    private int stdid;
     private String subject;
+    private String filename;
 
     public int getExperience() {
         return experience;
@@ -32,6 +33,14 @@ public class Faculty {
     }
     public int getId() {
         return id;
+    }
+
+    public int getSchool_id() {
+        return school_id;
+    }
+
+    public void setSchool_id(int school_id) {
+        this.school_id = school_id;
     }
 
     public void setId(int id) {
@@ -78,11 +87,11 @@ public class Faculty {
         this.lname = lname;
     }
 
-    public int getContactno() {
+    public String getContactno() {
         return contactno;
     }
 
-    public void setContactno(int contactno) {
+    public void setContactno(String contactno) {
         this.contactno = contactno;
     }
 
@@ -102,15 +111,6 @@ public class Faculty {
         this.gender = gender;
     }
 
-
-    public int getStdid() {
-        return stdid;
-    }
-
-    public void setStdid(int stdid) {
-        this.stdid = stdid;
-    }
-
     public String getSubject() {
         return subject;
     }
@@ -118,4 +118,12 @@ public class Faculty {
     public void setSubject(String subject) {
         this.subject = subject;
     } 
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
 }

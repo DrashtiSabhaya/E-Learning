@@ -3,9 +3,10 @@
     Created on : 13 Aug, 2020, 3:32:08 PM
     Author     : Drashti
 --%>
-
+<%--============= Header =================--%>
 <%@ include file="school_header.jsp" %>
 
+<%--============= Carousel =================--%>
 <div id="demo" class="carousel slide" data-ride="carousel">
   <ul class="carousel-indicators">
     <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -38,4 +39,5 @@
     <span class="carousel-control-next-icon"></span>
   </a>
 </div>
+<%--============= Footer =================--%>
 <%@ include file="school_footer.jsp" %>

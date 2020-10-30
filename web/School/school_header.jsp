@@ -3,7 +3,7 @@
     Created on : 13 Aug, 2020, 3:26:17 PM
     Author     : Drashti
 --%>
-
+<%--============= Header =================--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -87,3 +87,4 @@ window.location.href='../login';
 </nav>
 </div>	
 </header>
+<%--=============! Header =================--%>

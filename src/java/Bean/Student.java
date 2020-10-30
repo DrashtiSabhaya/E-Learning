@@ -12,18 +12,19 @@ package Bean;
 public class Student {
     private int id;
     private int school_id;
-    private int standard_id;
+    private int standard;
     private String medium;
     private int rollno;
     private String fname;
     private String mname;
     private String lname;
     private String email;
-    private int contactno;
+    private String contactno;
     private String gender;
     private String dob;
     private String username;
     private String password;
+    private String filename;
 
     public int getId() {
         return id;
@@ -41,12 +42,12 @@ public class Student {
         this.school_id = school_id;
     }
 
-    public int getStandard_id() {
-        return standard_id;
+    public int getStandard() {
+        return standard;
     }
 
-    public void setStandard_id(int standard_id) {
-        this.standard_id = standard_id;
+    public void setStandard(int standard) {
+        this.standard = standard;
     }
 
     public String getMedium() {
@@ -97,11 +98,11 @@ public class Student {
         this.email = email;
     }
 
-    public int getContactno() {
+    public String getContactno() {
         return contactno;
     }
 
-    public void setContactno(int contactno) {
+    public void setContactno(String contactno) {
         this.contactno = contactno;
     }
 
@@ -135,5 +136,14 @@ public class Student {
 
     public void setPassword(String password) {
         this.password = password;
-    }    
+    } 
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+    
 }
