@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package Bean;
 
 /**
@@ -11,17 +11,53 @@ package Bean;
  */
 public class StClass {
     private int id;
+    private int school_id;
+    private int faculty_id;
+    private String faculty;
     private int standard;
-    private int subject;
+    private String medium;
+    private String subject;
+    private int subject_id;
     private String classname;
-    private String coverphoto;
-    
+
+    public String getMedium() {
+        return medium;
+    }
+
+    public void setMedium(String medium) {
+        this.medium = medium;
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getSchool_id() {
+        return school_id;
+    }
+
+    public void setSchool_id(int school_id) {
+        this.school_id = school_id;
+    }
+
+    public int getFaculty_id() {
+        return faculty_id;
+    }
+
+    public void setFaculty_id(int faculty_id) {
+        this.faculty_id = faculty_id;
+    }
+
+    public String getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
     }
 
     public int getStandard() {
@@ -32,12 +68,20 @@ public class StClass {
         this.standard = standard;
     }
 
-    public int getSubject() {
+    public String getSubject() {
         return subject;
     }
 
-    public void setSubject(int subject) {
+    public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public int getSubject_id() {
+        return subject_id;
+    }
+
+    public void setSubject_id(int subject_id) {
+        this.subject_id = subject_id;
     }
 
     public String getClassname() {
@@ -46,14 +90,5 @@ public class StClass {
 
     public void setClassname(String classname) {
         this.classname = classname;
-    }
-
-    public String getCoverphoto() {
-        return coverphoto;
-    }
-
-    public void setCoverphoto(String coverphoto) {
-        this.coverphoto = coverphoto;
-    }
-    
+    }    
 }

@@ -286,23 +286,23 @@ select
     height: 150px;
 }
 
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width:90%;
+.chart-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width:90%;
 }
 
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+.chart-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.card-container {
-  padding: 15px 15px;
+.chart-card-container {
+    padding: 15px 15px;
 }
 /*** Video **/
 #video
 {
-border: 4px solid #fff;
+    border: 4px solid #fff;
 }
 @media(max-width: 1000px)
 {

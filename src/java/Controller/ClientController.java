@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package Controller;
 
 import Bean.Faculty;
@@ -30,18 +30,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class ClientController {
-    @Autowired    
-    FeedbackDao fbdao;
-    @Autowired    
-    SchoolDao scldao;
     @Autowired
-    StudentDao studdao;
+            FeedbackDao fbdao;
     @Autowired
-    FacultyDao facdao;
+            SchoolDao scldao;
+    @Autowired
+            StudentDao studdao;
+    @Autowired
+            FacultyDao facdao;
     
-    /*********** 
+    /***********
      * Home page
-     * @return  
+     * @return
      ************/
     @RequestMapping(value="index",method = RequestMethod.GET)
     public String view_request()
@@ -49,9 +49,9 @@ public class ClientController {
         return "index";
     }
     
-    /******* 
+    /*******
      * About us
-     * @return  
+     * @return
      *********/
     @RequestMapping(value="about",method = RequestMethod.GET)
     public String aboutUs()
@@ -59,9 +59,9 @@ public class ClientController {
         return "about";
     }
     
-    /******** 
+    /********
      * Contact Us
-     * @return  
+     * @return
      *********/
     @RequestMapping(value="contact",method = RequestMethod.GET)
     public String contact()
@@ -69,22 +69,22 @@ public class ClientController {
         return "contact";
     }
     
-    /********* 
+    /*********
      * Save Feedback
      * @param fb
      * @param session
-     * @return  
+     * @return
      ********/
-    @RequestMapping(value="savefeedback", method = RequestMethod.POST)    
-    public String saveFeedback(@ModelAttribute("fb") Feedback fb, HttpSession session){    
-        fbdao.saveFeedback(fb); 
+    @RequestMapping(value="savefeedback", method = RequestMethod.POST)
+    public String saveFeedback(@ModelAttribute("fb") Feedback fb, HttpSession session){
+        fbdao.saveFeedback(fb);
         session.setAttribute("message","Thank you for your valuable Feedback ");
-        return "redirect:/contact";    
-    } 
+        return "redirect:/contact";
+    }
     
-    /********** 
+    /**********
      * Login Page
-     * @return  
+     * @return
      **********/
     @RequestMapping(value="login",method = RequestMethod.GET)
     public String login()
@@ -92,18 +92,18 @@ public class ClientController {
         return "login";
     }
     
-    /*********** 
+    /***********
      * @name Login Check
      * @param request
      * @param response
      * @param session
      * @param modelMap
      * @param login
-     * @return  
+     * @return
      *********/
     @RequestMapping(value = "loginCheck", method = RequestMethod.POST)
     public String loginCheck(
-            HttpServletRequest request, 
+            HttpServletRequest request,
             HttpServletResponse response,
             HttpSession session, ModelMap modelMap,
             @ModelAttribute("login") Login login){
@@ -131,7 +131,9 @@ public class ClientController {
         {
             Faculty faculty = facdao.validateFaculty(login);
             if (null != faculty) {
-                //session.setAttribute("username", faculty.getUsername());
+                session.setAttribute("username", faculty.getUsername());
+                session.setAttribute("school_id",faculty.getSchool_id());
+                session.setAttribute("faculty",faculty.getFname()+" "+faculty.getMname()+" "+faculty.getLname());
                 session.setAttribute("id",faculty.getId());
                 return "redirect:/Faculty/faculty_home";
             } else {
@@ -152,7 +154,7 @@ public class ClientController {
                 else{
                     modelMap.put("error", "Your Access Request is not approved yet");
                     return "login";
-                }   
+                }
             } else {
                 modelMap.put("error", "Invalid Username or Password ");
                 return "login";
@@ -164,30 +166,30 @@ public class ClientController {
     
     /**********
      * School Sign Up Page
-     * @return  
-     *********/ 
+     * @return
+     *********/
     @RequestMapping(value="signup",method = RequestMethod.GET)
     public String signup()
     {
         return "signup";
     }
     
-    /********* 
+    /*********
      * Register School
      * @param scl
      * @param modelMap
-     * @return  
+     * @return
      ********/
-    @RequestMapping(value="register", method = RequestMethod.POST)    
-    public String saveSchool(@ModelAttribute("scl") School scl, ModelMap modelMap){    
+    @RequestMapping(value="register", method = RequestMethod.POST)
+    public String saveSchool(@ModelAttribute("scl") School scl, ModelMap modelMap){
         scldao.saveSchool(scl);
-        modelMap.put("message", "Thank you for Registration! Admin will allow access Soon.");            
-        return "signup";    
+        modelMap.put("message", "Thank you for Registration! Admin will allow access Soon.");
+        return "signup";
     }
     
-    /******** 
+    /********
      * Forgot Password
-     * @return  
+     * @return
      *********/
     @RequestMapping(value="forgot",method = RequestMethod.GET)
     public String forgot()
