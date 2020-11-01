@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package Controller;
 
 import Bean.Faculty;
@@ -10,10 +10,12 @@ import Bean.School;
 import Bean.Standards;
 import Bean.Student;
 import Bean.Subject;
+import Bean.SubjectAssign;
 import Dao.FacultyDao;
 import Dao.SchoolDao;
 import Dao.StandardDao;
 import Dao.StudentDao;
+import Dao.SubjectAssignDao;
 import Dao.SubjectDao;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -21,7 +23,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -42,103 +46,105 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 @Controller
 @RequestMapping(value = "School")
 public class SchoolController {
-    @Autowired    
-    StandardDao stddao;
-    @Autowired    
-    SubjectDao subdao;
     @Autowired
-    FacultyDao facdao;
+            StandardDao stddao;
     @Autowired
-    StudentDao stdao;
+            SubjectDao subdao;
     @Autowired
-    SchoolDao scldao;
+            FacultyDao facdao;
+    @Autowired
+            StudentDao stdao;
+    @Autowired
+            SchoolDao scldao;
+    @Autowired
+            SubjectAssignDao assigndao;
     
     public static String UPLOAD_DIRECTORY="resources/photos";
     
-    /******** 
+    /********
      * School Home
-     * @return  
+     * @return
      **********/
-    @RequestMapping(value="school_home",method = RequestMethod.GET)    
-    public String school_home(){    
-        return "School/school_home";    
+    @RequestMapping(value="school_home",method = RequestMethod.GET)
+    public String school_home(){
+        return "School/school_home";
     }
     
-    /****** 
+    /******
      * Add Standard
-     * @return  
+     * @return
      *******/
-    @RequestMapping(value="add_standard",method = RequestMethod.GET)    
-    public String addStandard(){    
-        return "School/add_standard";    
+    @RequestMapping(value="add_standard",method = RequestMethod.GET)
+    public String addStandard(){
+        return "School/add_standard";
     }
     
-    /******** 
-     * Add New Standard 
+    /********
+     * Add New Standard
      * @param std
      * @param session
-     * @return 
+     * @return
      *******/
-    @RequestMapping(value="addstandard",method = RequestMethod.POST)    
-    public String saveStandrad(@ModelAttribute("std") Standards std,HttpSession session){    
+    @RequestMapping(value="addstandard",method = RequestMethod.POST)
+    public String saveStandrad(@ModelAttribute("std") Standards std,HttpSession session){
         if(stddao.checkStandard(std)==0){
-            stddao.saveStandard(std);    
+            stddao.saveStandard(std);
             session.setAttribute("message", "New Standard is Added");
         } else {
             session.setAttribute("error", "Standard is already Exist");
         }
-        return "redirect:/School/add_standard";    
+        return "redirect:/School/add_standard";
     }
     
-    /******* 
-     * View Standards 
+    /*******
+     * View Standards
      * @param m
      * @param session
-     * @return 
+     * @return
      ********/
-    @RequestMapping(value="view_standard")    
-    public String view_standard(Model m,HttpSession session){    
-        List<Standards> list=stddao.getStandard(session.getAttribute("id").toString());    
-        m.addAttribute("list",list);  
-        return "School/view_standard";    
+    @RequestMapping(value="view_standard")
+    public String view_standard(Model m,HttpSession session){
+        List<Standards> list=stddao.getStandard(session.getAttribute("id").toString());
+        m.addAttribute("list",list);
+        return "School/view_standard";
     }
     
-    /*********** 
-     * Delete Standard 
+    /***********
+     * Delete Standard
      * @param request
      * @param session
-     * @return 
+     * @return
      **********/
-    @RequestMapping(value="/deletestd", method = RequestMethod.GET)    
-    public String deleteStandard(HttpServletRequest request, HttpSession session){  
+    @RequestMapping(value="/deletestd", method = RequestMethod.GET)
+    public String deleteStandard(HttpServletRequest request, HttpSession session){
         int id = Integer.parseInt(request.getParameter("id"));
         int r=stddao.deleteStandard(id);
         if(r>0)
             session.setAttribute("message","Standard is Deleted!");
         else
             session.setAttribute("error","Standard is not Deleted!");
-        return "redirect:/School/view_standard";    
+        return "redirect:/School/view_standard";
     }
     
-    /****** 
+    /******
      * Add Subject
-     * @return  
+     * @return
      *******/
-    @RequestMapping(value="add_subject",method = RequestMethod.GET)    
-    public String addSubject(){    
-        return "School/add_subject";    
+    @RequestMapping(value="add_subject",method = RequestMethod.GET)
+    public String addSubject(){
+        return "School/add_subject";
     }
     
     /********
-     * Save Subject 
+     * Save Subject
      * @param sub
      * @param session
-     * @return 
+     * @return
      ********/
-    @RequestMapping(value="savesubject",method = RequestMethod.POST)    
-    public String saveSubject(@ModelAttribute("sub") Subject sub, HttpSession session){    
-        if(subdao.checkSubject(sub)==0){
-            subdao.saveSubject(sub,session.getAttribute("id").toString());    
+    @RequestMapping(value="savesubject",method = RequestMethod.POST)
+    public String saveSubject(@ModelAttribute("sub") Subject sub, HttpSession session){
+        if(subdao.checkSubject(sub)==null){
+            subdao.saveSubject(sub,session.getAttribute("id").toString());
             session.setAttribute("message", "New Subject is Added");
         } else {
             session.setAttribute("error", "Subject is already Exist for given Standard");
@@ -146,55 +152,55 @@ public class SchoolController {
         return "redirect:/School/add_subject";
     }
     
-    /****** 
-     * View Subjects 
+    /******
+     * View Subjects
      * @param m
      * @param session
-     * @return 
+     * @return
      *******/
-    @RequestMapping(value="view_subjects", method = RequestMethod.GET)    
-    public String view_subjects(Model m, HttpSession session){    
-        List<Subject> list=subdao.getSubjects(session.getAttribute("id").toString());    
-        m.addAttribute("list",list);  
-        return "School/view_subjects";    
+    @RequestMapping(value="view_subjects", method = RequestMethod.GET)
+    public String view_subjects(Model m, HttpSession session){
+        List<Subject> list=subdao.getSubjects(session.getAttribute("id").toString());
+        m.addAttribute("list",list);
+        return "School/view_subjects";
     }
     
-    /*********** 
-     * Delete Subject 
+    /***********
+     * Delete Subject
      * @param request
      * @param session
-     * @return 
+     * @return
      **********/
-    @RequestMapping(value="/deletesub", method = RequestMethod.GET)    
-    public String deleteSubject(HttpServletRequest request, HttpSession session){  
+    @RequestMapping(value="/deletesub", method = RequestMethod.GET)
+    public String deleteSubject(HttpServletRequest request, HttpSession session){
         int id = Integer.parseInt(request.getParameter("id"));
         int r=subdao.deleteSubject(id);
         if(r>0)
             session.setAttribute("message","Subject is Deleted!");
         else
             session.setAttribute("error","Subject is not Deleted!");
-        return "redirect:/School/view_subjects";    
+        return "redirect:/School/view_subjects";
     }
     
-    /****** 
+    /******
      * Add Faculty
-     * @return  
+     * @return
      *******/
-    @RequestMapping(value="add_faculty",method = RequestMethod.GET)    
-    public String addFaculty(){    
-        return "School/add_faculty";    
+    @RequestMapping(value="add_faculty",method = RequestMethod.GET)
+    public String addFaculty(){
+        return "School/add_faculty";
     }
     
-    /****** 
+    /******
      * Save New Faculty
      * @param session
      * @param request
      * @param file
-     * @return  
-     * @throws java.io.FileNotFoundException  
+     * @return
+     * @throws java.io.FileNotFoundException
      ********/
-    @RequestMapping(value="/savefaculty",method = RequestMethod.POST)    
-    public String saveFaculty(HttpSession session ,HttpServletRequest request,@RequestParam CommonsMultipartFile file) throws FileNotFoundException, IOException{    
+    @RequestMapping(value="/savefaculty",method = RequestMethod.POST)
+    public String saveFaculty(HttpSession session ,HttpServletRequest request,@RequestParam CommonsMultipartFile file) throws FileNotFoundException, IOException{
         
         Faculty fac = new Faculty();
         fac.setSchool_id(Integer.parseInt(request.getParameter("school_id")));
@@ -209,96 +215,159 @@ public class SchoolController {
         fac.setGender(request.getParameter("gender"));
         fac.setSubject(request.getParameter("subject"));
         
-        ServletContext context = session.getServletContext(); 
-        String path = context.getRealPath(UPLOAD_DIRECTORY);  
-        String filename = file.getOriginalFilename();  
-
-        byte[] bytes = file.getBytes();  
+        ServletContext context = session.getServletContext();
+        String path = context.getRealPath(UPLOAD_DIRECTORY);
+        String filename = file.getOriginalFilename();
+        
+        byte[] bytes = file.getBytes();
         BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(new File(path + File.separator + filename)));
-        stream.write(bytes);  
-        stream.flush();  
+        stream.write(bytes);
+        stream.flush();
         stream.close();
-
+        
         fac.setFilename(filename);
-
-        facdao.saveFaculty(fac);    
-        return "redirect:/School/view_faculty";    
+        
+        facdao.saveFaculty(fac);
+        return "redirect:/School/view_faculty";
     }
     
-    /****** 
-     * View Faculties 
+    /******
+     * View Faculties
      * @param m
      * @param session
-     * @return 
+     * @return
      *******/
-    @RequestMapping(value="view_faculty")    
-    public String view_faculty(Model m,HttpSession session){    
-        List<Faculty> list=facdao.getFaculty(session.getAttribute("id").toString());    
-        m.addAttribute("list",list);  
-        return "School/view_faculty";    
+    @RequestMapping(value="view_faculty")
+    public String view_faculty(Model m,HttpSession session){
+        List<Faculty> list=facdao.getFaculty(session.getAttribute("id").toString());
+        m.addAttribute("list",list);
+        return "School/view_faculty";
     }
     
-    @RequestMapping(value="edit_faculty")    
-    public String edit_faculty(HttpServletRequest request, Model m,HttpSession session){ 
+    @RequestMapping(value="edit_faculty")
+    public String edit_faculty(HttpServletRequest request, Model m,HttpSession session){
         int id = Integer.parseInt(request.getParameter("id"));
-        Faculty fac=facdao.getFacultyById(id,session.getAttribute("id").toString());    
-        m.addAttribute("faculty",fac);  
-        return "School/edit_faculty";    
+        Faculty fac=facdao.getFacultyById(id,session.getAttribute("id").toString());
+        m.addAttribute("faculty",fac);
+        return "School/edit_faculty";
     }
     
-    /********* 
-     * Save Updates for Faculty 
+    /*********
+     * Save Updates for Faculty
      * @param faculty
      * @param modelMap
-     * @return 
+     * @return
      *********/
-    @RequestMapping(value="/saveupdatefac", method = RequestMethod.POST)    
-    public String editSave(@ModelAttribute("faculty") Faculty faculty, ModelMap modelMap){  
+    @RequestMapping(value="/saveupdatefac", method = RequestMethod.POST)
+    public String editSave(@ModelAttribute("faculty") Faculty faculty, ModelMap modelMap){
         int id = facdao.saveUpdate(faculty);
-        if(id>0)    
+        if(id>0)
             modelMap.put("message", "Faculty is Updated!");
         else
             modelMap.put("error", "Faculty Updation failed!");
-        return "School/edit_faculty";    
+        return "School/edit_faculty";
     }
-  
-    /*********** 
-     * Delete Faculty 
+    
+    /***********
+     * Delete Faculty
      * @param request
      * @param session
-     * @return 
+     * @return
      **********/
-    @RequestMapping(value="/deletefaculty", method = RequestMethod.GET)    
-    public String deleteFaculty(HttpServletRequest request, HttpSession session){  
+    @RequestMapping(value="/deletefaculty", method = RequestMethod.GET)
+    public String deleteFaculty(HttpServletRequest request, HttpSession session){
         int id = Integer.parseInt(request.getParameter("id"));
         int r = facdao.deleteFaculty(id);
         if(r>0)
             session.setAttribute("message","Faculty is Deleted!");
         else
             session.setAttribute("error","Faculty is not Deleted!");
-        return "redirect:/School/view_faculty";    
+        return "redirect:/School/view_faculty";
     }
     
-    /****** 
-     * Add Student
-     * @return  
+    /******
+     * Assign Faculties to Subject
+     * @param m
+     * @param session
+     * @return
      *******/
-    @RequestMapping(value="add_student",method = RequestMethod.GET)    
-    public String addStudent(){    
-        return "School/add_student";    
+    @RequestMapping(value="assign_faculty")
+    public String assign_faculty(Model m,HttpSession session){
+        return "School/assign_faculty";
     }
     
-    /********* 
-     * Save New Student 
+    /********
+     * Save Subject Assigned to Faculty
+     * @param sub
+     * @param session
+     * @return
+     ********/
+    @RequestMapping(value="assignsubject",method = RequestMethod.POST)
+    public String saveAssignSubject(@ModelAttribute("subassign") SubjectAssign sub, HttpSession session){
+        Subject subject = new Subject();
+        subject.setMedium(sub.getMedium());
+        subject.setName(sub.getSubject());
+        subject.setSchool_id(Integer.parseInt(session.getAttribute("id").toString()));
+        subject.setStandard(sub.getStandard());
+        subject = subdao.checkSubject(subject);
+        Faculty fac = facdao.getFacultyById(sub.getFaculty_id(),session.getAttribute("id").toString());
+        sub.setFaculty(fac.getFname()+" "+fac.getMname()+" "+fac.getLname());
+        sub.setSubject_id(subject.getId());
+        assigndao.saveAssignedSubject(sub,session.getAttribute("id").toString());
+        session.setAttribute("message", "Faculty is Assigned to Subject");
+        return "redirect:/School/assign_faculty";
+    }
+    
+    /******
+     * View Assigned Subjects
+     * @param m
+     * @param session
+     * @return
+     *******/
+    @RequestMapping(value="view_assign_faculty", method = RequestMethod.GET)
+    public String view_AssignedSubjects(Model m, HttpSession session){
+        List<SubjectAssign> list=assigndao.getAssignedSubjects(session.getAttribute("id").toString());
+        m.addAttribute("list",list);
+        return "School/view_assign_faculty";
+    }
+    
+    /***********
+     * Delete Assigned Subject
+     * @param request
+     * @param session
+     * @return
+     **********/
+    @RequestMapping(value="/deleteassign", method = RequestMethod.GET)
+    public String deleteAssignSubject(HttpServletRequest request, HttpSession session){
+        int id = Integer.parseInt(request.getParameter("id"));
+        int r=assigndao.deleteAssignedSubject(id);
+        if(r>0)
+            session.setAttribute("message","Assigned Subject is Deleted!");
+        else
+            session.setAttribute("error","Assigned Subject is not Deleted!");
+        return "redirect:/School/view_assign_faculty";
+    }
+    
+    /******
+     * Add Student
+     * @return
+     *******/
+    @RequestMapping(value="add_student",method = RequestMethod.GET)
+    public String addStudent(){
+        return "School/add_student";
+    }
+    
+    /*********
+     * Save New Student
      * @param session
      * @param request
      * @param file
-     * @return 
-     * @throws java.io.FileNotFoundException 
+     * @return
+     * @throws java.io.FileNotFoundException
      ********/
-    @RequestMapping(value="savestudent",method = RequestMethod.POST)    
-    public String saveStudent(HttpSession session ,HttpServletRequest request,@RequestParam CommonsMultipartFile file) throws FileNotFoundException, IOException{    
-
+    @RequestMapping(value="savestudent",method = RequestMethod.POST)
+    public String saveStudent(HttpSession session ,HttpServletRequest request,@RequestParam CommonsMultipartFile file) throws FileNotFoundException, IOException{
+        
         Student st = new Student();
         st.setSchool_id(Integer.parseInt(request.getParameter("school_id")));
         st.setStandard(Integer.parseInt(request.getParameter("standard")));
@@ -314,82 +383,82 @@ public class SchoolController {
         st.setGender(request.getParameter("gender"));
         st.setDob(request.getParameter("dob"));
         
-        ServletContext context = session.getServletContext(); 
-        String path = context.getRealPath(UPLOAD_DIRECTORY);  
-        String filename = file.getOriginalFilename();  
-
-        byte[] bytes = file.getBytes();  
+        ServletContext context = session.getServletContext();
+        String path = context.getRealPath(UPLOAD_DIRECTORY);
+        String filename = file.getOriginalFilename();
+        
+        byte[] bytes = file.getBytes();
         BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(new File(path + File.separator +request.getParameter("rollno")+ filename)));
-        stream.write(bytes);  
-        stream.flush();  
+        stream.write(bytes);
+        stream.flush();
         stream.close();
-
+        
         st.setFilename(request.getParameter("rollno")+filename);
         
-        stdao.saveStudent(st);    
-        return "redirect:/School/view_students";    
+        stdao.saveStudent(st);
+        return "redirect:/School/view_students";
     }
     
-    /****** 
-     * View Students 
+    /******
+     * View Students
      * @param m
      * @param session
-     * @return 
+     * @return
      ********/
-    @RequestMapping(value="view_students")    
-    public String view_students(Model m, HttpSession session){    
-        List<Student> list=stdao.getStudent(session.getAttribute("id").toString());    
-        m.addAttribute("list",list);  
-        return "School/view_students";    
+    @RequestMapping(value="view_students")
+    public String view_students(Model m, HttpSession session){
+        List<Student> list=stdao.getStudent(session.getAttribute("id").toString());
+        m.addAttribute("list",list);
+        return "School/view_students";
     }
     
-    @RequestMapping(value="edit_student")    
-    public String edit_Student(HttpServletRequest request, Model m){ 
+    @RequestMapping(value="edit_student")
+    public String edit_Student(HttpServletRequest request, Model m){
         int id = Integer.parseInt(request.getParameter("id"));
-        Student stud=stdao.getStudentById(id);    
-        m.addAttribute("student",stud);  
-        return "School/edit_student";    
+        Student stud=stdao.getStudentById(id);
+        m.addAttribute("student",stud);
+        return "School/edit_student";
     }
     
-    /********* 
-     * Save Updates for Student 
+    /*********
+     * Save Updates for Student
      * @param student
      * @param modelMap
-     * @return 
+     * @return
      *********/
-    @RequestMapping(value="/updatestudent", method = RequestMethod.POST)    
-    public String editSaveStudent(@ModelAttribute("student") Student student, ModelMap modelMap){  
+    @RequestMapping(value="/updatestudent", method = RequestMethod.POST)
+    public String editSaveStudent(@ModelAttribute("student") Student student, ModelMap modelMap){
         int id = stdao.saveUpdate(student);
-        if(id>0)    
+        if(id>0)
             modelMap.put("message", "Student is Updated!");
         else
             modelMap.put("error", "Student Updation failed!");
-        return "School/edit_student";    
+        return "School/edit_student";
     }
-  
     
-    /*********** 
-     * Delete Student 
+    
+    /***********
+     * Delete Student
      * @param request
      * @param session
-     * @return 
+     * @return
      **********/
-    @RequestMapping(value="/deletestud", method = RequestMethod.GET)    
-    public String deleteStudent(HttpServletRequest request, HttpSession session){  
+    @RequestMapping(value="/deletestud", method = RequestMethod.GET)
+    public String deleteStudent(HttpServletRequest request, HttpSession session){
         int id = Integer.parseInt(request.getParameter("id"));
         int r = stdao.deleteStudent(id);
         if(r>0)
             session.setAttribute("message","Student is Deleted!");
         else
             session.setAttribute("error","Student is not Deleted!");
-        return "redirect:/School/view_students";    
+        return "redirect:/School/view_students";
     }
     
-    /*********** 
+    /***********
      * Logout
-     * @param session    
-     * @return  
-     ************/    
+     * @param session
+     * @return
+     ************/
     @RequestMapping(value="logout", method = RequestMethod.GET)
     public String logout(HttpSession session) {
         session.removeAttribute("username");
@@ -397,13 +466,13 @@ public class SchoolController {
         return "redirect:/login";
     }
     
-    /***** 
-     * Standards 
+    /*****
+     * Standards
      * @param session
-     * @return 
+     * @return
      ******/
     @ModelAttribute("standard")
-    public List<String> getStandardList(HttpSession session) 
+    public List<String> getStandardList(HttpSession session)
     {
         int id = Integer.parseInt(session.getAttribute("id").toString());
         School school=scldao.getSchoolById(id);
@@ -416,10 +485,10 @@ public class SchoolController {
         return standard;
     }
     
-    /******* 
-     * Mediums 
+    /*******
+     * Mediums
      * @param session
-     * @return 
+     * @return
      *******/
     @ModelAttribute("medium")
     public String[] getMediums(HttpSession session)
@@ -430,15 +499,15 @@ public class SchoolController {
         return medium;
     }
     
-    /***** 
-     * Standards 
+    /*****
+     * Standards
      * @param session
-     * @return 
+     * @return
      ******/
     @ModelAttribute("school_standard")
-    public List<String> getSchoolStandardList(HttpSession session) 
+    public List<String> getSchoolStandardList(HttpSession session)
     {
-        List<Standards> list=stddao.getStandard(session.getAttribute("id").toString());    
+        List<Standards> list=stddao.getStandard(session.getAttribute("id").toString());
         List<String> standard=new ArrayList<String>();
         for(Standards std:list)
         {
@@ -448,11 +517,26 @@ public class SchoolController {
     }
     
     @ModelAttribute("subject")
-    public String[] getSubjects(HttpSession session)
+    public List<String> getSubjects(HttpSession session)
     {
-        int id = Integer.parseInt(session.getAttribute("id").toString());
-        School school=scldao.getSchoolById(id);
-        String[] medium = school.getMedium().split(",");
-        return medium;
+        List<Subject> list=subdao.getDistinctSubjects(session.getAttribute("id").toString());
+        List<String> subject=new ArrayList<String>();
+        for(Subject sub:list)
+        {
+            subject.add(sub.getName());
+        }
+        return subject;
+    }
+    
+    @ModelAttribute("faculty")
+    public Map<String,String> getFaculty(HttpSession session)
+    {
+        List<Faculty> list=facdao.getFaculty(session.getAttribute("id").toString());
+        Map<String,String> faculty=new HashMap<String,String>();
+        for(Faculty fac:list)
+        {
+            faculty.put(Integer.toString(fac.getId()),fac.getFname()+" "+fac.getMname()+ " "+fac.getLname());
+        }
+        return faculty;
     }
 }

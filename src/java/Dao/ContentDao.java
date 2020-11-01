@@ -1,11 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package Dao;
 
-import Bean.Assignment;
 import Bean.Content;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,38 +17,44 @@ import org.springframework.jdbc.core.RowMapper;
  * @author Drashti
  */
 public class ContentDao {
-    JdbcTemplate template;    
+    JdbcTemplate template;
     
-    public void setTemplate(JdbcTemplate template) {    
-        this.template = template;    
+    public void setTemplate(JdbcTemplate template) {
+        this.template = template;
     }
     public int saveContent(Content s)
-    {        
-        String sql="insert into content"
-                + "(standard_id,subject_id,topic,filename) "
-                + "values("+
-                s.getStandard()     +","+
-                s.getSubject()      +",'"+
-                s.getTopic()        +"','"+
-                s.getFilename()     +"')";    
-        System.out.println("\n\nQuery "+sql);
-        return template.update(sql);    
-    }
-    public List<Content> getContent()
     {
-        return template.query("select * from content",new RowMapper<Content>()
-        {    
-        @Override
-        public Content mapRow(ResultSet rs, int row) throws SQLException {    
-            Content e=new Content();    
-            e.setId(rs.getInt(1)); 
-            e.setStandard(rs.getInt(2));
-            e.setSubject(rs.getInt(3));
-            e.setTopic(rs.getString(4));
-            e.setFilename(rs.getString(5));
-            return e;    
-        }    
-        });    
+        String sql="insert into content"
+                + "(school_id,faculty_id,faculty,standard,medium,subject,subject_id,topic,filename) "
+                + "values("+
+                s.getSchool_id()        +","+
+                s.getFaculty_id()       +",'"+
+                s.getFaculty()          +"',"+
+                s.getStandard()         +",'"+
+                s.getMedium()           +"','"+
+                s.getSubject()          +"',"+
+                s.getSubject_id()       +",'"+
+                s.getTopic()            +"','"+
+                s.getFilename()     +"')";
+        System.out.println("\n\nQuery "+sql);
+        return template.update(sql);
+    }
+    public List<Content> getContent(String id)
+    {
+        return template.query("select * from content where faculty_id = "+id,new RowMapper<Content>()
+        {
+            @Override
+            public Content mapRow(ResultSet rs, int row) throws SQLException {
+                Content e=new Content();
+                e.setId(rs.getInt(1));
+                e.setStandard(rs.getInt(5));
+                e.setMedium(rs.getString(6));
+                e.setSubject(rs.getString(7));
+                e.setTopic(rs.getString(9));
+                e.setFilename(rs.getString(10));
+                return e;
+            }
+        });
     }
     
 }

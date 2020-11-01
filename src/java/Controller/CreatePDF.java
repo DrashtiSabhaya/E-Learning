@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package Controller;
 
 import Bean.School;
@@ -30,83 +30,83 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class CreatePDF {
     
-    @Autowired    
+    @Autowired
     static SchoolDao scldao;
-
+    
     private static final Font TIME_ROMAN = new Font(Font.FontFamily.TIMES_ROMAN, 18,Font.BOLD);
     private static final Font TIME_ROMAN_SMALL = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
-
+    
     /**
      * @param file
      * @param pending
      * @param accepted
      * @param rejected
-     * @return 
+     * @return
      */
     public static Document createPDF(String file,List<School> pending,List<School> accepted,List<School> rejected) {
-
+        
         Document document = null;
         try {
-                document = new Document();
-                PdfWriter.getInstance(document, new FileOutputStream(file));
-                document.open();
-                addMetaData(document);
-                addTitlePage(document);
-                createTable(document,pending,accepted,rejected);
-                document.close();
-
+            document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(file));
+            document.open();
+            addMetaData(document);
+            addTitlePage(document);
+            createTable(document,pending,accepted,rejected);
+            document.close();
+            
         } catch (FileNotFoundException | DocumentException e) {
-                e.printStackTrace();
+            e.printStackTrace();
         }
         return document;
     }
-
+    
     private static void addMetaData(Document document) {
         document.addTitle("Learn : School Reports");
         document.addSubject("Learn : School Reports");
         document.addAuthor("Learn Portal");
         document.addCreator("Learn Portal");
     }
-
+    
     private static void addTitlePage(Document document)throws DocumentException {
         Paragraph preface = new Paragraph();
         creteEmptyLine(preface, 1);
         preface.add(new Paragraph("Learn : School Report", TIME_ROMAN));
-
+        
         creteEmptyLine(preface, 1);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
         preface.add(new Paragraph("Report created on "+ simpleDateFormat.format(new Date()), TIME_ROMAN_SMALL));
         document.add(preface);
     }
-
+    
     private static void creteEmptyLine(Paragraph paragraph, int number) {
         for (int i = 0; i < number; i++) {
-                paragraph.add(new Paragraph(" "));
+            paragraph.add(new Paragraph(" "));
         }
     }
-
+    
     private static void createTable(Document document,List<School> pending,List<School> accepted,List<School> rejected) throws DocumentException {
         Paragraph paragraph = new Paragraph();
         creteEmptyLine(paragraph, 2);
         document.add(paragraph);
         PdfPTable table = new PdfPTable(5);
-
+        
         PdfPCell c1 = new PdfPCell(new Phrase("Id"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
-
+        
         c1 = new PdfPCell(new Phrase("School Name"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
-
+        
         c1 = new PdfPCell(new Phrase("Register No"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
-
+        
         c1 = new PdfPCell(new Phrase("Email"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
-
+        
         c1 = new PdfPCell(new Phrase("Joined Date"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
