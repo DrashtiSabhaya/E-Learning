@@ -1,3 +1,9 @@
+<%-- 
+    Document   : header
+    Created on : 28 Aug, 2020, 8:50:12 AM
+    Author     : Drashti
+--%>
+<%--================ Header ===================--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -46,9 +52,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="faculty_home">Home</a>
                             </li>
-                            <!--<li class="nav-item">
-                                <a class="nav-link" href="create_class">Create Class</a>
-                            </li>-->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Add Content</a>
                                 <div class="dropdown-menu">
@@ -79,3 +82,4 @@
                 </nav>
             </div>	
         </header>
+        <%--================! Header ===================--%>

@@ -100,4 +100,7 @@
     <bean id="assigndao" class="Dao.SubjectAssignDao">    
         <property name="template" ref="jt"></property>    
     </bean>
+    <bean id="uploadassigndao" class="Dao.UploadAssignmentDao">    
+        <property name="template" ref="jt"></property>    
+    </bean>
 </beans>

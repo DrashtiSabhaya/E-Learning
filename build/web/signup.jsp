@@ -1,5 +1,6 @@
 <%--============= Header =================--%>
 <%@ include file="header.jsp" %>
+    
 <%--============= Sign Up =================--%>
 <section class="signin"> 
     <div class="container-fluid">

@@ -56,5 +56,27 @@ public class ContentDao {
             }
         });
     }
-    
+    public List<Content> getContentBySubject(String id)
+    {
+        return template.query("select * from content where subject_id = "+id,new RowMapper<Content>()
+        {
+            @Override
+            public Content mapRow(ResultSet rs, int row) throws SQLException {
+                Content e=new Content();
+                e.setId(rs.getInt(1));
+                e.setFaculty(rs.getString(4));
+                e.setStandard(rs.getInt(5));
+                e.setMedium(rs.getString(6));
+                e.setSubject(rs.getString(7));
+                e.setTopic(rs.getString(9));
+                e.setFilename(rs.getString(10));
+                return e;
+            }
+        });
+    }
+    public int deleteContent(int p)
+    {
+        String sql="DELETE FROM content WHERE id=?";
+        return template.update(sql,p);
+    }
 }

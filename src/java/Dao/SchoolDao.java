@@ -155,8 +155,10 @@ public class SchoolDao {
     public School validateSchool(Login login) {
         String sql = "select * from school where username='" +
                 login.getUsername()
-                + "' and password='" +
-                login.getPassword() + "'";
+                + "' and ( password='" +
+                login.getPassword() + "' or email = '"+
+                login.getEmail()+ "')";
+        System.out.println(sql);
         List<School> school = template.query(sql, new RowMapper<School>(){
             
             @Override

@@ -1,8 +1,9 @@
-<%--============= Header =================--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%--============= Header =================--%>
 <%@ include file="school_header.jsp" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>    
 
+<%--================ Edit Faculty ===================--%>
 <section class="signin">
     <div class="container-fluid">
         <div class="heading">
@@ -12,11 +13,13 @@
             <c:if test="${not empty error}">
                 <div class="alert alert-danger">
                     <strong>Failed !</strong> ${error}
+                    <%session.removeAttribute("error"); %>
                 </div>
             </c:if>
             <c:if test="${not empty message}">
                 <div class="alert alert-success">
                     <strong>Success !</strong> ${message}
+                    <%session.removeAttribute("message"); %>
                 </div>
             </c:if> 
             <form:form action="saveupdatefac" modelAttribute="faculty" method="POST">
@@ -81,4 +84,5 @@
     </div>
 </section>
 
+<%--================ Footer ===================--%>
 <%@ include file="school_footer.jsp" %>

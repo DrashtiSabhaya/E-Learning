@@ -1,7 +1,9 @@
+<%--================ Header ===================--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@include file="faculty_header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 
+<%--================ View Material ===================--%>
 <center class="container">
     <h3>MATERIALS</h3>
 </center>
@@ -44,7 +46,7 @@
                     <td>${material.topic}</td>
                     <td>${material.filename}</td>
                     <td><button class="btn btn-info" data-toggle="modal" data-file="<c:url value="../resources/upload-material/${material.filename}"/>" data-target="#myModal">View</button></td>
-                    <td><a href="deletevid?id=${material.id}" class="btn btn-danger" onclick="return confirm('Do you want to Delete?')">Delete</a></td>
+                    <td><a href="deletematerial?id=${material.id}" class="btn btn-danger" onclick="return confirm('Do you want to Delete?')">Delete</a></td>
                 </tr>  
             </c:forEach>   
         </tbody>
@@ -85,5 +87,6 @@
     });
 </script>
 
+<%--================ Footer ===================--%>
 <%@ include file="footer.jsp" %>  
 

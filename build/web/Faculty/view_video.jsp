@@ -3,10 +3,12 @@
     Created on : 19 Sep, 2020, 10:17:04 AM
     Author     : Drashti
 --%>
+<%--================ Header ===================--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@include file="faculty_header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 
+<%--================ View Videos ===================--%>
 <center class="container">
     <h3>VIDEOS</h3>
 </center>
@@ -57,5 +59,6 @@
     </table>
 </div>
 
+<%--================ Footer ===================--%>           
 <%@ include file="footer.jsp" %>  
 

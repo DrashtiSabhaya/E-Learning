@@ -22,9 +22,9 @@ public class SubjectAssignDao {
     public void setTemplate(JdbcTemplate template) {
         this.template = template;
     }
-    public int saveAssignedSubject(SubjectAssign s, String id){
+    public int saveAssignedSubject(SubjectAssign s){
         String sql="insert into subject_assign(school_id,standard,medium,subject,subject_id,faculty,faculty_id) "
-                + "values("+id+","+s.getStandard()+",'"+s.getMedium()+"','"+s.getSubject()+
+                + "values("+s.getSchool_id()+","+s.getStandard()+",'"+s.getMedium()+"','"+s.getSubject()+
                 "',"+s.getSubject_id()+",'"
                 +s.getFaculty()+"',"
                 +s.getFaculty_id()+")";
@@ -69,4 +69,57 @@ public class SubjectAssignDao {
             }
         });
     }
+    public SubjectAssign checkAssignSubject(SubjectAssign sub){
+        String sql = "select * from subject_assign where "
+                + "school_id = "+sub.getSchool_id()
+                +" and standard = "+sub.getStandard()
+                +" and medium = '"+sub.getMedium()+"'"
+                +" and subject = '"+sub.getSubject()+"'"
+                +" and faculty_id = "+sub.getFaculty_id();
+        List<SubjectAssign> subassign = template.query(sql,new RowMapper<SubjectAssign>(){
+            @Override
+            public SubjectAssign mapRow(ResultSet rs, int row) throws SQLException {
+                SubjectAssign e=new SubjectAssign();
+                e.setId(rs.getInt(1));
+                e.setSchool_id(rs.getInt(2));
+                e.setStandard(rs.getInt(3));
+                e.setMedium(rs.getString(4));
+                e.setSubject(rs.getString(5));
+                e.setSubject_id(rs.getInt(6));
+                e.setFaculty(rs.getString(7));
+                e.setFaculty_id(rs.getInt(8));
+                return e;
+            }
+        });
+        return subassign.size() > 0 ? subassign.get(0) : null;
+    }
+    /**
+     * GetSubjectById
+     * @param standard_id
+     * @param school_id
+     * @param medium
+     * @return
+     */
+    public List<SubjectAssign> getSubjectsByStd(int standard_id,int school_id,String medium){
+        String sql = "select * from subject_assign where "
+                + " school_id="+school_id
+                + " and standard ="+standard_id
+                + " and medium='"+medium+"'";
+        return template.query(sql,new RowMapper<SubjectAssign>(){
+            @Override
+            public SubjectAssign mapRow(ResultSet rs, int row) throws SQLException {
+                SubjectAssign e=new SubjectAssign();
+                e.setId(rs.getInt(1));
+                e.setSchool_id(rs.getInt(2));
+                e.setStandard(rs.getInt(3));
+                e.setMedium(rs.getString(4));
+                e.setSubject(rs.getString(5));
+                e.setSubject_id(rs.getInt(6));
+                e.setFaculty(rs.getString(7));
+                e.setFaculty_id(rs.getInt(8));
+                return e;
+            }
+        });
+    }
+    
 }

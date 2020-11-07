@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>    
     
 <%--============= Edit School =================--%>
+<a href="list_school" class="btn btn-success mt-3 ml-5">Back</a>
 <section class="signin">
     <div class="container-fluid">
         <div class="heading"> 

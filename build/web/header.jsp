@@ -3,6 +3,7 @@
     Created on : 28 Aug, 2020, 8:50:12 AM
     Author     : Drashti
 --%>
+<%--================ Header ===================--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -54,3 +55,4 @@
                 </nav>
             </div>	
         </header>
+        <%--================! Header ===================--%>

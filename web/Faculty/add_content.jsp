@@ -1,8 +1,9 @@
+<%--================ Header ===================--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
 <%@include  file="faculty_header.jsp" %>
     
+<%--================ Add Content ===================--%>
 <section class="login">
     <div class="container-fluid">
         <div class="heading">
@@ -55,4 +56,5 @@
     </div>
 </section>
     
+<%--================ Footer ===================--%>    
 <%@include file="footer.jsp" %>

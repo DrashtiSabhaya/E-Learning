@@ -143,11 +143,19 @@ public class SchoolController {
      ********/
     @RequestMapping(value="savesubject",method = RequestMethod.POST)
     public String saveSubject(@ModelAttribute("sub") Subject sub, HttpSession session){
-        if(subdao.checkSubject(sub)==null){
-            subdao.saveSubject(sub,session.getAttribute("id").toString());
-            session.setAttribute("message", "New Subject is Added");
-        } else {
-            session.setAttribute("error", "Subject is already Exist for given Standard");
+        Standards std = new Standards();
+        std.setMedium(sub.getMedium());
+        std.setStandard(sub.getStandard());
+        std.setSchool_id(sub.getSchool_id());
+        if(stddao.checkStandard(std)==0){
+            session.setAttribute("error", "Standard is Not Existed, Please Add Standard first");
+        } else {  
+            if(subdao.checkSubject(sub)==null){
+                subdao.saveSubject(sub,session.getAttribute("id").toString());
+                session.setAttribute("message", "New Subject is Added");
+            } else {
+                session.setAttribute("error", "Subject is already Exist for given Standard");
+            }
         }
         return "redirect:/School/add_subject";
     }
@@ -200,10 +208,16 @@ public class SchoolController {
      * @throws java.io.FileNotFoundException
      ********/
     @RequestMapping(value="/savefaculty",method = RequestMethod.POST)
-    public String saveFaculty(HttpSession session ,HttpServletRequest request,@RequestParam CommonsMultipartFile file) throws FileNotFoundException, IOException{
+    public String saveFaculty(HttpSession session ,HttpServletRequest request,@RequestParam CommonsMultipartFile file, ModelMap modelMap) throws FileNotFoundException, IOException{
         
+        int school_id = Integer.parseInt(request.getParameter("school_id"));
+        Faculty faculty = facdao.getFacultyByEmail(school_id,request.getParameter("email"),request.getParameter("username"));
+        if (null != faculty) {
+            modelMap.put("error", "Faculty Details is already Existed");
+            return "School/add_faculty";
+        }
         Faculty fac = new Faculty();
-        fac.setSchool_id(Integer.parseInt(request.getParameter("school_id")));
+        fac.setSchool_id(school_id);
         fac.setUsername(request.getParameter("username"));
         fac.setPassword(request.getParameter("password"));
         fac.setFname(request.getParameter("fname"));
@@ -228,7 +242,8 @@ public class SchoolController {
         fac.setFilename(filename);
         
         facdao.saveFaculty(fac);
-        return "redirect:/School/view_faculty";
+        modelMap.put("message", "Faculty Details is Saved");
+        return "School/add_faculty";
     }
     
     /******
@@ -254,18 +269,18 @@ public class SchoolController {
     
     /*********
      * Save Updates for Faculty
-     * @param faculty
-     * @param modelMap
+     * @param fac
+     * @param session
      * @return
      *********/
-    @RequestMapping(value="/saveupdatefac", method = RequestMethod.POST)
-    public String editSave(@ModelAttribute("faculty") Faculty faculty, ModelMap modelMap){
-        int id = facdao.saveUpdate(faculty);
+    @RequestMapping(value="saveupdatefac", method = RequestMethod.POST)
+    public String editSave(@ModelAttribute("fac")Faculty fac, HttpSession session){
+        int id = facdao.saveUpdate(fac);
         if(id>0)
-            modelMap.put("message", "Faculty is Updated!");
+            session.setAttribute("message", "Faculty is Updated!");
         else
-            modelMap.put("error", "Faculty Updation failed!");
-        return "School/edit_faculty";
+            session.setAttribute("error", "Faculty Updation failed!");
+        return "redirect:/School/view_faculty";
     }
     
     /***********
@@ -310,10 +325,21 @@ public class SchoolController {
         subject.setSchool_id(Integer.parseInt(session.getAttribute("id").toString()));
         subject.setStandard(sub.getStandard());
         subject = subdao.checkSubject(subject);
+        if(subject == null)
+        {
+            session.setAttribute("error", "Subject is not Existed, Please add Subject First");
+            return "redirect:/School/assign_faculty";
+        }
         Faculty fac = facdao.getFacultyById(sub.getFaculty_id(),session.getAttribute("id").toString());
         sub.setFaculty(fac.getFname()+" "+fac.getMname()+" "+fac.getLname());
         sub.setSubject_id(subject.getId());
-        assigndao.saveAssignedSubject(sub,session.getAttribute("id").toString());
+        
+        if(assigndao.checkAssignSubject(sub)!=null)
+        {
+            session.setAttribute("error", "Same Faculty is Assigned to Subject");
+            return "redirect:/School/assign_faculty";
+        }
+        assigndao.saveAssignedSubject(sub);
         session.setAttribute("message", "Faculty is Assigned to Subject");
         return "redirect:/School/assign_faculty";
     }
@@ -368,11 +394,29 @@ public class SchoolController {
     @RequestMapping(value="savestudent",method = RequestMethod.POST)
     public String saveStudent(HttpSession session ,HttpServletRequest request,@RequestParam CommonsMultipartFile file) throws FileNotFoundException, IOException{
         
+        int school_id = Integer.parseInt(request.getParameter("school_id"));
+        int standard = Integer.parseInt(request.getParameter("standard"));
+        String medium = request.getParameter("medium");
+        int rollno = Integer.parseInt(request.getParameter("rollno"));
+        
+        Standards std = new Standards();
+        std.setMedium(medium);
+        std.setStandard(standard);
+        std.setSchool_id(school_id);
+        if(stddao.checkStandard(std)==0){
+            session.setAttribute("error", "Standard is Not Existed, Please Add Standard first");
+            return "School/add_student";
+        }
+        if(stdao.checkStudent(school_id, standard, medium, rollno)!=null)
+        {
+            session.setAttribute("error", "Student Roll No is Existed, Please Enter Different Roll No.");
+            return "School/add_student";
+        }
         Student st = new Student();
-        st.setSchool_id(Integer.parseInt(request.getParameter("school_id")));
-        st.setStandard(Integer.parseInt(request.getParameter("standard")));
-        st.setMedium(request.getParameter("medium"));
-        st.setRollno(Integer.parseInt(request.getParameter("rollno")));
+        st.setSchool_id(school_id);
+        st.setStandard(standard);
+        st.setMedium(medium);
+        st.setRollno(rollno);        
         st.setUsername(request.getParameter("username"));
         st.setPassword(request.getParameter("password"));
         st.setFname(request.getParameter("fname"));
@@ -396,6 +440,7 @@ public class SchoolController {
         st.setFilename(request.getParameter("rollno")+filename);
         
         stdao.saveStudent(st);
+        session.setAttribute("message", "Student Details is Saved");
         return "redirect:/School/view_students";
     }
     
@@ -412,6 +457,12 @@ public class SchoolController {
         return "School/view_students";
     }
     
+    /********
+     * Edit Student Details
+     * @param request
+     * @param m
+     * @return
+     *********/        
     @RequestMapping(value="edit_student")
     public String edit_Student(HttpServletRequest request, Model m){
         int id = Integer.parseInt(request.getParameter("id"));
@@ -435,8 +486,7 @@ public class SchoolController {
             modelMap.put("error", "Student Updation failed!");
         return "School/edit_student";
     }
-    
-    
+        
     /***********
      * Delete Student
      * @param request
@@ -511,11 +561,17 @@ public class SchoolController {
         List<String> standard=new ArrayList<String>();
         for(Standards std:list)
         {
-            standard.add(Integer.toString(std.getStandard()));
+            if(!standard.contains(Integer.toString(std.getStandard())))
+                standard.add(Integer.toString(std.getStandard()));
         }
         return standard;
     }
-    
+
+    /********
+     * Subject
+     * @param session
+     * @return
+     *********/        
     @ModelAttribute("subject")
     public List<String> getSubjects(HttpSession session)
     {
@@ -528,6 +584,10 @@ public class SchoolController {
         return subject;
     }
     
+    /********
+     * Faculty
+     * @return
+     *********/        
     @ModelAttribute("faculty")
     public Map<String,String> getFaculty(HttpSession session)
     {

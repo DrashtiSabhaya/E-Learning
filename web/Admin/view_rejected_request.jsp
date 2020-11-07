@@ -23,7 +23,7 @@
     <table id="myTable" class="display">
         <thead>
             <tr>
-                <th>School Id</th>
+                <th>Id</th>
                 <th>School Name</th>
                 <th>Owner Name</th>
                 <th>Register NO.</th>
@@ -37,9 +37,11 @@
             </tr>
         </thead>
         <tbody>
+            <c:set var="i" value="1" scope="page" />   
             <c:forEach var="school" items="${list}">   
                 <tr>  
-                    <td>${school.id}</td>  
+                    <td>${i}</td>
+                    <c:set var="i" value="${i + 1}" scope="page"/>
                     <td>${school.name}</td>
                     <td>${school.ownername}</td>
                     <td>${school.registerno}</td>

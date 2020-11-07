@@ -62,14 +62,19 @@ public class VideoDao {
                 e.setId(rs.getInt(1));
                 e.setStandard(rs.getInt(2));
                 e.setSubject(rs.getString(3));
-                e.setTopic(rs.getString(4));
+                e.setTopic(rs.getString(9));
                 e.setLink(rs.getString(5));
                 return e;
             }
         });
     }
     public Video getVideoById(int id) {
-        String sql = "SELECT * FROM video WHERE subject_id='"+ id+"' LIMIT 1";
+        String sql = "SELECT * FROM video WHERE id='"+id+"' LIMIT 1";
         return template.queryForObject(sql, BeanPropertyRowMapper.newInstance(Video.class));
+    }
+    public int deleteVideo(int p)
+    {
+        String sql="DELETE FROM video WHERE id=?";
+        return template.update(sql,p);
     }
 }

@@ -3,10 +3,11 @@
     Created on : 13 Aug, 2020, 3:23:21 PM
     Author     : Drashti
 --%>
-
+<%--============= Header =================--%>
 <%@ include file="school_header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 
+<%--============= Student List =================--%>
 <center class="container">
     <h3>STUDENTS LIST</h3>
 </center>
@@ -62,4 +63,5 @@
     </table>
 </div>
 
+<%--============= Footer =================--%>
 <%@ include file="school_footer.jsp" %>

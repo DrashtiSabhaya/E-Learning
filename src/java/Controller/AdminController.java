@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- *
+ * Admin Controller
  * @author Drashti
  */
 @Controller
@@ -254,7 +254,7 @@ public class AdminController {
             modelMap.put("message", "School is Updated!");
         else
             modelMap.put("error", "School Updation failed!");
-        return "Admin/edit_school";
+        return "Admin/edit_school?id="+school.getId();
     }
     
     /***********
@@ -392,7 +392,6 @@ public class AdminController {
      * Download Excel(XLS) Report
      * @param response
      ********/
-    
     @RequestMapping(value = "/downloadXLS")
     public void downloadXLS(HttpServletResponse response) {
         try {
@@ -409,6 +408,8 @@ public class AdminController {
             rows.add("Email");
             rows.add("\t");
             rows.add("Joined Date");
+            rows.add("\t");
+            rows.add("Request Status");
             rows.add("\n");
             
             int i=0;
@@ -425,6 +426,8 @@ public class AdminController {
                 rows.add(school.getEmail());
                 rows.add("\t");
                 rows.add(school.getDate());
+                rows.add("\t");
+                rows.add("Pending");
                 rows.add("\n");
             }
             for (School school:accepted) {
@@ -437,6 +440,8 @@ public class AdminController {
                 rows.add(school.getEmail());
                 rows.add("\t");
                 rows.add(school.getDate());
+                rows.add("\t");
+                rows.add("Accepted");
                 rows.add("\n");
             }
             for (School school:rejected) {
@@ -449,6 +454,8 @@ public class AdminController {
                 rows.add(school.getEmail());
                 rows.add("\t");
                 rows.add(school.getDate());
+                rows.add("\t");
+                rows.add("Rejected");
                 rows.add("\n");
             }
             Iterator<String> iter = rows.iterator();
