@@ -43,7 +43,7 @@ public class StandardDao {
         return std.size() > 0 ? 1 : 0;
     }
     public List<Standards> getStandard(String id){
-        return template.query("select * from standards where school_id="+id,new RowMapper<Standards>(){
+        return template.query("select * from standards where school_id="+id+" ORDER BY standard ASC",new RowMapper<Standards>(){
             @Override
             public Standards mapRow(ResultSet rs, int row) throws SQLException {
                 Standards e=new Standards();

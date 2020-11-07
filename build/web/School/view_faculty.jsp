@@ -3,9 +3,14 @@
     Created on : 13 Aug, 2020, 3:21:26 PM
     Author     : Drashti
 --%>
+<%--============= Header =================--%>
 <%@ include file="school_header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
-<center class="container"><h3>FACULTY LIST</h3></center>
+
+<%--============= Faculty List =================--%>
+<center class="container">
+    <h3>FACULTY LIST</h3>
+</center>
 <div class="col-lg-12 p-3">
     <c:if test="${not empty sessionScope.error}">
         <div class="alert alert-danger">
@@ -19,7 +24,6 @@
             <%session.removeAttribute("message"); %>
         </div>
     </c:if>
-    
     <table id="myTable" class="display">
         <thead>
             <tr>
@@ -56,4 +60,5 @@
     </table>
 </div>
 
+<%--============= Footer =================--%>
 <%@ include file="school_footer.jsp" %>

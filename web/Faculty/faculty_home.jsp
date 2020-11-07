@@ -1,6 +1,8 @@
+<%--================ Header ===================--%>
 <%@include file="faculty_header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
     
+<%--================ Faculty Classes ===================--%>
 <section id="boxes">
     <center class="container">
         <h3>YOUR CLASSES</h3>
@@ -23,4 +25,5 @@
     </div>
 </section>
     
+<%--================ Footer ===================--%>
 <%@include file="footer.jsp" %>

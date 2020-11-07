@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * saveFeedback
+ * ClientController
  * @author Drashti
  */
 @Controller
@@ -38,6 +40,8 @@ public class ClientController {
             StudentDao studdao;
     @Autowired
             FacultyDao facdao;
+    @Autowired
+            private JavaMailSender mailSender;
     
     /***********
      * Home page
@@ -119,7 +123,9 @@ public class ClientController {
             if (null != student) {
                 session.setAttribute("username", student.getUsername());
                 session.setAttribute("id",student.getId());
-                session.setAttribute("standard_id",student.getStandard());
+                session.setAttribute("standard",student.getStandard());
+                session.setAttribute("school_id",student.getSchool_id());
+                session.setAttribute("medium", student.getMedium());
                 return "redirect:/Student/student_home";
             } else {
                 modelMap.put("error", "Invalid Username or Password ");
@@ -194,6 +200,96 @@ public class ClientController {
     @RequestMapping(value="forgot",method = RequestMethod.GET)
     public String forgot()
     {
+        return "forgot";
+    }
+    /********
+     * Forgot Password
+     * @param request
+     * @param response
+     * @param session
+     * @param modelMap
+     * @param login
+     * @return
+     *********/
+    @RequestMapping(value="sendPassword",method = RequestMethod.POST)
+    public String sendPassword(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            HttpSession session, ModelMap modelMap,
+            @ModelAttribute("login") Login login)
+    {
+        String user = "";
+        String name = "";
+        String email = "";
+        String password = "";
+        
+        if(request.getParameter("loginas")!=null)
+            user=request.getParameter("loginas");
+        else
+        {
+            modelMap.put("error", "Please Select Valid Option");
+            return "forgot";
+        }
+        if(user.equals("student"))
+        {
+            Student student = studdao.validateStudent(login);
+            if (null == student){
+                modelMap.put("error", "Invalid Username or Password ");
+                return "forgot";
+            }
+            email = student.getEmail();
+            name = student.getFname();
+            password = student.getPassword();
+        }
+        
+        if(user.equals("teacher"))
+        {
+            Faculty faculty = facdao.validateFaculty(login);
+            if (null == faculty) {
+                modelMap.put("error", "Invalid Username or Email ");
+                return "forgot";
+            }
+            email = faculty.getEmail();
+            name = faculty.getFname();
+            password = faculty.getPassword();
+        }
+        
+        if(user.equals("school"))
+        {
+            School school = scldao.validateSchool(login);
+            if (null != school) {
+                if(school.getStatus()== 0 || school.getStatus() == 2){
+                    modelMap.put("error", "Your Access Request is not approved yet");
+                    return "forgot";
+                }
+            } else {
+                modelMap.put("error", "Invalid Username or Email ");
+                return "forgot";
+            }
+            email = school.getEmail();
+            name = school.getName();
+            password = school.getPassword();
+        }
+        
+        String subject = "Learn Portal: Your Password Request";
+        String message = "Dear Mr/Ms "+name+",\n\n"+
+                "Please Do not Share your Credential with anyone!\n"+
+                "Your Password : "+password+"\n"+
+                "Thank you!\n\n"
+                + "Regards,\nLearn Team\nlearnportal1@gmail.com";
+        
+        System.out.println("To: " + email);
+        System.out.println("Subject: " + subject);
+        System.out.println("Message: " + message);
+        
+        SimpleMailMessage sentemail = new SimpleMailMessage();
+        sentemail.setTo(email);
+        sentemail.setSubject(subject);
+        sentemail.setText(message);
+        
+        mailSender.send(sentemail);
+        
+        modelMap.put("message", "Your Password is Sent Please Check your Mail Box");
         return "forgot";
     }
 }

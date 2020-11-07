@@ -6,17 +6,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%--================ Header ===================--%>
 <%@ include file="school_header.jsp" %>
 
+<%--================ Add Student ===================--%>
 <section class="signin">
     <div class="container-fluid">
         <div class="heading">
             <h1><span>ADD</span> Student</h1>
         </div>
         <div class="page-card">
+            <c:if test="${not empty error}">
+                <div class="alert alert-danger">
+                    <strong>Failed !</strong> ${error}
+                    <%session.removeAttribute("error"); %>
+                </div>
+            </c:if>
             <c:if test="${not empty message}">
                 <div class="alert alert-success">
                     <strong>Success !</strong> ${message}
+                    <%session.removeAttribute("message"); %>
                 </div>
             </c:if> 
             <form action="savestudent" method="POST" enctype="multipart/form-data">
@@ -115,5 +124,6 @@
     </div>
 </section>
 
+<%--================ Footer ===================--%>                
 <%@ include file="school_footer.jsp" %>
 

@@ -1,3 +1,4 @@
+<%--================ Footer ===================--%>
 <script>
     $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
@@ -15,6 +16,6 @@
     </div>      
     <p>Learn &copy; 2020 - All rights reserved.</p>
 </footer>
-
 </body>
 </html>
+<%--================! Footer ===================--%>

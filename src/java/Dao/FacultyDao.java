@@ -68,8 +68,9 @@ public class FacultyDao {
     public Faculty validateFaculty(Login login) {
         String sql = "select * from faculty where username='" +
                 login.getUsername()
-                + "' and password='" +
-                login.getPassword() + "'";
+                + "' and ( password='" +
+                login.getPassword() + "' or email = '"+
+                login.getEmail()+ "')";
         List<Faculty> faculty = template.query(sql, new RowMapper<Faculty>()
         {
             @Override
@@ -78,6 +79,7 @@ public class FacultyDao {
                 e.setId(rs.getInt(1));
                 e.setSchool_id(rs.getInt(2));
                 e.setUsername(rs.getString(3));
+                e.setPassword(rs.getString(4));
                 e.setFname(rs.getString(5));
                 e.setMname(rs.getString(6));
                 e.setLname(rs.getString(7));
@@ -90,6 +92,32 @@ public class FacultyDao {
         });
         return faculty.size() > 0 ? faculty.get(0) : null;
     }
+    public Faculty getFacultyByEmail(int school_id, String email, String username) {
+        String sql = "select * from faculty where school_id=" +
+                school_id+ " and ( email = '"+
+                email + "' or username = '"+username+"')";
+        List<Faculty> faculty = template.query(sql, new RowMapper<Faculty>()
+        {
+            @Override
+            public Faculty mapRow(ResultSet rs, int row) throws SQLException {
+                Faculty e=new Faculty();
+                e.setId(rs.getInt(1));
+                e.setSchool_id(rs.getInt(2));
+                e.setUsername(rs.getString(3));
+                e.setPassword(rs.getString(4));
+                e.setFname(rs.getString(5));
+                e.setMname(rs.getString(6));
+                e.setLname(rs.getString(7));
+                e.setEmail(rs.getString(9));
+                e.setContactno(rs.getString(8));
+                e.setGender(rs.getString(10));
+                e.setExperience(rs.getInt(11));
+                return e;
+            }
+        });
+        return faculty.size() > 0 ? faculty.get(0) : null;
+    }
+    
     public Faculty getFacultyById(int id, String school_id) {
         String sql = "select * from faculty where id="+ id +" AND school_id = "+school_id;
         return template.query(sql,new ResultSetExtractor<Faculty>(){
@@ -119,7 +147,7 @@ public class FacultyDao {
     {
         if(f.getId()>0){
             String sql="Update faculty set "
-                    + "school_id = "      +f.getSchool_id() +
+                    + "school_id = "       +f.getSchool_id() +
                     ", first_name = '"     +f.getFname()   +"'"
                     + ", middle_name ='"   +f.getMname()    +"'"
                     + ", last_name ='"     +f.getLname()    +"'"
@@ -128,7 +156,8 @@ public class FacultyDao {
                     + ", gender ='"        +f.getGender()   +"'"
                     + ", experience ="     +f.getExperience()
                     + ", subject ='"       +f.getSubject()   +"'"
-                    + " where id = "      +f.getId();
+                    + " where id = "       +f.getId();
+            System.out.println(sql);
             return template.update(sql);
         }
         return 0;

@@ -1,7 +1,9 @@
+<%--================ Header ===================--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@include file="faculty_header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
     
+<%--================ View Assignments ===================--%>
 <center class="container">
     <h3>ASSIGNMENT</h3>
 </center>
@@ -87,4 +89,5 @@
     });
 </script>
     
+<%--================ Footer ===================--%>
 <%@ include file="footer.jsp" %>  

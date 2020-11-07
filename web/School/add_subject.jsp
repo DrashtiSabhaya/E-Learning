@@ -1,9 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%--================ Header ===================--%>
 <%@ include file="school_header.jsp" %>
 
+<%--================ Add Subject ===================--%>
 <section class="login">
     <div class="container-fluid">
         <div class="heading">
@@ -56,4 +57,5 @@
     </div>
 </section>
 
+<%--================ Footer ===================--%>                
 <%@ include file="school_footer.jsp" %>

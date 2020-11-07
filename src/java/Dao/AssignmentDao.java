@@ -59,5 +59,74 @@ public class AssignmentDao {
             }
         });
     }
-    
+    public List<Assignment> getAssignementBySubject(String id)
+    {
+        return template.query("select * from assignment where subject_id = "+id,new RowMapper<Assignment>()
+        {
+            @Override
+            public Assignment mapRow(ResultSet rs, int row) throws SQLException {
+                Assignment e=new Assignment();
+                e.setId(rs.getInt(1));
+                e.setStandard(rs.getInt(5));
+                e.setMedium(rs.getString(6));
+                e.setSubject(rs.getString(7));
+                e.setTopic(rs.getString(9));
+                e.setFilename(rs.getString(10));
+                e.setDate(rs.getString(11));
+                e.setDuedate(rs.getString(12));
+                return e;
+            }
+        });
+    }
+    public List<Assignment> getAssignmentByStd(int standard_id,int school_id,String medium){
+        String sql = "select * from assignment where "
+                + " school_id="+school_id
+                + " and standard ="+standard_id
+                + " and medium='"+medium+"'";
+        return template.query(sql,new RowMapper<Assignment>(){
+            @Override
+            public Assignment mapRow(ResultSet rs, int row) throws SQLException {
+                Assignment e=new Assignment();
+                e.setId(rs.getInt(1));
+                e.setStandard(rs.getInt(5));
+                e.setMedium(rs.getString(6));
+                e.setSubject(rs.getString(7));
+                e.setTopic(rs.getString(9));
+                e.setFilename(rs.getString(10));
+                e.setDate(rs.getString(11));
+                e.setDuedate(rs.getString(12));
+                return e;
+            }
+        });
+    }
+    public Assignment getAssignmentByTopic(int standard,int school_id,String medium, String subject, String topic){
+        String sql = "select * from assignment where "
+                + " school_id="+school_id
+                + " and standard ="+standard
+                + " and medium='"+medium+"'"
+                + " and subject='"+subject+"'"
+                + " and topic='"+topic+"'";
+        System.out.println(sql);
+        List<Assignment> assignment = template.query(sql,new RowMapper<Assignment>(){
+            @Override
+            public Assignment mapRow(ResultSet rs, int row) throws SQLException {
+                Assignment e=new Assignment();
+                e.setId(rs.getInt(1));
+                e.setStandard(rs.getInt(5));
+                e.setMedium(rs.getString(6));
+                e.setSubject(rs.getString(7));
+                e.setTopic(rs.getString(9));
+                e.setFilename(rs.getString(10));
+                e.setDate(rs.getString(11));
+                e.setDuedate(rs.getString(12));
+                return e;
+            }
+        });
+        return assignment.size() > 0 ? assignment.get(0) : null;
+    }
+    public int deleteAssignment(int p)
+    {
+        String sql="DELETE FROM assignment WHERE id=?";
+        return template.update(sql,p);
+    }
 }

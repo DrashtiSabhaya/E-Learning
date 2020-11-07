@@ -12,14 +12,11 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Online%20Course%20Portal/LearnPortal/src/java/Dao/ContentDao.java</file>
-            <file>file:/D:/Online%20Course%20Portal/LearnPortal/web/Faculty/view_video.jsp</file>
+            <file>file:/D:/Online%20Course%20Portal/LearnPortal/src/java/Dao/AssignmentDao.java</file>
+            <file>file:/D:/Online%20Course%20Portal/LearnPortal/src/java/Controller/StudentController.java</file>
             <file>file:/D:/Online%20Course%20Portal/LearnPortal/src/java/Controller/FacultyController.java</file>
             <file>file:/D:/Online%20Course%20Portal/LearnPortal/src/java/Controller/SchoolController.java</file>
-            <file>file:/D:/Online%20Course%20Portal/LearnPortal/web/Faculty/faculty_header.jsp</file>
-            <file>file:/D:/Online%20Course%20Portal/LearnPortal/web/Faculty/view_material.jsp</file>
-            <file>file:/D:/Online%20Course%20Portal/LearnPortal/web/Faculty/add_content.jsp</file>
-            <file>file:/D:/Online%20Course%20Portal/LearnPortal/web/Faculty/add_video.jsp</file>
+            <file>file:/D:/Online%20Course%20Portal/LearnPortal/src/java/Dao/AdminDao.java</file>
         </group>
     </open-files>
 </project-private>

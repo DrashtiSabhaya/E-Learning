@@ -3,9 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 
 <%--============= FeedBack List =================--%>
+<center class="container"><h3>FEEDBACK</h3></center>    
 <div class="col-lg-12 p-4">
-    <center><h3>FEEDBACK</h3></center>
-    
     <c:if test="${not empty sessionScope.error}">
         <div class="alert alert-danger">
             <strong>Failed !</strong> ${sessionScope.error}
@@ -18,7 +17,6 @@
             <%session.removeAttribute("message"); %>
         </div>
     </c:if>
-    
     <table id="myTable" class="display">
         <thead>
             <tr>
@@ -29,10 +27,12 @@
                 <th>Delete</th>
             </tr>
         </thead>
-        <tbody>  
+        <tbody>
+            <c:set var="i" value="1" scope="page" />   
             <c:forEach var="feedback" items="${list}">   
                 <tr>  
-                    <td>${feedback.id}</td>  
+                    <td>${i}</td>
+                    <c:set var="i" value="${i + 1}" scope="page"/>
                     <td>${feedback.name}</td>
                     <td>${feedback.email}</td>
                     <td>${feedback.message}</td>

@@ -3,6 +3,7 @@
     Created on : 13 Aug, 2020, 3:32:49 PM
     Author     : Drashti
 --%>
+<%--============= Footer =================--%>
 <script>
     $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();

@@ -3,9 +3,10 @@
     Created on : 13 Aug, 2020, 4:13:36 PM
     Author     : Drashti
 --%>
-
+<%--================ Header ===================--%>
 <%@ include file="school_header.jsp" %>
 
+<%--================ Add Faculty ===================--%>
 <section class="signin">
     <div class="container-fluid">
         <div class="heading">
@@ -16,7 +17,12 @@
                 <div class="alert alert-success">
                     <strong>Success !</strong> ${message}
                 </div>
-            </c:if> 
+            </c:if>
+            <c:if test="${not empty error}">
+                <div class="alert alert-danger">
+                    <strong>Failed !</strong> ${error}
+                </div>
+            </c:if>
             <form action="savefaculty" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="school_id" value="${sessionScope.id}">       
                 <div class="input-group form-group">
@@ -95,4 +101,5 @@
     </div>
 </section>
 
+<%--================ Footer ===================--%>                
 <%@ include file="school_footer.jsp" %>

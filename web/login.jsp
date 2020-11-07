@@ -13,6 +13,11 @@
                     <strong>Denied !</strong> ${error}
                 </div>
             </c:if>
+            <c:if test="${not empty message}">
+                <div class="alert alert-success">
+                    <strong>Done !</strong> ${message}
+                </div>
+            </c:if>
             <form action="loginCheck" method="POST">
                 <div class="input-group form-group">
                     <div class="input-group-prepend">

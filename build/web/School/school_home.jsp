@@ -39,5 +39,6 @@
         <span class="carousel-control-next-icon"></span>
     </a>
 </div>
+
 <%--============= Footer =================--%>
 <%@ include file="school_footer.jsp" %>

@@ -3,6 +3,7 @@
     Created on : 13 Aug, 2020, 3:26:17 PM
     Author     : Drashti
 --%>
+<%--============= Header =================--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -57,8 +58,8 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Assignments</a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item font" href="view_assignment">View Assignments</a>
-                                    <a class="dropdown-item font" href="upload_assign">Uploaded Assignments</a>
+                                    <a class="dropdown-item font" href="upload_assign">Upload Assignments</a>
+                                    <a class="dropdown-item font" href="uploaded_assignment">Submitted Assignments</a>
                                 </div>
                             </li>
                             <li class="nav-item">
@@ -69,3 +70,4 @@
                 </nav>
             </div>	
         </header>
+        <%--============= !Header =================--%>

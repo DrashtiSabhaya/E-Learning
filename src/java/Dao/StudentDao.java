@@ -74,8 +74,39 @@ public class StudentDao {
     public Student validateStudent(Login login) {
         String sql = "select * from student where username='" +
                 login.getUsername()
-                + "' and password='" +
-                login.getPassword() + "'";
+                + "' and ( password='" +
+                login.getPassword() + "' or email = '"+
+                login.getEmail()+ "')";
+        List<Student> student = template.query(sql, new RowMapper<Student>()
+        {
+            @Override
+            public Student mapRow(ResultSet rs, int row) throws SQLException {
+                Student e=new Student();
+                e.setId(rs.getInt(1));
+                e.setSchool_id(rs.getInt(2));
+                e.setStandard(rs.getInt(3));
+                e.setMedium(rs.getString(4));
+                e.setRollno(rs.getInt(5));
+                e.setFname(rs.getString(6));
+                e.setMname(rs.getString(7));
+                e.setLname(rs.getString(8));
+                e.setEmail(rs.getString(9));
+                e.setContactno(rs.getString(10));
+                e.setGender(rs.getString(11));
+                e.setDob(rs.getString(12));
+                e.setUsername(rs.getString(14));
+                e.setPassword(rs.getString(15));
+                return e;
+            }
+        });
+        return student.size() > 0 ? student.get(0) : null;
+    }
+    public Student checkStudent(int school_id, int standard, String medium, int rollno) {
+        String sql = "select * from student where"
+                + " school_id=" +school_id
+                + " and standard =" +standard
+                + " and medium ='" +medium
+                + "' and rollno =" +rollno;
         List<Student> student = template.query(sql, new RowMapper<Student>()
         {
             @Override

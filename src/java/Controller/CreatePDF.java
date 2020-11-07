@@ -74,7 +74,7 @@ public class CreatePDF {
         preface.add(new Paragraph("Learn : School Report", TIME_ROMAN));
         
         creteEmptyLine(preface, 1);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         preface.add(new Paragraph("Report created on "+ simpleDateFormat.format(new Date()), TIME_ROMAN_SMALL));
         document.add(preface);
     }
@@ -89,7 +89,7 @@ public class CreatePDF {
         Paragraph paragraph = new Paragraph();
         creteEmptyLine(paragraph, 2);
         document.add(paragraph);
-        PdfPTable table = new PdfPTable(5);
+        PdfPTable table = new PdfPTable(6);
         
         PdfPCell c1 = new PdfPCell(new Phrase("Id"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -110,6 +110,11 @@ public class CreatePDF {
         c1 = new PdfPCell(new Phrase("Joined Date"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
+        
+        c1 = new PdfPCell(new Phrase("Request Status"));
+        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(c1);
+        
         table.setHeaderRows(1);
         int i=0;
         for (School school:pending) {
@@ -121,6 +126,7 @@ public class CreatePDF {
             table.addCell(school.getRegisterno());
             table.addCell(school.getEmail());
             table.addCell(school.getDate());
+            table.addCell("Pending");
         }
         for (School school:accepted) {
             table.setWidthPercentage(100);
@@ -131,6 +137,7 @@ public class CreatePDF {
             table.addCell(school.getRegisterno());
             table.addCell(school.getEmail());
             table.addCell(school.getDate());
+            table.addCell("Accepted");
         }
         for (School school:rejected) {
             table.setWidthPercentage(100);
@@ -141,6 +148,7 @@ public class CreatePDF {
             table.addCell(school.getRegisterno());
             table.addCell(school.getEmail());
             table.addCell(school.getDate());
+            table.addCell("Rejected");
         }
         document.add(table);
     }

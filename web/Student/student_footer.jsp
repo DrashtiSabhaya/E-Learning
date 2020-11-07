@@ -4,7 +4,7 @@
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 </script>
-    
+<%--============= Footer =================--%>
 <footer>
     <img src="<c:url value="../resources/images/logo_footer.png"/>" />
          <div class="footer-icons">
