@@ -25,8 +25,7 @@ public class MailInfoDao {
     public int saveMail(MailInfo s)
     {
         String sql="insert into mailinfo"
-                + "(school_id,mailto,subject,message) "
-                + "values("+
+                + "(school_id,mailto,subject,message) values("+
                 s.getSchool_id()    +",'"+
                 s.getMailto()       +"','"+
                 s.getSubject()      +"','"+
@@ -35,7 +34,7 @@ public class MailInfoDao {
     }
     public List<MailInfo> getMails()
     {
-        return template.query("select * from mailinfo",new RowMapper<MailInfo>()
+        return template.query("SELECT m.*,s.school_name FROM `mailinfo` m join `school` s on m.`school_id`=s.`id`",new RowMapper<MailInfo>()
         {
             @Override
             public MailInfo mapRow(ResultSet rs, int row) throws SQLException {
@@ -46,6 +45,7 @@ public class MailInfoDao {
                 e.setSubject(rs.getString(4));
                 e.setMessage(rs.getString(5));
                 e.setDate(rs.getString(6));
+                e.setSchool_name(rs.getString(7));
                 return e;
             }
         });

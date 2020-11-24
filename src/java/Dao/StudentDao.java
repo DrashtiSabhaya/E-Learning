@@ -27,7 +27,7 @@ public class StudentDao {
     public int saveStudent(Student s)
     {
         String sql="insert into student"
-                + "(school_id,standard_id,medium,rollno,fname,mname,lname,email,contactno,gender,dob,photo,username,password) "
+                + "(school_id,standard,medium,rollno,fname,mname,lname,email,contactno,gender,dob,photo,username,password) "
                 + "values("+
                 s.getSchool_id()    +","+
                 s.getStandard()     +",'"+

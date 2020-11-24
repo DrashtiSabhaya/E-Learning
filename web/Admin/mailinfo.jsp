@@ -10,7 +10,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>School Id</th>
+                <th>School Name</th>
                 <th>Email</th>
                 <th>Subject</th> 
                 <th>Date</th>
@@ -21,7 +21,7 @@
             <c:forEach var="email" items="${list}">   
                 <tr>  
                     <td>${email.id}</td>  
-                    <td>${email.school_id}</td>
+                    <td>${email.school_name}</td>
                     <td>${email.mailto}</td>
                     <td>${email.subject}</td>
                     <td>${email.date}</td>
