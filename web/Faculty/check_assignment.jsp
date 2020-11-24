@@ -30,6 +30,8 @@
                 <th>Topic</th>
                 <th>Student Name</th>
                 <th>Submitted Date</th>
+                <th>Status</th>
+                <th>Remarks</th>
                 <th>View</th>
                 <th>Download</th>
             </tr>
@@ -45,6 +47,10 @@
                     <td>${assign.topic}</td>
                     <td>${assign.name}</td>
                     <td>${assign.submitdate}</td>
+                    <td><c:if test="${assign.status == 0}"><span class="text-primary">Submitted</span></c:if>
+                        <c:if test="${assign.status == 1}"><span class="text-success">Checked</span></c:if> 
+                        </td>
+                        <td>${assign.remarks}</td>
                     <td><button class="btn btn-info" data-toggle="modal" data-val="${assign.id}" data-file="<c:url value="../resources/upload-assignments/${assign.filename}"/>" data-target="#myModal">View</button></td>
                     <td><a class="btn btn-success" href="downloadassign?filename=${assign.filename}">Download</a></td>
                 </tr>  

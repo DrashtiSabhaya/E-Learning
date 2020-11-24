@@ -1,10 +1,10 @@
-package org.apache.jsp.Student;
+package org.apache.jsp.School;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class student_005fhome_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class school_005fhome_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -13,8 +13,8 @@ public final class student_005fhome_jsp extends org.apache.jasper.runtime.HttpJs
 
   static {
     _jspx_dependants = new java.util.ArrayList<String>(2);
-    _jspx_dependants.add("/Student/student_header.jsp");
-    _jspx_dependants.add("/Student/student_footer.jsp");
+    _jspx_dependants.add("/School/school_header.jsp");
+    _jspx_dependants.add("/School/school_footer.jsp");
   }
 
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_if_test;
@@ -61,95 +61,114 @@ public final class student_005fhome_jsp extends org.apache.jasper.runtime.HttpJs
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
       out.write('\n');
-      out.write('\r');
       out.write('\n');
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("<!DOCTYPE html>\r\n");
-      out.write("<html lang=\"en\">\r\n");
-      out.write("    <head>\r\n");
-      out.write("        <meta charset=\"utf-8\">\r\n");
+      out.write('\n');
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<!DOCTYPE html>\n");
+      out.write("<html lang=\"en\">\n");
+      out.write("    <head>\n");
+      out.write("        <meta charset=\"utf-8\">\n");
       out.write("        <link rel=\"shortcut icon\" href=\"");
       if (_jspx_meth_c_url_0(_jspx_page_context))
         return;
-      out.write("\">\r\n");
-      out.write("        <title>Learn</title>\r\n");
-      out.write("        <meta name=\"viewport\" content=\"width=device-width, intial-scale=1\">\r\n");
-      out.write("        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\">\r\n");
-      out.write("        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\"></script>\r\n");
-      out.write("        <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js\"></script>\r\n");
-      out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js\"></script>\r\n");
-      out.write("        <script type=\"text/javascript\" src=\"https://www.gstatic.com/charts/loader.js\"></script>\r\n");
+      out.write("\">\n");
+      out.write("        <title>Learn</title>\n");
+      out.write("        <meta name=\"viewport\" content=\"width=device-width, intial-scale=1\">\n");
+      out.write("        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\">\n");
+      out.write("        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\"></script>\n");
+      out.write("        <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js\"></script>\n");
+      out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js\"></script>\n");
+      out.write("        <script type=\"text/javascript\" src=\"https://www.gstatic.com/charts/loader.js\"></script>\n");
       out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"");
       if (_jspx_meth_c_url_1(_jspx_page_context))
         return;
-      out.write("\">\r\n");
-      out.write("        <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n");
+      out.write("\">\n");
+      out.write("        <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\n");
       out.write("        <link rel=\"stylesheet\" href=\"");
       if (_jspx_meth_c_url_2(_jspx_page_context))
         return;
-      out.write("\">   \r\n");
+      out.write("\">   \n");
       out.write("        <script src=\"");
       if (_jspx_meth_c_url_3(_jspx_page_context))
         return;
-      out.write("\"></script>\r\n");
+      out.write("\"></script>\n");
       out.write("        <script src=\"");
       if (_jspx_meth_c_url_4(_jspx_page_context))
         return;
-      out.write("\"></script>\r\n");
-      out.write("        <script type=\"text/javascript\">\r\n");
-      out.write("            $(document).ready( function () {\r\n");
-      out.write("                $('#myTable').DataTable();\r\n");
-      out.write("            } );\r\n");
-      out.write("        </script>\r\n");
-      out.write("    </head>\r\n");
-      out.write("    <body>\r\n");
-      out.write("        <header>\r\n");
+      out.write("\"></script>\n");
+      out.write("        <script type=\"text/javascript\">\n");
+      out.write("            $(document).ready( function () {\n");
+      out.write("                $('#myTable').DataTable();\n");
+      out.write("            } );\n");
+      out.write("        </script>\n");
+      out.write("    </head>\n");
+      out.write("    <body>\n");
+      out.write("        <header>\n");
       out.write("            ");
-      out.write("  \r\n");
+      out.write("  \n");
       out.write("            ");
       if (_jspx_meth_c_if_0(_jspx_page_context))
         return;
-      out.write("\r\n");
+      out.write("\n");
       out.write("            ");
-      out.write("  \r\n");
-      out.write("            <div class=\"\">\r\n");
-      out.write("                <div id=\"logo\">\r\n");
+      out.write("  \n");
+      out.write("            <div class=\"\">\n");
+      out.write("                <div id=\"logo\">\n");
       out.write("                    <img src=\"");
       if (_jspx_meth_c_url_5(_jspx_page_context))
         return;
-      out.write("\">  \r\n");
-      out.write("                </div>\r\n");
-      out.write("                <nav class=\"navbar navbar-expand-md font justify-content-center\">\r\n");
-      out.write("                    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapsibleNavbar\">\r\n");
-      out.write("                        <span class=\"navbar-toggler-icon\"></span>\r\n");
-      out.write("                    </button>\r\n");
-      out.write("                    <div class=\"\" id=\"collapsibleNavbar\">\r\n");
-      out.write("                        <ul class=\"navbar-nav ml-auto justify-content-center text-white\">\r\n");
-      out.write("                            <li class=\"nav-item\">\r\n");
-      out.write("                                <a class=\"nav-link\" href=\"student_home\">Home</a>\r\n");
-      out.write("                            </li>\r\n");
-      out.write("                            <li class=\"nav-item\">\r\n");
-      out.write("                                <a class=\"nav-link\" href=\"student_subjects\">Subjects</a>\r\n");
-      out.write("                            </li>\r\n");
-      out.write("                            <li class=\"nav-item dropdown\">\r\n");
-      out.write("                                <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbardrop\" data-toggle=\"dropdown\">Assignments</a>\r\n");
-      out.write("                                <div class=\"dropdown-menu\">\r\n");
-      out.write("                                    <a class=\"dropdown-item font\" href=\"upload_assign\">Upload Assignments</a>\r\n");
-      out.write("                                    <a class=\"dropdown-item font\" href=\"uploaded_assignment\">Submitted Assignments</a>\r\n");
-      out.write("                                </div>\r\n");
-      out.write("                            </li>\r\n");
-      out.write("                            <li class=\"nav-item\">\r\n");
-      out.write("                                <a href=\"logout\"><button type=\"button\" class=\"btn btn-danger\">LOG OUT</button></a>\r\n");
-      out.write("                            </li> \r\n");
-      out.write("                        </ul>\r\n");
-      out.write("                    </div>  \r\n");
-      out.write("                </nav>\r\n");
-      out.write("            </div>\t\r\n");
-      out.write("        </header>\r\n");
+      out.write("\">\n");
+      out.write("                </div>\n");
+      out.write("                <nav class=\"navbar navbar-expand-md font justify-content-center\">\n");
+      out.write("                    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapsibleNavbar\">\n");
+      out.write("                        <span class=\"navbar-toggler-icon\"></span>\n");
+      out.write("                    </button>\n");
+      out.write("                    <div class=\"\" id=\"collapsibleNavbar\">\n");
+      out.write("                        <ul class=\"navbar-nav ml-auto justify-content-center\">\n");
+      out.write("                            <li class=\"nav-item\">\n");
+      out.write("                                <a class=\"nav-link\" href=\"school_home\">Home</a>\n");
+      out.write("                            </li>\n");
+      out.write("                            <li class=\"nav-item dropdown\">\n");
+      out.write("                                <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbardrop\" data-toggle=\"dropdown\">Standards</a>\n");
+      out.write("                                <div class=\"dropdown-menu\">\n");
+      out.write("                                    <a class=\"dropdown-item font\" href=\"add_standard\">Add Standard</a>\n");
+      out.write("                                    <a class=\"dropdown-item font\" href=\"view_standard\">View Standards</a>\n");
+      out.write("                                </div>\n");
+      out.write("                            </li>\n");
+      out.write("                            <li class=\"nav-item dropdown\">\n");
+      out.write("                                <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbardrop\" data-toggle=\"dropdown\">Subjects</a>\n");
+      out.write("                                <div class=\"dropdown-menu\">\n");
+      out.write("                                    <a class=\"dropdown-item\" href=\"add_subject\">Add Subjects</a>\n");
+      out.write("                                    <a class=\"dropdown-item\" href=\"view_subjects\">View Subjects</a>\n");
+      out.write("                                </div>\n");
+      out.write("                            </li>\n");
+      out.write("                            <li class=\"nav-item dropdown\">\n");
+      out.write("                                <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbardrop\" data-toggle=\"dropdown\">Faculty</a>\n");
+      out.write("                                <div class=\"dropdown-menu\">\n");
+      out.write("                                    <a class=\"dropdown-item\" href=\"add_faculty\">Add Faculty</a>\n");
+      out.write("                                    <a class=\"dropdown-item\" href=\"view_faculty\">View Faculty</a>\n");
+      out.write("                                    <a class=\"dropdown-item\" href=\"assign_faculty\">Assign Faculty</a>\n");
+      out.write("                                    <a class=\"dropdown-item\" href=\"view_assign_faculty\">View Assigned Faculty</a>\n");
+      out.write("                                </div>\n");
+      out.write("                            </li>\n");
+      out.write("                            <li class=\"nav-item dropdown\">\n");
+      out.write("                                <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbardrop\" data-toggle=\"dropdown\">Students</a>\n");
+      out.write("                                <div class=\"dropdown-menu\">\n");
+      out.write("                                    <a class=\"dropdown-item\" href=\"add_student\">Add Students</a>\n");
+      out.write("                                    <a class=\"dropdown-item\" href=\"view_students\">View Students</a>\n");
+      out.write("                                </div>\n");
+      out.write("                            </li>\n");
+      out.write("                            <li class=\"nav-item\">\n");
+      out.write("                                <a href=\"logout\"><button type=\"button\" class=\"btn btn-danger\">LOG OUT</button></a>\n");
+      out.write("                            </li> \n");
+      out.write("                        </ul>\n");
+      out.write("                    </div>  \n");
+      out.write("                </nav>\n");
+      out.write("            </div>\t\n");
+      out.write("        </header>\n");
       out.write("        ");
-      out.write('\r');
       out.write('\n');
       out.write('\n');
       out.write('\n');
@@ -196,113 +215,21 @@ public final class student_005fhome_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("    </a>\n");
       out.write("</div>\n");
       out.write("\n");
-      out.write("<section id=\"newsletter\">\n");
-      out.write("    <div class=\"container\">\n");
-      out.write("        <h3>Submit your Query</h3>\n");
-      out.write("        <form>\n");
-      out.write("            <input type=\"email\" name=\"news\" placeholder=\"Enter Query..\">\n");
-      out.write("            <button type=\"submit\" class=\"btn btn-danger\">Submit</button>\n");
-      out.write("        </form>\n");
-      out.write("    </div>\n");
-      out.write("</section>\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<section>\n");
-      out.write("    <div class=\"jumbotron jumbotron-fluid\">\n");
-      out.write("        <div class=\"container\">\n");
-      out.write("            <h1>Learn With Us</h1>\n");
-      out.write("            <p>The main aim of Learn Portal is to provide digital space for\n");
-      out.write("                School and Students. This web application will provide e-learning\n");
-      out.write("                platform to Students and schools to continue their educational\n");
-      out.write("                learning. This web application is supported to eliminate and reduce the hardships\n");
-      out.write("                faced by schools and students and provide virtual interaction between students\n");
-      out.write("                and teachers.</p>\n");
-      out.write("            <p>\n");
-      out.write("                Learn allows Schools and teacher to manage student's classes,\n");
-      out.write("                assignment and quiz-test. It will allow remotely access to the students, students\n");
-      out.write("                can access their digital class space anytime.  \n");
-      out.write("            </p>\n");
-      out.write("        </div>\n");
-      out.write("    </div>\n");
-      out.write("</section>\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<section id=\"boxes\">\n");
-      out.write("    <div class=\"container\">\n");
-      out.write("        <div class=\"box\">\n");
-      out.write("            <div class=\"card\">\n");
-      out.write("                <img class=\"card-img-top\" src=\"");
-      if (_jspx_meth_c_url_9(_jspx_page_context))
-        return;
-      out.write("\" alt=\"Card image\" style=\"width:100%\">\n");
-      out.write("                <div class=\"card-body\">\n");
-      out.write("                    <h4 class=\"card-title\">Education</h4>\n");
-      out.write("                    <p class=\"card-text\">Learn Provide remote educational platform which make learning easy.</p>\n");
-      out.write("                    <a href=\"#\" class=\"btn btn-primary\">Read More</a>\n");
-      out.write("                </div>\n");
-      out.write("            </div>\n");
-      out.write("        </div>\n");
-      out.write("        <div class=\"box\">\n");
-      out.write("            <div class=\"card\">\n");
-      out.write("                <img class=\"card-img-top\" src=\"");
-      if (_jspx_meth_c_url_10(_jspx_page_context))
-        return;
-      out.write("\" alt=\"Card image\" style=\"width:100%\">\n");
-      out.write("                <div class=\"card-body\">\n");
-      out.write("                    <h4 class=\"card-title\">Learning</h4>\n");
-      out.write("                    <p class=\"card-text\">Learn Platform Share new Learning experience in Easy way with it's Users</p>\n");
-      out.write("                    <a href=\"#\" class=\"btn btn-primary\">Read More</a>\n");
-      out.write("                </div>\n");
-      out.write("            </div>\n");
-      out.write("        </div>\n");
-      out.write("        <div class=\"box\">\n");
-      out.write("            <div class=\"card\">\n");
-      out.write("                <img class=\"card-img-top\" src=\"");
-      if (_jspx_meth_c_url_11(_jspx_page_context))
-        return;
-      out.write("\" alt=\"Card image\" style=\"width:100%\">\n");
-      out.write("                <div class=\"card-body\">\n");
-      out.write("                    <h4 class=\"card-title\">Innovation</h4>\n");
-      out.write("                    <p class=\"card-text\">One of the Best Platform to bring out Student's Innovation in Unique</p>\n");
-      out.write("                    <a href=\"#\" class=\"btn btn-primary\">Read More</a>\n");
-      out.write("                </div>\n");
-      out.write("            </div>\n");
-      out.write("        </div>\n");
-      out.write("        <div class=\"box\">\n");
-      out.write("            <div class=\"card\">\n");
-      out.write("                <img class=\"card-img-top\" src=\"");
-      if (_jspx_meth_c_url_12(_jspx_page_context))
-        return;
-      out.write("\" alt=\"Card image\" style=\"width:100%\">\n");
-      out.write("                <div class=\"card-body\">\n");
-      out.write("                    <h4 class=\"card-title\">Grow</h4>\n");
-      out.write("                    <p class=\"card-text\">Learn provide Educational Knowledge and Growth of Children in Unique way</p>\n");
-      out.write("                    <a href=\"#\" class=\"btn btn-primary\">Read More</a>\n");
-      out.write("                </div>\n");
-      out.write("            </div>\n");
-      out.write("        </div>    \n");
-      out.write("    </div>\n");
-      out.write("</section>\n");
-      out.write("<div class=\"container-fluid p-3 bg-dark text-white\">\n");
-      out.write("    <div class=\"container\">\n");
-      out.write("        <h1>Online Education</h1>\n");
-      out.write("        <p>Connect and Learn with Us. Learn is one of the best platform for Online Eduction.</p>\n");
-      out.write("    </div>\n");
-      out.write("</div>\n");
-      out.write("\n");
       out.write('\n');
+      out.write('\n');
+      out.write("\n");
       out.write("<script>\n");
       out.write("    $(\".custom-file-input\").on(\"change\", function() {\n");
       out.write("        var fileName = $(this).val().split(\"\\\\\").pop();\n");
       out.write("        $(this).siblings(\".custom-file-label\").addClass(\"selected\").html(fileName);\n");
       out.write("    });\n");
       out.write("</script>\n");
-      out.write("\n");
+      out.write("    \n");
       out.write("<footer>\n");
       out.write("    <img src=\"");
-      if (_jspx_meth_c_url_13(_jspx_page_context))
+      if (_jspx_meth_c_url_9(_jspx_page_context))
         return;
-      out.write("\" />\n");
+      out.write("\">\n");
       out.write("         <div class=\"footer-icons\">\n");
       out.write("        <a href=\"#\"><i class=\"fa fa-facebook\"></i></a>\n");
       out.write("        <a href=\"#\"><i class=\"fa fa-twitter\"></i></a>\n");
@@ -314,7 +241,6 @@ public final class student_005fhome_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("    \n");
       out.write("</body>\n");
       out.write("</html>");
-      out.write('\n');
       out.write('\n');
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
@@ -431,11 +357,11 @@ public final class student_005fhome_jsp extends org.apache.jasper.runtime.HttpJs
     int _jspx_eval_c_if_0 = _jspx_th_c_if_0.doStartTag();
     if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\r\n");
-        out.write("                <script type=\"text/javascript\">\r\n");
-        out.write("                    alert(\"Please Login first!\");\r\n");
-        out.write("                    window.location.href='../login';\r\n");
-        out.write("                </script> \r\n");
+        out.write("\n");
+        out.write("                <script type=\"text/javascript\">\n");
+        out.write("                    alert(\"Please Login first!\");\n");
+        out.write("                    window.location.href='../login';\n");
+        out.write("                </script> \n");
         out.write("            ");
         int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -530,85 +456,13 @@ public final class student_005fhome_jsp extends org.apache.jasper.runtime.HttpJs
     org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_9 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
     _jspx_th_c_url_9.setPageContext(_jspx_page_context);
     _jspx_th_c_url_9.setParent(null);
-    _jspx_th_c_url_9.setValue("../resources/images/slide1.jpg");
+    _jspx_th_c_url_9.setValue("../resources/images/logo_footer.png");
     int _jspx_eval_c_url_9 = _jspx_th_c_url_9.doStartTag();
     if (_jspx_th_c_url_9.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_9);
       return true;
     }
     _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_9);
-    return false;
-  }
-
-  private boolean _jspx_meth_c_url_10(PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:url
-    org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_10 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
-    _jspx_th_c_url_10.setPageContext(_jspx_page_context);
-    _jspx_th_c_url_10.setParent(null);
-    _jspx_th_c_url_10.setValue("../resources/images/slide1.jpg");
-    int _jspx_eval_c_url_10 = _jspx_th_c_url_10.doStartTag();
-    if (_jspx_th_c_url_10.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_10);
-      return true;
-    }
-    _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_10);
-    return false;
-  }
-
-  private boolean _jspx_meth_c_url_11(PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:url
-    org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_11 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
-    _jspx_th_c_url_11.setPageContext(_jspx_page_context);
-    _jspx_th_c_url_11.setParent(null);
-    _jspx_th_c_url_11.setValue("../resources/images/slide1.jpg");
-    int _jspx_eval_c_url_11 = _jspx_th_c_url_11.doStartTag();
-    if (_jspx_th_c_url_11.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_11);
-      return true;
-    }
-    _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_11);
-    return false;
-  }
-
-  private boolean _jspx_meth_c_url_12(PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:url
-    org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_12 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
-    _jspx_th_c_url_12.setPageContext(_jspx_page_context);
-    _jspx_th_c_url_12.setParent(null);
-    _jspx_th_c_url_12.setValue("../resources/images/slide1.jpg");
-    int _jspx_eval_c_url_12 = _jspx_th_c_url_12.doStartTag();
-    if (_jspx_th_c_url_12.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_12);
-      return true;
-    }
-    _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_12);
-    return false;
-  }
-
-  private boolean _jspx_meth_c_url_13(PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:url
-    org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_13 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
-    _jspx_th_c_url_13.setPageContext(_jspx_page_context);
-    _jspx_th_c_url_13.setParent(null);
-    _jspx_th_c_url_13.setValue("../resources/images/logo_footer.png");
-    int _jspx_eval_c_url_13 = _jspx_th_c_url_13.doStartTag();
-    if (_jspx_th_c_url_13.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_13);
-      return true;
-    }
-    _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_13);
     return false;
   }
 }

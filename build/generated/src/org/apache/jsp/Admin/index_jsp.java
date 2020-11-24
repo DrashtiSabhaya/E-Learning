@@ -1,10 +1,10 @@
-package org.apache.jsp.Student;
+package org.apache.jsp.Admin;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class view_005fassignment_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -13,12 +13,11 @@ public final class view_005fassignment_jsp extends org.apache.jasper.runtime.Htt
 
   static {
     _jspx_dependants = new java.util.ArrayList<String>(2);
-    _jspx_dependants.add("/Student/student_header.jsp");
-    _jspx_dependants.add("/Student/student_footer.jsp");
+    _jspx_dependants.add("/Admin/header.jsp");
+    _jspx_dependants.add("/Admin/footer.jsp");
   }
 
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_forEach_var_items;
-  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_set_var_value_scope_nobody;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_if_test;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_url_value_nobody;
 
@@ -30,14 +29,12 @@ public final class view_005fassignment_jsp extends org.apache.jasper.runtime.Htt
 
   public void _jspInit() {
     _jspx_tagPool_c_forEach_var_items = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
-    _jspx_tagPool_c_set_var_value_scope_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_c_if_test = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_c_url_value_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
   }
 
   public void _jspDestroy() {
     _jspx_tagPool_c_forEach_var_items.release();
-    _jspx_tagPool_c_set_var_value_scope_nobody.release();
     _jspx_tagPool_c_if_test.release();
     _jspx_tagPool_c_url_value_nobody.release();
   }
@@ -121,31 +118,37 @@ public final class view_005fassignment_jsp extends org.apache.jasper.runtime.Htt
       out.write("\r\n");
       out.write("            ");
       out.write("  \r\n");
-      out.write("            <div class=\"\">\r\n");
+      out.write("            <div>\r\n");
       out.write("                <div id=\"logo\">\r\n");
       out.write("                    <img src=\"");
       if (_jspx_meth_c_url_5(_jspx_page_context))
         return;
-      out.write("\">  \r\n");
+      out.write("\">\r\n");
       out.write("                </div>\r\n");
-      out.write("                <nav class=\"navbar navbar-expand-md font justify-content-center\">\r\n");
+      out.write("                <nav class=\"navbar navbar-expand-md\">\r\n");
       out.write("                    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapsibleNavbar\">\r\n");
       out.write("                        <span class=\"navbar-toggler-icon\"></span>\r\n");
       out.write("                    </button>\r\n");
-      out.write("                    <div class=\"\" id=\"collapsibleNavbar\">\r\n");
-      out.write("                        <ul class=\"navbar-nav ml-auto justify-content-center text-white\">\r\n");
+      out.write("                    <div class=\"collapse navbar-collapse\" id=\"collapsibleNavbar\">\r\n");
+      out.write("                        <ul class=\"navbar-nav\">\r\n");
       out.write("                            <li class=\"nav-item\">\r\n");
-      out.write("                                <a class=\"nav-link\" href=\"student_home\">Home</a>\r\n");
-      out.write("                            </li>\r\n");
-      out.write("                            <li class=\"nav-item\">\r\n");
-      out.write("                                <a class=\"nav-link\" href=\"student_subjects\">Subjects</a>\r\n");
+      out.write("                                <a class=\"nav-link active\" href=\"index\">Home</a>\r\n");
       out.write("                            </li>\r\n");
       out.write("                            <li class=\"nav-item dropdown\">\r\n");
-      out.write("                                <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbardrop\" data-toggle=\"dropdown\">Assignments</a>\r\n");
+      out.write("                                <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbardrop\" data-toggle=\"dropdown\">School Request</a>\r\n");
       out.write("                                <div class=\"dropdown-menu\">\r\n");
-      out.write("                                    <a class=\"dropdown-item font\" href=\"upload_assign\">Upload Assignments</a>\r\n");
-      out.write("                                    <a class=\"dropdown-item font\" href=\"uploaded_assignment\">Submitted Assignments</a>\r\n");
+      out.write("                                    <a class=\"dropdown-item font\" href=\"view_request\">New Request</a>\r\n");
+      out.write("                                    <a class=\"dropdown-item font\" href=\"view_rejected_request\">Rejected Request</a>\r\n");
       out.write("                                </div>\r\n");
+      out.write("                            </li>\r\n");
+      out.write("                            <li class=\"nav-item\">\r\n");
+      out.write("                                <a class=\"nav-link\" href=\"list_school\">List School</a>\r\n");
+      out.write("                            </li>\r\n");
+      out.write("                            <li class=\"nav-item\">\r\n");
+      out.write("                                <a class=\"nav-link\" href=\"mailinfo\">Sent Mails</a>\r\n");
+      out.write("                            </li>\r\n");
+      out.write("                            <li class=\"nav-item\">\r\n");
+      out.write("                                <a class=\"nav-link\" href=\"feedback\">Feedback</a>\r\n");
       out.write("                            </li>\r\n");
       out.write("                            <li class=\"nav-item\">\r\n");
       out.write("                                <a href=\"logout\"><button type=\"button\" class=\"btn btn-danger\">LOG OUT</button></a>\r\n");
@@ -159,111 +162,178 @@ public final class view_005fassignment_jsp extends org.apache.jasper.runtime.Htt
       out.write('\r');
       out.write('\n');
       out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("<ul class=\"breadcrumb m-3\">\r\n");
-      out.write("    <li class=\"breadcrumb-item\"><a href=\"student_subjects\">Subjects</a></li>\r\n");
-      out.write("    <li class=\"breadcrumb-item\"><a href=\"view_subject_content?id=");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sub_id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("&name=");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sub_name}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write('"');
-      out.write('>');
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sub_name}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</a></li>\r\n");
-      out.write("    <li class=\"breadcrumb-item active\">Assignment</li>\r\n");
-      out.write("</ul>\r\n");
-      out.write("<center class=\"container\">\r\n");
-      out.write("    <h3>SUBJECT ASSIGNMENT</h3>\r\n");
-      out.write("</center>\r\n");
-      out.write("<div class=\"col-lg-12 p-3\">\r\n");
       out.write("    \r\n");
-      out.write("    <table id=\"myTable\" class=\"display\">\r\n");
-      out.write("        <thead>\r\n");
-      out.write("            <tr>\r\n");
-      out.write("                <th>Id</th>\r\n");
-      out.write("                <th>Subject</th>\r\n");
-      out.write("                <th>Topic</th>            \r\n");
-      out.write("                <th>Assign Date</th>\r\n");
-      out.write("                <th>Due Date</th>           \r\n");
-      out.write("                <th>View</th>\r\n");
-      out.write("                <th>Download</th>\r\n");
-      out.write("            </tr>\r\n");
-      out.write("        </thead>\r\n");
-      out.write("        <tbody>  \r\n");
-      out.write("            ");
-      if (_jspx_meth_c_set_0(_jspx_page_context))
-        return;
-      out.write("   \r\n");
-      out.write("            ");
-      if (_jspx_meth_c_forEach_0(_jspx_page_context))
-        return;
-      out.write("   \r\n");
-      out.write("        </tbody>\r\n");
-      out.write("    </table>\r\n");
-      out.write("</div>\r\n");
       out.write("\r\n");
-      out.write("<!-- The Modal -->\r\n");
-      out.write("<div class=\"modal\" id=\"myModal\">\r\n");
-      out.write("    <div class=\"modal-dialog modal-lg\">\r\n");
-      out.write("        <div class=\"modal-content\">\r\n");
-      out.write("            <!-- Modal Header -->\r\n");
-      out.write("            <div class=\"modal-header\">\r\n");
-      out.write("                <h4 class=\"modal-title\">Assignment</h4>\r\n");
-      out.write("                <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n");
-      out.write("            </div>  \r\n");
-      out.write("            <!-- Modal body -->\r\n");
-      out.write("            <div class=\"modal-body\">\r\n");
-      out.write("                <div class=\"form-group\">\r\n");
-      out.write("                    <label>Document</label>\r\n");
-      out.write("                    <div class=\"embed-responsive embed-responsive-4by3\" id=\"document\">\r\n");
-      out.write("                        <iframe class=\"embed-responsive-item\" src=\"file\" id=\"file\" allowfullscreen></iframe>\r\n");
-      out.write("                    </div>\r\n");
+      out.write("<div class=\"label pt-3 text-center \">\r\n");
+      out.write("    <a href=\"downloadPdf\" class=\"btn btn-danger\"><i class=\"fa fa-file-pdf-o\"></i> Download PDF</a>\r\n");
+      out.write("    <a href=\"downloadXLS\" class=\"btn btn-success\"><i class=\"fa fa-file-excel-o\"></i> Download Excel</a>\r\n");
+      out.write("</div>\r\n");
+      out.write("<section>\r\n");
+      out.write("    <div class=\"container-fluid row\">\r\n");
+      out.write("        <div class=\"chart-card col-6 ml-5 m-3\">\r\n");
+      out.write("            <div class=\"card p-3\">\r\n");
+      out.write("                <h4><center><b>School Requests</b></center></h4> \r\n");
+      out.write("                <div id=\"piechart\"></div> \r\n");
+      out.write("            </div>\r\n");
+      out.write("        </div>\r\n");
+      out.write("        <div class=\"chart-card col-5 m-3\">\r\n");
+      out.write("            <div class=\"card p-3\">\r\n");
+      out.write("                <h4><center><b>School Requests</b></center></h4>\r\n");
+      out.write("                <div class=\"container mt-5\">\r\n");
+      out.write("                    <table class=\"table table-dark table-hover\">\r\n");
+      out.write("                        <thead>\r\n");
+      out.write("                            <tr>\r\n");
+      out.write("                                <th>Total School Requests</th>\r\n");
+      out.write("                                <th>");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${accepted +rejected +pending}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</th>\r\n");
+      out.write("                            </tr>\r\n");
+      out.write("                        </thead>\r\n");
+      out.write("                        <tbody>\r\n");
+      out.write("                            <tr>\r\n");
+      out.write("                                <td>Accepted Requests</td>\r\n");
+      out.write("                                <td id=\"accepted\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${accepted}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</td>\r\n");
+      out.write("                            </tr>\r\n");
+      out.write("                            <tr>\r\n");
+      out.write("                                <td>Rejected Requests</td>\r\n");
+      out.write("                                <td id=\"rejected\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${rejected}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</td>\r\n");
+      out.write("                            </tr>\r\n");
+      out.write("                            <tr>\r\n");
+      out.write("                                <td>Pending Requests</td>\r\n");
+      out.write("                                <td id=\"pending\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pending}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</td>\r\n");
+      out.write("                            </tr>\r\n");
+      out.write("                        </tbody>\r\n");
+      out.write("                    </table>\r\n");
       out.write("                </div>\r\n");
-      out.write("            </div>    \r\n");
-      out.write("            <!-- Modal footer -->\r\n");
-      out.write("            <div class=\"modal-footer\">\r\n");
-      out.write("                <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\">Close</button>\r\n");
-      out.write("            </div>        \r\n");
+      out.write("            </div>\r\n");
       out.write("        </div>\r\n");
       out.write("    </div>\r\n");
-      out.write("</div>\r\n");
-      out.write("<!--! The Modal -->\r\n");
-      out.write("</div>\r\n");
+      out.write("    <div class=\"container-fluid row\">\r\n");
+      out.write("        <div class=\"chart-card col-6 ml-5 m-3\">\r\n");
+      out.write("            <div class=\"card p-3\">\r\n");
+      out.write("                <h4><center><b>Number of Schools</b></center></h4> \r\n");
+      out.write("                <div id=\"barchart\"></div> \r\n");
+      out.write("            </div>\r\n");
+      out.write("        </div>\r\n");
+      out.write("        <div class=\"chart-card col-5 m-3\">\r\n");
+      out.write("            <div class=\"card p-3\">\r\n");
+      out.write("                <h4><center><b>Number of School</b></center></h4> \r\n");
+      out.write("                <div class=\"container mt-3\">\r\n");
+      out.write("                    <table class=\"table table-dark table-hover\">\r\n");
+      out.write("                        <thead>\r\n");
+      out.write("                            <tr>\r\n");
+      out.write("                                <th>Joining Year</th>\r\n");
+      out.write("                                <th>No of Schools</th>\r\n");
+      out.write("                            </tr>\r\n");
+      out.write("                        </thead>\r\n");
+      out.write("                        <tbody>\r\n");
+      out.write("                            ");
+      if (_jspx_meth_c_forEach_0(_jspx_page_context))
+        return;
+      out.write(" \r\n");
+      out.write("                        </tbody>\r\n");
+      out.write("                    </table>\r\n");
+      out.write("                </div>\r\n");
+      out.write("            </div>\r\n");
+      out.write("        </div>\r\n");
+      out.write("    </div>\r\n");
+      out.write("    ");
+      if (_jspx_meth_c_forEach_1(_jspx_page_context))
+        return;
+      out.write("\r\n");
+      out.write("</section>\r\n");
+      out.write("    \r\n");
+      out.write("\r\n");
+      out.write("<script type=\"text/javascript\">\r\n");
+      out.write("    var d = new Date();\r\n");
+      out.write("    google.charts.load('current', {'packages':['corechart']});\r\n");
+      out.write("    google.charts.setOnLoadCallback(drawPieChart);\r\n");
+      out.write("    google.charts.setOnLoadCallback(drawBarChart);\r\n");
+      out.write("    \r\n");
+      out.write("    function drawPieChart() {\r\n");
+      out.write("        var accepted = parseInt(document.getElementById(\"accepted\").innerHTML);\r\n");
+      out.write("        var rejected = parseInt(document.getElementById(\"rejected\").innerHTML);\r\n");
+      out.write("        var pending = parseInt(document.getElementById(\"pending\").innerHTML);\r\n");
+      out.write("        var data = google.visualization.arrayToDataTable([\r\n");
+      out.write("            ['Requests', 'No. of Requests'],\r\n");
+      out.write("            ['Accepted', accepted],\r\n");
+      out.write("            ['Rejected', rejected],\r\n");
+      out.write("            ['Pending', pending]    \r\n");
+      out.write("        ]);\r\n");
+      out.write("        \r\n");
+      out.write("        var options = {'title':'Schools Request', 'width':550, 'height':450};\r\n");
+      out.write("        \r\n");
+      out.write("        var chart = new google.visualization.PieChart(document.getElementById('piechart'));\r\n");
+      out.write("        chart.draw(data, options);\r\n");
+      out.write("    }\r\n");
+      out.write("    function drawBarChart() {\r\n");
+      out.write("        var jan = document.getElementById(\"1\") ?parseInt(document.getElementById(\"1\").value):0;\r\n");
+      out.write("        var feb = document.getElementById(\"2\") ?parseInt(document.getElementById(\"2\").value):0;\r\n");
+      out.write("        var mar = document.getElementById(\"3\") ?parseInt(document.getElementById(\"3\").value):0;\r\n");
+      out.write("        var apr = document.getElementById(\"4\") ?parseInt(document.getElementById(\"4\").value):0;\r\n");
+      out.write("        var may = document.getElementById(\"5\") ?parseInt(document.getElementById(\"5\").value):0;\r\n");
+      out.write("        var jun = document.getElementById(\"6\") ?parseInt(document.getElementById(\"6\").value):0;\r\n");
+      out.write("        var jul = document.getElementById(\"7\") ?parseInt(document.getElementById(\"7\").value):0;\r\n");
+      out.write("        var aug = document.getElementById(\"8\") ?parseInt(document.getElementById(\"8\").value):0;\r\n");
+      out.write("        var sep = document.getElementById(\"9\") ?parseInt(document.getElementById(\"9\").value):0;\r\n");
+      out.write("        var oct = document.getElementById(\"10\") ?parseInt(document.getElementById(\"10\").value):0;\r\n");
+      out.write("        var nov = document.getElementById(\"11\") ?parseInt(document.getElementById(\"11\").value):0;\r\n");
+      out.write("        var dec = document.getElementById(\"12\") ?parseInt(document.getElementById(\"12\").value):0;\r\n");
+      out.write("        \r\n");
+      out.write("        var data = google.visualization.arrayToDataTable([\r\n");
+      out.write("            ['Months', 'No. of Schools'],\r\n");
+      out.write("            ['January', jan],\r\n");
+      out.write("            ['February', feb],\r\n");
+      out.write("            ['March', mar],\r\n");
+      out.write("            ['April', apr],\r\n");
+      out.write("            ['May', may],\r\n");
+      out.write("            ['June', jun],\r\n");
+      out.write("            ['July', jul],\r\n");
+      out.write("            ['August', aug],\r\n");
+      out.write("            ['September', sep],\r\n");
+      out.write("            ['October', oct],\r\n");
+      out.write("            ['November', nov],\r\n");
+      out.write("            ['December', dec]\r\n");
+      out.write("        ]);\r\n");
+      out.write("        \r\n");
+      out.write("        var options = {'title':'Year : '+d.getFullYear(), 'width':600, 'height':400};\r\n");
+      out.write("        var chart = new google.visualization.ColumnChart(document.getElementById('barchart'));\r\n");
+      out.write("        chart.draw(data, options);\r\n");
+      out.write("    }\r\n");
+      out.write("</script>\r\n");
+      out.write("    \r\n");
+      out.write('\r');
+      out.write('\n');
       out.write("<script>\r\n");
-      out.write("    $('#myModal').on('show.bs.modal', function(event) {\r\n");
-      out.write("        var file = $(event.relatedTarget).data('file');\r\n");
-      out.write("        $(this).find(\"#file\").attr(\"src\",file);\r\n");
+      out.write("    $(\".custom-file-input\").on(\"change\", function() {\r\n");
+      out.write("        var fileName = $(this).val().split(\"\\\\\").pop();\r\n");
+      out.write("        $(this).siblings(\".custom-file-label\").addClass(\"selected\").html(fileName);\r\n");
       out.write("    });\r\n");
       out.write("</script>\r\n");
       out.write("\r\n");
-      out.write('\r');
-      out.write('\n');
-      out.write("<script>\n");
-      out.write("    $(\".custom-file-input\").on(\"change\", function() {\n");
-      out.write("        var fileName = $(this).val().split(\"\\\\\").pop();\n");
-      out.write("        $(this).siblings(\".custom-file-label\").addClass(\"selected\").html(fileName);\n");
-      out.write("    });\n");
-      out.write("</script>\n");
-      out.write("\n");
-      out.write("<footer>\n");
+      out.write("<footer>\r\n");
       out.write("    <img src=\"");
-      if (_jspx_meth_c_url_7(_jspx_page_context))
+      if (_jspx_meth_c_url_6(_jspx_page_context))
         return;
-      out.write("\" />\n");
-      out.write("         <div class=\"footer-icons\">\n");
-      out.write("        <a href=\"#\"><i class=\"fa fa-facebook\"></i></a>\n");
-      out.write("        <a href=\"#\"><i class=\"fa fa-twitter\"></i></a>\n");
-      out.write("        <a href=\"#\"><i class=\"fa fa-linkedin\"></i></a>\n");
-      out.write("        <a href=\"#\"><i class=\"fa fa-google\"></i></a>\n");
-      out.write("    </div>      \n");
-      out.write("    <p>Learn &copy; 2020 - All rights reserved.</p>\n");
-      out.write("</footer>\n");
-      out.write("    \n");
-      out.write("</body>\n");
-      out.write("</html>");
-      out.write('\r');
-      out.write('\n');
+      out.write("\">\r\n");
+      out.write("         <div class=\"footer-icons\">\r\n");
+      out.write("        <a href=\"#\"><i class=\"fa fa-facebook\"></i></a>\r\n");
+      out.write("        <a href=\"#\"><i class=\"fa fa-twitter\"></i></a>\r\n");
+      out.write("        <a href=\"#\"><i class=\"fa fa-linkedin\"></i></a>\r\n");
+      out.write("        <a href=\"#\"><i class=\"fa fa-google\"></i></a>\r\n");
+      out.write("    </div>      \r\n");
+      out.write("    <p>Learn &copy; 2020 - All rights reserved.</p>\r\n");
+      out.write("</footer>\r\n");
+      out.write("</body>\r\n");
+      out.write("</html>\r\n");
+      out.write(' ');
+      out.write(' ');
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
@@ -382,7 +452,7 @@ public final class view_005fassignment_jsp extends org.apache.jasper.runtime.Htt
         out.write("\r\n");
         out.write("                <script type=\"text/javascript\">\r\n");
         out.write("                    alert(\"Please Login first!\");\r\n");
-        out.write("                    window.location.href='../login';\r\n");
+        out.write("                    window.location.href='./login';\r\n");
         out.write("                </script> \r\n");
         out.write("            ");
         int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
@@ -416,26 +486,6 @@ public final class view_005fassignment_jsp extends org.apache.jasper.runtime.Htt
     return false;
   }
 
-  private boolean _jspx_meth_c_set_0(PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:set
-    org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_0 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_scope_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
-    _jspx_th_c_set_0.setPageContext(_jspx_page_context);
-    _jspx_th_c_set_0.setParent(null);
-    _jspx_th_c_set_0.setVar("i");
-    _jspx_th_c_set_0.setValue(new String("1"));
-    _jspx_th_c_set_0.setScope("page");
-    int _jspx_eval_c_set_0 = _jspx_th_c_set_0.doStartTag();
-    if (_jspx_th_c_set_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_c_set_var_value_scope_nobody.reuse(_jspx_th_c_set_0);
-      return true;
-    }
-    _jspx_tagPool_c_set_var_value_scope_nobody.reuse(_jspx_th_c_set_0);
-    return false;
-  }
-
   private boolean _jspx_meth_c_forEach_0(PageContext _jspx_page_context)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
@@ -444,43 +494,23 @@ public final class view_005fassignment_jsp extends org.apache.jasper.runtime.Htt
     org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
     _jspx_th_c_forEach_0.setPageContext(_jspx_page_context);
     _jspx_th_c_forEach_0.setParent(null);
-    _jspx_th_c_forEach_0.setVar("assign");
-    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${list}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_forEach_0.setVar("school");
+    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${ylist}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
     int[] _jspx_push_body_count_c_forEach_0 = new int[] { 0 };
     try {
       int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
       if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("   \r\n");
-          out.write("                <tr>  \r\n");
-          out.write("                    <td>");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${i}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("                                <tr>\r\n");
+          out.write("                                    <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${school.criteria}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</td>\r\n");
-          out.write("                    ");
-          if (_jspx_meth_c_set_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
-            return true;
-          out.write("\r\n");
-          out.write("                    <td>");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${assign.subject}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("                                    <td>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${school.count}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</td>\r\n");
-          out.write("                    <td>");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${assign.topic}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</td>\r\n");
-          out.write("                    <td>");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${assign.date}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</td>\r\n");
-          out.write("                    <td>");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${assign.duedate}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</td>\r\n");
-          out.write("                    <td><button class=\"btn btn-info\" data-toggle=\"modal\" data-file=\"");
-          if (_jspx_meth_c_url_6((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
-            return true;
-          out.write("\" data-target=\"#myModal\">View</button></td>\r\n");
-          out.write("                    <td><a class=\"btn btn-success\" href=\"downloadassign?filename=");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${assign.filename}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("\">Download</a></td>\r\n");
-          out.write("                </tr>  \r\n");
-          out.write("            ");
+          out.write("                                </tr>\r\n");
+          out.write("                            ");
           int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -500,59 +530,62 @@ public final class view_005fassignment_jsp extends org.apache.jasper.runtime.Htt
     return false;
   }
 
-  private boolean _jspx_meth_c_set_1(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
+  private boolean _jspx_meth_c_forEach_1(PageContext _jspx_page_context)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
-    //  c:set
-    org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_1 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_scope_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
-    _jspx_th_c_set_1.setPageContext(_jspx_page_context);
-    _jspx_th_c_set_1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
-    _jspx_th_c_set_1.setVar("i");
-    _jspx_th_c_set_1.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${i + 1}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
-    _jspx_th_c_set_1.setScope("page");
-    int _jspx_eval_c_set_1 = _jspx_th_c_set_1.doStartTag();
-    if (_jspx_th_c_set_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_c_set_var_value_scope_nobody.reuse(_jspx_th_c_set_1);
-      return true;
+    //  c:forEach
+    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_1 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
+    _jspx_th_c_forEach_1.setPageContext(_jspx_page_context);
+    _jspx_th_c_forEach_1.setParent(null);
+    _jspx_th_c_forEach_1.setVar("school");
+    _jspx_th_c_forEach_1.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mlist}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int[] _jspx_push_body_count_c_forEach_1 = new int[] { 0 };
+    try {
+      int _jspx_eval_c_forEach_1 = _jspx_th_c_forEach_1.doStartTag();
+      if (_jspx_eval_c_forEach_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+        do {
+          out.write("   \r\n");
+          out.write("        <input type=\"hidden\" id=\"");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${school.criteria}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\" value=\"");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${school.count}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\">\r\n");
+          out.write("    ");
+          int evalDoAfterBody = _jspx_th_c_forEach_1.doAfterBody();
+          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+            break;
+        } while (true);
+      }
+      if (_jspx_th_c_forEach_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        return true;
+      }
+    } catch (Throwable _jspx_exception) {
+      while (_jspx_push_body_count_c_forEach_1[0]-- > 0)
+        out = _jspx_page_context.popBody();
+      _jspx_th_c_forEach_1.doCatch(_jspx_exception);
+    } finally {
+      _jspx_th_c_forEach_1.doFinally();
+      _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_1);
     }
-    _jspx_tagPool_c_set_var_value_scope_nobody.reuse(_jspx_th_c_set_1);
     return false;
   }
 
-  private boolean _jspx_meth_c_url_6(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
+  private boolean _jspx_meth_c_url_6(PageContext _jspx_page_context)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
     //  c:url
     org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_6 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
     _jspx_th_c_url_6.setPageContext(_jspx_page_context);
-    _jspx_th_c_url_6.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
-    _jspx_th_c_url_6.setValue((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("../resources/upload-material/${assign.filename}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_url_6.setParent(null);
+    _jspx_th_c_url_6.setValue("../resources/images/logo_footer.png");
     int _jspx_eval_c_url_6 = _jspx_th_c_url_6.doStartTag();
     if (_jspx_th_c_url_6.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_6);
       return true;
     }
     _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_6);
-    return false;
-  }
-
-  private boolean _jspx_meth_c_url_7(PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:url
-    org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_7 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
-    _jspx_th_c_url_7.setPageContext(_jspx_page_context);
-    _jspx_th_c_url_7.setParent(null);
-    _jspx_th_c_url_7.setValue("../resources/images/logo_footer.png");
-    int _jspx_eval_c_url_7 = _jspx_th_c_url_7.doStartTag();
-    if (_jspx_th_c_url_7.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_7);
-      return true;
-    }
-    _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_7);
     return false;
   }
 }

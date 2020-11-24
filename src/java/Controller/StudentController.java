@@ -11,7 +11,6 @@ import Bean.DiscussionForum;
 import Bean.SubjectAssign;
 import Bean.UploadAssignment;
 import Bean.Video;
-import static Controller.FacultyController.UPLOAD_DIRECTORY;
 import Dao.AssignmentDao;
 import Dao.ContentDao;
 import Dao.DiscussionDao;

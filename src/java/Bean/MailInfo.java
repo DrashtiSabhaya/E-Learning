@@ -12,6 +12,7 @@ package Bean;
 public class MailInfo {
     private int id;
     private int school_id;
+    private String school_name;
     private String mailto;
     private String subject;
     private String message;
@@ -47,6 +48,14 @@ public class MailInfo {
     
     public int getSchool_id() {
         return school_id;
+    }
+
+    public String getSchool_name() {
+        return school_name;
+    }
+
+    public void setSchool_name(String school_name) {
+        this.school_name = school_name;
     }
     
     public String getMailto() {
