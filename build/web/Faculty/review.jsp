@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
 <%@include  file="faculty_header.jsp" %>
-    
+
 <%--================ Check Assignment ===================--%>
 <section class="login">
     <div class="container-fluid">
@@ -11,6 +11,12 @@
             <h1><span>Check </span>Assignment</h1>
         </div>
         <div class="page-card">
+            <c:if test="${not empty error}">
+                <div class="alert alert-danger">
+                    <strong>Failed !</strong> ${error}
+                    <%session.removeAttribute("error"); %>
+                </div>
+            </c:if>
             <form action="check_assignment" method="POST">
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
@@ -55,6 +61,6 @@
         </div>
     </div>
 </section>
-    
+
 <%--================ Footer ===================--%>
 <%@include file="footer.jsp" %>

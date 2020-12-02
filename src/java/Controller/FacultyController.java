@@ -7,12 +7,14 @@ package Controller;
 
 import Bean.Assignment;
 import Bean.Content;
+import Bean.DiscussionForum;
 import Bean.SubjectAssign;
 import Bean.UploadAssignment;
 import Bean.Video;
 import Dao.AssignmentDao;
 import Dao.ClassDao;
 import Dao.ContentDao;
+import Dao.DiscussionDao;
 import Dao.SubjectAssignDao;
 import Dao.SubjectDao;
 import Dao.UploadAssignmentDao;
@@ -61,6 +63,9 @@ public class FacultyController {
             SubjectDao subdao;
     @Autowired
             UploadAssignmentDao uploadassigndao;
+    @Autowired
+            DiscussionDao dfdao;
+
     
     public static String UPLOAD_DIRECTORY="resources/upload-material";
     
@@ -124,6 +129,21 @@ public class FacultyController {
     }
     
     /********
+     * View Video Comments
+     * @param m
+     * @param session
+     * @param request
+     * @return
+     *********/
+    @RequestMapping(value="viewcomments")
+    public String view_comments(Model m, HttpSession session, HttpServletRequest request){
+        int id = Integer.parseInt(request.getParameter("id"));
+        List<DiscussionForum> list=dfdao.getComments(id);
+        m.addAttribute("list",list);
+        return "Faculty/viewcomments";
+    }
+    
+    /********
      * Delete Video
      * @param m
      * @param session
@@ -131,7 +151,7 @@ public class FacultyController {
      * @return
      *********/
     @RequestMapping(value="deletevid",method = RequestMethod.GET)
-    public String deleteVideo(Model m, HttpSession session,HttpServletRequest request){
+    public String deleteVideo(Model m, HttpSession session, HttpServletRequest request){
         int id = Integer.parseInt(request.getParameter("id"));
         int r=vidao.deleteVideo(id);
         if(r>0)
@@ -177,7 +197,7 @@ public class FacultyController {
         if(subject == null)
         {
             session.setAttribute("error", "Subject is not Assigned to Logged In Faculty");
-            return "Faculty/add_video";
+            return "Faculty/add_content";
         }
         
         ct.setSchool_id(school_id);
@@ -285,7 +305,7 @@ public class FacultyController {
         ast.setStandard(std);
         ast.setMedium(medium);
         ast.setSubject(sub);
-        ast.setSubject_id(subject.getId());
+        ast.setSubject_id(subject.getSubject_id());
         ast.setTopic(topic);
         ast.setDuedate(due_date);
         

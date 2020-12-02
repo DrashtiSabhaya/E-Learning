@@ -53,7 +53,7 @@ public class SubjectAssignDao {
         return template.update(sql,p);
     }
     public List<SubjectAssign> getAssignedSubjectsByFaculty(String id){
-        return template.query("select * from subject_assign where faculty_id = "+id,new RowMapper<SubjectAssign>(){
+        return template.query("select * from subject_assign where faculty_id = "+id+" ORDER BY standard ASC",new RowMapper<SubjectAssign>(){
             @Override
             public SubjectAssign mapRow(ResultSet rs, int row) throws SQLException {
                 SubjectAssign e=new SubjectAssign();
