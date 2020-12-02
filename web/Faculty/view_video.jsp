@@ -34,6 +34,7 @@
                 <th>Subject</th>
                 <th>Topic</th>
                 <th>Video</th>
+                <th>Comments</th>
                 <th>Delete</th>
             </tr>
         </thead>
@@ -52,6 +53,7 @@
                             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/${fn:substringAfter(link, "v=")}" allowfullscreen></iframe>
                         </div>
                     </td>
+                    <td><a href="viewcomments?id=${video.id}" class="btn btn-info">Comments</a></td>
                     <td><a href="deletevid?id=${video.id}" class="btn btn-danger" onclick="return confirm('Do you want to Delete?')">Delete</a></td>
                 </tr>  
             </c:forEach>   

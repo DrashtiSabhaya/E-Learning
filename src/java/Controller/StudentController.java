@@ -159,7 +159,7 @@ public class StudentController {
     @RequestMapping(value="savecomment",method = RequestMethod.POST)
     public String saveComment(@ModelAttribute("df") DiscussionForum df){
         dfdao.saveComment(df);
-        return "Student/view_video";
+        return "redirect:/Student/view_video?id="+df.getVideoid();
     }
     
     /********
